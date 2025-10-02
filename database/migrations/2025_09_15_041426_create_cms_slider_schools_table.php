@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('cms_slider_schools', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('title');
+            $table->text('description');
+
+            $table->string('image_src');
+            $table->string('image_type');
+            $table->string('image_size');
+
+            $table->string('link');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('cms_slider_schools');
+    }
+};
