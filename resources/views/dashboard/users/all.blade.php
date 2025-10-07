@@ -8,6 +8,8 @@
             border-radius: 25px;
         }
     </style>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
 @section('content')
@@ -128,9 +130,9 @@
                                        class="btn btn-sm btn-warning" title="ویرایش">
                                         <i class="fa-solid fa-edit me-1"></i>ویرایش
                                     </a>
-                                    <button class="btn btn-sm btn-danger delete-btn"
-                                            data-id="{{ $user->id }}" title="حذف">
-                                        <i class="fa-solid fa-trash me-1"></i>حذف
+                                    <button onclick="confirmDelete({{ $user->id }})"
+                                            class="bg-red-500 text-white px-3 py-1 bg-danger btn-sm">
+                                        حذف
                                     </button>
                                 </div>
                             </td>

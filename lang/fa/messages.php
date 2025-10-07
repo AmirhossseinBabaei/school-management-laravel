@@ -81,5 +81,23 @@ return [
         'deleteStudentsError' => 'مشکلی در حذف دانش‌آموز پیش آمد',
         'deleteStudentsSuccess' => 'دانش‌آموز با موفقیت حذف شد',
         'findStudentsError' => 'دانش‌آموز مورد نظر شما وجود ندارد'
-    ]
+    ],
+    'classRooms' => [
+        'createClassRoomsError' => 'مشکلی پیش آمد، دوباره امتحان کنید',
+        'createClassRoomsSuccess' => 'کلاس درس با موفقیت ثبت شد.',
+        'updateClassRoomsError' => 'مشکلی پیش آمد، دوباره امتحان کنید',
+        'updateClassRoomsSuccess' => 'کلاس درس با موفقیت بروزرسانی شد.',
+        'deleteClassRoomsError' => 'مشکلی در حذف کلاس درس پیش آمد',
+        'deleteClassRoomsSuccess' => 'کلاس درس با موفقیت حذف شد',
+        'findClassRoomsError' => 'کلاس درس مورد نظر شما وجود ندارد'
+    ],
+    'teacherClasses' => [
+        'createTeacherClassesError' => 'مشکلی پیش آمد، دوباره امتحان کنید',
+        'createTeacherClassesSuccess' => ' کلاس معلم با موفقیت ثبت شد.',
+        'updateTeacherClassesError' => 'مشکلی پیش آمد، دوباره امتحان کنید',
+        'updateTeacherClassesSuccess' => 'کلاس معلم با موفقیت بروزرسانی شد.',
+        'deleteTeacherClassesError' => 'مشکلی در حذف کلاس معلم پیش آمد',
+        'deleteTeacherClassesSuccess' => 'کلاس معلم با موفقیت حذف شد',
+        'findTeacherClassesError' => 'کلاس معلم مورد نظر شما وجود ندارد'
+    ],
 ];

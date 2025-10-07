@@ -22,4 +22,9 @@ class StudyBasesRepository extends BaseRepository
     {
         return StudyBase::find($id);
     }
+
+    public function getStudyBasesBySchoolId($schoolId)
+    {
+        return $this->setModel()::where('school_id', $schoolId)->orderBy('id', 'desc')->get();
+    }
 }

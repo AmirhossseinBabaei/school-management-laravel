@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', 'ویرایش کلاس درس | سیستم مدیریت مکلاس درسه')
+@section('title', 'ایجاد کلاس معلم جدید | سیستم مدیریت مکلاس معلمه')
 
 @push('styles')
 <style>
@@ -16,12 +16,12 @@
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
                     <div>
                         <h3 class="mb-2 gradient-text fw-bold">
-                            <i class="fa-solid fa-edit me-2"></i>ویرایش کلاس درس
+                            <i class="fa-solid fa-user-shield me-2"></i>ایجاد کلاس معلم جدید
                         </h3>
-                        <p class="text-muted mb-0">ویرایش اطلاعات کلاس درس: <span class="fw-semibold text-primary">{{ $data['classRoom']->name }}</span></p>
+                        <p class="text-muted mb-0">افزودن کلاس معلم جدید به سیستم</p>
                     </div>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('dashboard.classRooms.index') }}" class="btn bg-secondary btn-pill">
+                        <a href="{{ route('dashboard.teacherClasses.index') }}" class="btn bg-secondary btn-pill">
                             <i class="fa-solid fa-arrow-right me-2"></i>بازگشت
                         </a>
             </div>
@@ -40,75 +40,72 @@
                 </div>
             @endif
 
-            <!-- Edit Form -->
+            <!-- Create Form -->
             <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                 <div class="card-header glass-effect border-0">
                     <h5 class="mb-0 gradient-text fw-bold">
-                        <i class="fa-solid fa-edit me-2"></i>فرم ویرایش کلاس درس
+                        <i class="fa-solid fa-plus me-2"></i>فرم ایجاد کلاس معلم
                     </h5>
                 </div>
                 <div class="card-body p-4">
-                    <form method="post" action="{{ route('dashboard.classRooms.update', $data['classRoom']->id) }}">
+                    <form method="post" action="{{ route('dashboard.teacherClasses.store') }}">
                         @csrf
-                        @method('put')
                         <div class="row g-3">
-                            <div class="col-12">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa-solid fa-tag me-2 text-primary"></i>نام کلاس درس
-                                </label>
-                                <input type="text" name="name" class="form-control" value="{{ $data['classRoom']->name }}" placeholder="مثال: ریاضی، فیزیک، شیمی" value="{{ old('name') }}">
-                            </div>
 
                             @admin
                             <div class="col-12">
                                 <label class="form-label fw-semibold">
-                                    <i class="fa-solid fa-toggle-on me-2 text-success"></i>نام مدرسه
+                                    <i class="fa-solid fa-toggle-on me-2 text-success"></i>انتخاب مدرسه
                                 </label>
                                 <select name="school_id" class="form-control">
-                                    <option value="{{ $data['classRoom']->school->id }}">{{ $data['classRoom']->school->id }}</option>
                                     @foreach($data['schools'] as  $school)
                                         <option value="{{ $school->id  }}">{{ $school->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             @endadmin
-
-                            <div class="col-12">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa-solid fa-toggle-on me-2 text-success"></i> رشته ی تحصیلی
-                                </label>
-                                <select name="study_field_id" class="form-control">
-                                    <option value="{{ $data['classRoom']->studyField->id ?? '' }}">{{ $data['classRoom']->studyField->name ?? '' }}</option>
-                                @foreach($data2['studyFields'] as  $studyField)
-                                        <option value="{{ $studyField->id }}">{{ $studyField->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-12">
-                                <label class="form-label fw-semibold">
-                                    <i class="fa-solid fa-toggle-on me-2 text-success"></i>پایه ی تحصیلی
-                                </label>
-                                <select name="study_base_id" class="form-control">
-                                    <option value="{{ $data['classRoom']->studyBase->id ?? ''}}">{{ $data['classRoom']->studyBase->name ?? ''}}</option>
-                                    @foreach($data2['studyBases'] as  $studyBase)
-                                        <option value="{{ $studyBase->id }}">{{ $studyBase->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
                             @owner
-                            <input type="hidden" name="school_id" value="{{ Auth::user()->school_id  }}">
+                            <input type="hidden" name="school_id" value="{{ Auth::user()->school_id }}">
                             @endowner
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    <i class="fa-solid fa-toggle-on me-2 text-success"></i>انتخاب درس
+                                </label>
+                                <select name="lesson_id" class="form-control">
+                                    @foreach($data['lessons'] as  $lesson)
+                                        <option value="{{ $lesson->id }}">{{ $lesson->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    <i class="fa-solid fa-toggle-on me-2 text-success"></i> انتخاب کلاس
+                                </label>
+                                <select name="class_id" class="form-control">
+                                    @foreach($data['classRooms'] as  $classRoom)
+                                        <option value="{{ $classRoom->id }}">{{ $classRoom->name}}/{{ $classRoom->school->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    <i class="fa-solid fa-toggle-on me-2 text-success"></i> انتخاب معلم
+                                </label>
+                                <select name="teacher_id" class="form-control">
+                                    @foreach($data['teachers'] as  $teacher)
+                                        <option value="{{ $teacher->id }}">{{ $teacher->first_name ?? ''}}-{{ $teacher->last_name ?? ''}}/{{ $teacher->school->name ?? ''}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="col-12">
                                 <div class="d-flex gap-3 justify-content-end">
-                                    <a href="{{ route('dashboard.classRooms.index') }}" class="btn bg-danger btn-pill">
+                                    <a href="{{ route('dashboard.teacherClasses.index') }}" class="btn bg-danger btn-pill">
                                         <i class="fa-solid fa-times me-2"></i>انصراف
                                     </a>
-                                    <button class="btn bg-success btn-pill">
-                                        <input type="submit" class="btn bg-success btn-pill px-4" value="ویرایش کلاس">
-                                    </button>
+                                        <input type="submit" class="btn bg-success btn-pill px-4" value="ایجاد کلاس">
                                 </div>
                             </div>
                         </div>

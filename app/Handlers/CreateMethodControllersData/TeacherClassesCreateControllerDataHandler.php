@@ -4,35 +4,30 @@ namespace App\Handlers\CreateMethodControllersData;
 
 use App\Abstracts\ControllerDataHandler;
 use App\Repositories\ClassRoomRepository;
+use App\Repositories\LessonsRepository;
 use App\Repositories\SchoolsRepository;
-use App\Repositories\StudentsRepository;
-use App\Repositories\StudyBasesRepository;
-use App\Repositories\StudyFieldsRepository;
 use App\Repositories\UsersRepository;
 use App\Services\JalaliDateServiceStatic;
 use Illuminate\Support\Facades\Auth;
 
-class StudentsCreateControllerDataHandler extends ControllerDataHandler
+class TeacherClassesCreateControllerDataHandler extends ControllerDataHandler
 {
     protected ControllerDataHandler $handler;
 
-    protected StudentsRepository $studentsRepository;
     protected JalaliDateServiceStatic $jalaliDateService;
+
     protected SchoolsRepository $schoolsRepository;
-    protected UsersRepository $usersRepository;
-    protected StudyBasesRepository $studyBasesRepository;
-    protected StudyFieldsRepository $studyFieldsRepository;
     protected ClassRoomRepository $classRoomRepository;
+    protected LessonsRepository $lessonsRepository;
+    protected UsersRepository $usersRepository;
 
     public function __construct()
     {
-        $this->studentsRepository = new StudentsRepository();
-        $this->jalaliDateService = new JalaliDateServiceStatic();
         $this->schoolsRepository = new SchoolsRepository();
-        $this->usersRepository = new UsersRepository();
-        $this->studyBasesRepository = new StudyBasesRepository();
-        $this->studyFieldsRepository = new StudyFieldsRepository();
         $this->classRoomRepository = new ClassRoomRepository();
+        $this->lessonsRepository = new LessonsRepository();
+        $this->usersRepository = new UsersRepository();
+        $this->jalaliDateService = new JalaliDateServiceStatic();
     }
 
     public function setNext(ControllerDataHandler $handler): ControllerDataHandler
@@ -47,10 +42,9 @@ class StudentsCreateControllerDataHandler extends ControllerDataHandler
         return [
             'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd'),
             'schools' => $this->schoolsRepository->all(),
-            'study_bases' => $this->studyBasesRepository->all(),
-            'study_fields' => $this->studyFieldsRepository->all(),
-            'classes' => $this->classRoomRepository->all(),
-            'users' => $this->usersRepository->all()
+            'classRooms' => $this->classRoomRepository->all(),
+            'lessons' => $this->lessonsRepository->all(),
+            'users' => $this->usersRepository->getAllTeachers()
         ];
     }
 
@@ -58,28 +52,25 @@ class StudentsCreateControllerDataHandler extends ControllerDataHandler
     {
         return [
             'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd'),
-            'study_bases' => $this->studyBasesRepository->all(),
-            'study_fields' => $this->studyFieldsRepository->all(),
-            'classes' => $this->classRoomRepository->getClassesBySchoolId($schoolId),
-            'users' => $this->usersRepository->getUsersBySchoolId($schoolId)
+            'classRooms' => $this->classRoomRepository->getClassesBySchoolId($schoolId),
+            'lessons' => $this->lessonsRepository->all(),
+            'teachers' => $this->usersRepository->getTeachersBySchoolId($schoolId)
         ];
     }
 
     public function handle(string $request)
     {
-        if ($request == 'studentsData') {
+        if ($request == 'TeacherClassesData') {
             if (Auth::user()->hasRole('admin')) {
 
                 return $this->getAdminData();
-            }
-            else if (Auth::user()->hasRole('owner')) {
+            } else if (Auth::user()->hasRole('owner')) {
                 return $this->getOwnerData(Auth::user()->school_id);
-            }
-            else {
+            } else {
                 return null;
             }
         }
 
-        return $this->next->handle($request);
+        return null;
     }
 }

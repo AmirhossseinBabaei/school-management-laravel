@@ -14,25 +14,15 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentsControllerDataHandler extends ControllerDataHandler
 {
-    protected ControllerDataHandler $next;
-
     protected StudentsRepository $studentsRepository;
     protected JalaliDateServiceStatic $jalaliDateService;
-    protected SchoolsRepository $schoolsRepository;
-    protected UsersRepository $usersRepository;
-    protected StudyBasesRepository $studyBasesRepository;
-    protected StudyFieldsRepository $studyFieldsRepository;
-    protected ClassRoomRepository $classRoomRepository;
+
+    protected ControllerDataHandler $next;
 
     public function __construct()
     {
         $this->studentsRepository = new StudentsRepository();
         $this->jalaliDateService = new JalaliDateServiceStatic();
-        $this->schoolsRepository = new SchoolsRepository();
-        $this->usersRepository = new UsersRepository();
-        $this->studyBasesRepository = new StudyBasesRepository();
-        $this->studyFieldsRepository = new StudyFieldsRepository();
-        $this->classRoomRepository = new ClassRoomRepository();
     }
 
     public function setNext(ControllerDataHandler $handler): ControllerDataHandler
@@ -72,5 +62,4 @@ class StudentsControllerDataHandler extends ControllerDataHandler
         }
         return $this->next->handle($request);
     }
-
 }

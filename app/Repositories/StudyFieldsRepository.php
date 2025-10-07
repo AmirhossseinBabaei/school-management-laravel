@@ -32,4 +32,9 @@ class StudyFieldsRepository extends BaseRepository
     {
         return $this->setModel()::find($id);
     }
+
+    public function getStudyFieldsBySchoolId($schoolId)
+    {
+        return $this->setModel()::where('school_id', $schoolId)->orderBy('id', 'desc')->get();
+    }
 }

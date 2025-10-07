@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', 'مشاهده درس | سیستم مدیریت مدرسه')
+@section('title', 'مشاهده کلاس درس | سیستم مدیریت مکلاس درسه')
 
 @push('styles')
 <style>
@@ -46,15 +46,15 @@
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
                     <div>
                         <h3 class="mb-2 gradient-text fw-bold">
-                            <i class="fa-solid fa-eye me-2"></i>مشاهده درس
+                            <i class="fa-solid fa-eye me-2"></i>مشاهده کلاس درس
                         </h3>
-                        <p class="text-muted mb-0">جزئیات درس: <span class="fw-semibold text-primary">{{ $data['lesson']->name }}</span></p>
+                        <p class="text-muted mb-0">جزئیات کلاس درس: <span class="fw-semibold text-primary">{{ $data['classRoom']->name }}</span></p>
                     </div>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('dashboard.lessons.edit', $data['lesson']->id) }}" class="btn bg-warning btn-pill">
+                        <a href="{{ route('dashboard.classRooms.edit', $data['classRoom']->id) }}" class="btn bg-warning btn-pill">
                             <i class="fa-solid fa-edit me-2"></i>ویرایش
                         </a>
-                        <a href="{{ route('dashboard.lessons.index') }}" class="btn bg-secondary btn-pill">
+                        <a href="{{ route('dashboard.classRooms.index') }}" class="btn bg-secondary btn-pill">
                             <i class="fa-solid fa-arrow-right me-2"></i>بازگشت
                         </a>
             </div>
@@ -67,44 +67,37 @@
                     <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                         <div class="card-header glass-effect border-0">
                             <h5 class="mb-0 gradient-text fw-bold">
-                                <i class="fa-solid fa-info-circle me-2"></i>اطلاعات درس
+                                <i class="fa-solid fa-info-circle me-2"></i>اطلاعات کلاس درس
                             </h5>
                         </div>
                         <div class="card-body p-4">
                             <div class="info-card">
                                 <div class="info-item">
                                     <div class="info-label">
-                                        <i class="fa-solid fa-tag me-2 text-primary"></i>نام درس:
+                                        <i class="fa-solid fa-tag me-2 text-primary"></i>نام کلاس درس:
                                     </div>
-                                    <div class="info-value">{{ $data['lesson']->name }}</div>
+                                    <div class="info-value">{{ $data['classRoom']->name }}</div>
                                 </div>
 
                                 <div class="info-item">
                                     <div class="info-label">
-                                        <i class="fa-solid fa-toggle-on me-2 text-success"></i>پایه تحصیلی:
+                                        <i class="fa-solid fa-toggle-on me-2 text-success"></i> نام مدرسه:
                                     </div>
-                                    <div class="info-value">{{ $data['lesson']->study_base->name  }}</div>
-                                </div>
-
-                                <div class="info-item">
-                                    <div class="info-label">
-                                        <i class="fa-solid fa-toggle-on me-2 text-success"></i>رشته ی تحصیلی:
-                                    </div>
-                                    <div class="info-value">{{ $data['lesson']->study_field->name  }}</div>
+                                    <div class="info-value">{{ $data['classRoom']->school->name  }}</div>
                                 </div>
 
                                 <div class="info-item">
                                     <div class="info-label">
                                         <i class="fa-solid fa-calendar me-2 text-info"></i>تاریخ ایجاد:
                                     </div>
-                                    <div class="info-value">{{ $data['lesson']->created_at ? $data['lesson']->created_at : 'نامشخص' }}</div>
+                                    <div class="info-value">{{ $data['classRoom']->created_at ? $data['classRoom']->created_at : 'نامشخص' }}</div>
                                 </div>
 
                                 <div class="info-item">
                                     <div class="info-label">
                                         <i class="fa-solid fa-clock me-2 text-warning"></i>آخرین بروزرسانی:
                                     </div>
-                                    <div class="info-value">{{ $data['lesson']->updated_at ? $data['lesson']->updated_at : 'نامشخص' }}</div>
+                                    <div class="info-value">{{ $data['classRoom']->updated_at ? $data['classRoom']->updated_at : 'نامشخص' }}</div>
                                 </div>
                             </div>
                         </div>
@@ -120,14 +113,14 @@
                         </div>
                         <div class="card-body p-4">
                             <div class="d-grid gap-3">
-                                <a href="{{ route('dashboard.lessons.edit', $data['lesson']->id) }}" class="btn bg-warning btn-pill">
-                                    <i class="fa-solid fa-edit me-2"></i>ویرایش درس
+                                <a href="{{ route('dashboard.classRooms.edit', $data['classRoom']->id) }}" class="btn bg-warning btn-pill">
+                                    <i class="fa-solid fa-edit me-2"></i>ویرایش کلاس درس
                                 </a>
-                                <a href="{{ route('dashboard.lessons.create') }}" class="btn bg-success btn-pill">
-                                    <i class="fa-solid fa-plus me-2"></i>ایجاد درس جدید
+                                <a href="{{ route('dashboard.classRooms.create') }}" class="btn bg-success btn-pill">
+                                    <i class="fa-solid fa-plus me-2"></i>ایجاد کلاس درس جدید
                                 </a>
-                                <a href="{{ route('dashboard.lessons.index') }}" class="btn bg-primary btn-pill">
-                                    <i class="fa-solid fa-list me-2"></i>لیست درس‌ها
+                                <a href="{{ route('dashboard.classRooms.index') }}" class="btn bg-primary btn-pill">
+                                    <i class="fa-solid fa-list me-2"></i>لیست کلاس درس‌ها
                                 </a>
                             </div>
                         </div>

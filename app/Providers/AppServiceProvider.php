@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Handlers\CreateMethodControllersData\ClassRoomsCreateControllerData;
 use App\Handlers\CreateMethodControllersData\StudentsCreateControllerDataHandler;
+use App\Handlers\CreateMethodControllersData\TeacherClassesCreateControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\ClassRoomsControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\DashboardControllerDataHandler;
+use App\Handlers\IndexMethodControllersData\ScheduleTeachersControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\StudentsControllerDataHandler;
+use App\Handlers\IndexMethodControllersData\TeacherClassesControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\UsersControllerDataHandler;
 use App\Handlers\Notifications\{AllAttendanceSchoolHandler, AllOwnersHandler, AllUsersHandler, StudentHandler};
 use App\Models\Student;
@@ -80,15 +84,22 @@ class AppServiceProvider extends ServiceProvider
             $usersControllerData = new UsersControllerDataHandler();
             $studentsControllersData = new StudentsControllerDataHandler();
             $classRoomControllerData = new ClassRoomsControllerDataHandler();
+            $teacherClassesControllerData = new TeacherClassesControllerDataHandler();
+            $scheduleTeachersControllerData = new ScheduleTeachersControllerDataHandler();
 
             $dashboardControllerData->setNext($usersControllerData)->setNext($studentsControllersData)
-            ->setNext($classRoomControllerData);
+            ->setNext($classRoomControllerData)->setNext($teacherClassesControllerData)
+            ->setNext($scheduleTeachersControllerData);
 
             return $dashboardControllerData;
         });
 
         $this->app->singleton('chain.createMethodControllersData', function (){
             $studentsControllersData = new StudentsCreateControllerDataHandler();
+            $classRoomsControllerData = new ClassRoomsCreateControllerData();
+            $teacherClassesControllerData = new TeacherClassesCreateControllerDataHandler();
+
+            $studentsControllersData->setNext($classRoomsControllerData)->setNext($teacherClassesControllerData);
 
             return $studentsControllersData;
         });

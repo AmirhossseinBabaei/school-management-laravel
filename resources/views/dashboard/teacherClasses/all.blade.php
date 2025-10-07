@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', 'مدیریت کلاس ها | سیستم مدیریت مکلاس درسه')
+@section('title', 'مدیریت کلاس معلم ها | سیستم مدیریت مکلاس معلمه')
 
 @push('styles')
     <style>
@@ -44,7 +44,6 @@
             color: #ffffff !important;
         }
     </style>
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endpush
 
@@ -55,13 +54,13 @@
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
             <div>
                 <h3 class="mb-2 gradient-text fw-bold">
-                    <i class="fa-solid fa-user-shield me-2"></i>مدیریت کلاس ها
+                    <i class="fa-solid fa-user-shield me-2"></i>مدیریت کلاس معلم ها
                 </h3>
-                <p class="text-muted mb-0">مدیریت کلاس درس‌ها </p>
+                <p class="text-muted mb-0">مدیریت کلاس معلم‌ها </p>
             </div>
             <div class="d-flex gap-2">
-                <a href="{{ route('dashboard.classRooms.create') }}" class="btn bg-warning btn-pill">
-                    <i class="fa-solid fa-plus me-2"></i>افزودن کلاس درس جدید
+                <a href="{{ route('dashboard.teacherClasses.create') }}" class="btn bg-warning btn-pill">
+                    <i class="fa-solid fa-plus me-2"></i>افزودن کلاس معلم جدید
                 </a>
             </div>
         </div>
@@ -87,7 +86,7 @@
         <div class="card-header glass-effect border-0">
             <div class="d-flex align-items-center justify-content-between">
                 <h5 class="mb-0 gradient-text fw-bold">
-                    <i class="fa-solid fa-list me-2"></i>لیست کلاس ها
+                    <i class="fa-solid fa-list me-2"></i>لیست کلاس معلم ها
                 </h5>
                 <div class="d-flex gap-2">
                     <button class="btn btn-sm btn-outline-primary">
@@ -106,13 +105,19 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th>
-                            <i class="fa-solid fa-user-shield me-2"></i>نام کلاس درس
+                            <i class="fa-solid fa-user-shield me-2"></i>نام معلم
                         </th>
                         <th>
-                            <i class="fa-solid fa-user-shield me-2"></i>تاریخ بروزرسانی
+                            <i class="fa-solid fa-user-shield me-2"></i>نام کلاس
                         </th>
                         <th>
-                            نام مدرسه
+                            <i class="fa-solid fa-user-shield me-2"></i>نام مدرسه
+                        </th>
+                        <th>
+                            <i class="fa-solid fa-user-shield me-2"></i>نام درس
+                        </th>
+                        <th>
+                            <i class="fa-solid fa-calendar me-2"></i>تاریخ بروزرسانی
                         </th>
                         <th class="text-center">
                             <i class="fa-solid fa-cogs me-2"></i>عملیات
@@ -120,7 +125,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($data['classRooms'] as $key=>$classRoom)
+                    @foreach($data['teacherClasses'] as $key=>$teacherClasse)
                         @php $key+=1; @endphp
                         <tr class="animate__animated animate__fadeInUp" style="animation-delay: {{ $key * 0.1 }}s;">
                             <td class="text-center">
@@ -133,29 +138,69 @@
                                         <i class="fa-solid fa-user-shield text-white"></i>
                                     </div>
                                     <div>
-                                        <div class="fw-semibold">{{ $classRoom->name ?? 'نامشخص' }}</div>
-                                        <small class="text-muted">نام کلاس درس</small>
+                                        <div
+                                            class="fw-semibold">{{ $teacherClasse->teacher->first_name ?? 'نامشخص' }}-
+                                            {{ $teacherClasse->teacher->last_name }}
+                                        </div>
+                                        <small class="text-muted">نام کلاس معلم</small>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="card-icon"
+                                         style="width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa-solid fa-user-shield text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="fw-semibold">{{ $teacherClasse->classRoom->name ?? 'نامشخص' }}</div>
+                                        <small class="text-muted">نام کلاس</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="card-icon"
+                                         style="width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa-solid fa-user-shield text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="fw-semibold">{{ $teacherClasse->school->name ?? 'نامشخص' }}</div>
+                                        <small class="text-muted">نام مدرسه</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="card-icon"
+                                         style="width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa-solid fa-user-shield text-white"></i>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="fw-semibold">{{ $teacherClasse->lesson->name ?? 'نامشخص' }}</div>
+                                        <small class="text-muted">نام درس</small>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <span
-                                    class="text-muted">{{ $classRoom->updated_at ? $classRoom->updated_at : 'نامشخص' }}</span>
-                            </td>
-                            <td class="text-muted">
-                                {{  $classRoom->school->name ?? 'تعریف نشده' }}
+                                    class="text-muted">{{ $teacherClasse->updated_at ? $teacherClasse->updated_at : 'نامشخص' }}</span>
                             </td>
                             <td class="text-center">
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('dashboard.classRooms.show', $classRoom->id) }}"
+                                    <a href="{{ route('dashboard.teacherClasses.show', $teacherClasse->id) }}"
                                        class="btn btn-sm btn-primary" title="مشاهده">
                                         <i class="fa-solid fa-eye me-1"></i>مشاهده
                                     </a>
-                                    <a href="{{ route('dashboard.classRooms.edit', $classRoom->id) }}"
+                                    <a href="{{ route('dashboard.teacherClasses.edit', $teacherClasse->id) }}"
                                        class="btn btn-sm btn-warning" title="ویرایش">
                                         <i class="fa-solid fa-edit me-1"></i>ویرایش
                                     </a>
-                                    <button onclick="confirmDelete({{ $classRoom->id }})"
+                                    <button onclick="confirmDelete({{ $teacherClasse->id }})"
                                             class="bg-red-500 text-white px-3 py-1 bg-danger btn-sm">
                                         حذف
                                     </button>
@@ -166,7 +211,7 @@
                     </tbody>
                 </table>
                 <div>
-                    {{ $data['classRooms']->links() }}
+                    {{ $data['teacherClasses']->links() }}
                 </div>
             </div>
         </div>
@@ -178,7 +223,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        function confirmDelete(classRoomId) {
+        function confirmDelete(studentId) {
             Swal.fire({
                 title: 'آیا مطمئن هستی؟',
                 text: "بعد از حذف، امکان بازگشت وجود نداره!",
@@ -190,12 +235,12 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: `/dashboard/classRooms/${classRoomId}`,
+                        url: `/dashboard/teacher-classes/${studentId}`,
                         type: 'DELETE',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content')
                         },
-                        success: function (response) {
+                        success: function(response) {
                             Swal.fire({
                                 icon: response.status ? 'success' : 'error',
                                 title: response.message,
@@ -209,7 +254,7 @@
                                 }, 2000); // بعد از ۲ ثانیه ریفرش بشه
                             }
                         },
-                        error: function () {
+                        error: function() {
                             Swal.fire('خطا!', 'یه مشکلی پیش اومد، دوباره تلاش کن.', 'error');
                         }
                     });

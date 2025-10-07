@@ -45,7 +45,7 @@ class UsersRepository extends BaseRepository
 
     public function getUsersByRole($roleName)
     {
-        return $this->setModel()::whereHas('role', function($query) use ($roleName) {
+        return $this->setModel()::whereHas('role', function ($query) use ($roleName) {
             $query->where('name', $roleName);
         })->get();
     }
@@ -73,5 +73,15 @@ class UsersRepository extends BaseRepository
     public function getUsersBySchoolId($schoolId)
     {
         return $this->setModel()::where('school_id', $schoolId)->get();
+    }
+
+    public function getAllTeachers()
+    {
+        return $this->setModel()::where('role_id', 3)->get();
+    }
+
+    public function getTeachersBySchoolId($schoolId)
+    {
+        return $this->setModel()::where('school_id', $schoolId)->where('role_id', 3)->get();
     }
 }

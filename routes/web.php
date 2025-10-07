@@ -10,7 +10,10 @@ use App\Http\Controllers\Panel\TermsController;
 use App\Http\Controllers\Panel\SchoolsController;
 use App\Http\Controllers\Panel\LessonsController;
 use App\Http\Controllers\Panel\NotificationsController;
-use App\Http\Controllers\Panel\ClassRoomController;
+use App\Http\Controllers\Panel\ClassRoomsController;
+use App\Http\Controllers\Panel\TeacherClassesController;
+use App\Http\Controllers\Panel\ScheduleTeachersController;
+use App\Http\Controllers\Panel\AttendanceController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')
@@ -55,8 +58,22 @@ Route::middleware('auth')
         Route::get('/notifications-failed/{id}', [NotificationsController::class, 'showNotificationFailed'])
         ->name('dashboard.notifications.showFailed');
 
-        Route::resource('classRooms', ClassRoomController::class)
+        Route::get('/attendances/students', [AttendanceController::class, 'getStudents'])
+            ->name('dashboard.attendance.students');
+
+        Route::resource('classRooms', ClassRoomsController::class)
             ->names('dashboard.classRooms');
+
+        Route::resource('teacher-classes', TeacherClassesController::class)
+            ->names('dashboard.teacherClasses');
+
+        Route::resource('schedule-teachers', ScheduleTeachersController::class)
+            ->names('dashboard.scheduleTeachers');
+
+        Route::resource('attendances', AttendanceController::class)
+        ->names('dashboard.attendance');
     });
 
 require __DIR__ . '/auth.php';
+
+

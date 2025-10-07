@@ -24,6 +24,7 @@
             min-height: 100vh;
             color: #ffffff;
         }
+
         .form-control {
             border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -71,7 +72,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .btn-primary {
@@ -147,8 +148,12 @@
         }
 
         @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .pulse-animation {
@@ -156,9 +161,15 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         .table {
@@ -238,7 +249,7 @@
         .loading-overlay {
             position: fixed;
             top: 0;
-            left: 0;
+            /*left: 0;*/
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #1a1d29 0%, #0f1115 100%);
@@ -266,8 +277,12 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Table dark theme */
@@ -396,101 +411,372 @@
             background-color: #06b6d4 !important;
         }
 
-        label{
+        label {
             color: white;
         }
 
         /* Font Awesome Icons - Essential Only */
-        .fa-solid, .fas { font-family: "Font Awesome 6 Free"; font-weight: 900; }
-        .fa-graduation-cap:before { content: "\f19d"; }
-        .fa-gauge:before { content: "\f0e4"; }
-        .fa-users:before { content: "\f0c0"; }
-        .fa-user-shield:before { content: "\f505"; }
-        .fa-id-card:before { content: "\f2c2"; }
-        .fa-book:before { content: "\f02d"; }
-        .fa-building:before { content: "\f1ad"; }
-        .fa-layer-group:before { content: "\f5fd"; }
-        .fa-calendar-alt:before { content: "\f073"; }
-        .fa-message:before { content: "\f0e6"; }
-        .fa-right-to-bracket:before { content: "\f090"; }
-        .fa-sun:before { content: "\f185"; }
-        .fa-bars:before { content: "\f0c9"; }
-        .fa-chevron-down:before { content: "\f078"; }
-        .fa-user-circle:before { content: "\f2bd"; }
-        .fa-user:before { content: "\f007"; }
-        .fa-right-from-bracket:before { content: "\f2f5"; }
-        .fa-check-circle:before { content: "\f058"; }
-        .fa-exclamation-triangle:before { content: "\f071"; }
-        .fa-plus:before { content: "\f067"; }
-        .fa-save:before { content: "\f0c7"; }
-        .fa-times:before { content: "\f00d"; }
-        .fa-arrow-right:before { content: "\f061"; }
-        .fa-edit:before { content: "\f044"; }
-        .fa-trash:before { content: "\f1f8"; }
-        .fa-eye:before { content: "\f06e"; }
-        .fa-undo:before { content: "\f0e2"; }
-        .fa-search:before { content: "\f002"; }
-        .fa-filter:before { content: "\f0b0"; }
-        .fa-download:before { content: "\f019"; }
-        .fa-upload:before { content: "\f093"; }
-        .fa-cog:before { content: "\f013"; }
-        .fa-home:before { content: "\f015"; }
-        .fa-chart-bar:before { content: "\f080"; }
-        .fa-chart-line:before { content: "\f201"; }
-        .fa-chart-pie:before { content: "\f200"; }
-        .fa-calendar:before { content: "\f133"; }
-        .fa-clock:before { content: "\f017"; }
-        .fa-bell:before { content: "\f0f3"; }
-        .fa-envelope:before { content: "\f0e0"; }
-        .fa-phone:before { content: "\f095"; }
-        .fa-map-marker-alt:before { content: "\f3c5"; }
-        .fa-globe:before { content: "\f0ac"; }
-        .fa-link:before { content: "\f0c1"; }
-        .fa-external-link-alt:before { content: "\f35d"; }
-        .fa-info-circle:before { content: "\f05a"; }
-        .fa-question-circle:before { content: "\f059"; }
-        .fa-exclamation-circle:before { content: "\f06a"; }
-        .fa-check:before { content: "\f00c"; }
-        .fa-times-circle:before { content: "\f057"; }
-        .fa-ban:before { content: "\f05e"; }
-        .fa-lock:before { content: "\f023"; }
-        .fa-unlock:before { content: "\f09c"; }
-        .fa-key:before { content: "\f084"; }
-        .fa-shield-alt:before { content: "\f3ed"; }
-        .fa-user-plus:before { content: "\f234"; }
-        .fa-user-minus:before { content: "\f503"; }
-        .fa-user-edit:before { content: "\f4ff"; }
-        .fa-user-times:before { content: "\f235"; }
-        .fa-users-cog:before { content: "\f509"; }
-        .fa-user-friends:before { content: "\f500"; }
-        .fa-user-check:before { content: "\f4fc"; }
-        .fa-user-clock:before { content: "\f4fd"; }
-        .fa-user-graduate:before { content: "\f501"; }
-        .fa-user-tie:before { content: "\f508"; }
-        .fa-user-ninja:before { content: "\f504"; }
-        .fa-user-secret:before { content: "\f21b"; }
-        .fa-user-astronaut:before { content: "\f4fb"; }
-        .fa-user-md:before { content: "\f0f0"; }
-        .fa-user-nurse:before { content: "\f82f"; }
-        .fa-user-injured:before { content: "\f728"; }
-        .fa-user-cog:before { content: "\f4fe"; }
-        .fa-user-edit:before { content: "\f4ff"; }
-        .fa-user-friends:before { content: "\f500"; }
-        .fa-user-graduate:before { content: "\f501"; }
-        .fa-user-lock:before { content: "\f502"; }
-        .fa-user-minus:before { content: "\f503"; }
-        .fa-user-ninja:before { content: "\f504"; }
-        .fa-user-nurse:before { content: "\f82f"; }
-        .fa-user-plus:before { content: "\f234"; }
-        .fa-user-secret:before { content: "\f21b"; }
-        .fa-user-shield:before { content: "\f505"; }
-        .fa-user-slash:before { content: "\f506"; }
-        .fa-user-tag:before { content: "\f507"; }
-        .fa-user-tie:before { content: "\f508"; }
-        .fa-user-times:before { content: "\f235"; }
-        .fa-users:before { content: "\f0c0"; }
-        .fa-users-cog:before { content: "\f509"; }
-        .fa-users-slash:before { content: "\f73b"; }
+        .fa-solid, .fas {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+
+        .fa-graduation-cap:before {
+            content: "\f19d";
+        }
+
+        .fa-gauge:before {
+            content: "\f0e4";
+        }
+
+        .fa-users:before {
+            content: "\f0c0";
+        }
+
+        .fa-user-shield:before {
+            content: "\f505";
+        }
+
+        .fa-id-card:before {
+            content: "\f2c2";
+        }
+
+        .fa-book:before {
+            content: "\f02d";
+        }
+
+        .fa-building:before {
+            content: "\f1ad";
+        }
+
+        .fa-layer-group:before {
+            content: "\f5fd";
+        }
+
+        .fa-calendar-alt:before {
+            content: "\f073";
+        }
+
+        .fa-message:before {
+            content: "\f0e6";
+        }
+
+        .fa-right-to-bracket:before {
+            content: "\f090";
+        }
+
+        .fa-sun:before {
+            content: "\f185";
+        }
+
+        .fa-bars:before {
+            content: "\f0c9";
+        }
+
+        .fa-chevron-down:before {
+            content: "\f078";
+        }
+
+        .fa-user-circle:before {
+            content: "\f2bd";
+        }
+
+        .fa-user:before {
+            content: "\f007";
+        }
+
+        .fa-right-from-bracket:before {
+            content: "\f2f5";
+        }
+
+        .fa-check-circle:before {
+            content: "\f058";
+        }
+
+        .fa-exclamation-triangle:before {
+            content: "\f071";
+        }
+
+        .fa-plus:before {
+            content: "\f067";
+        }
+
+        .fa-save:before {
+            content: "\f0c7";
+        }
+
+        .fa-times:before {
+            content: "\f00d";
+        }
+
+        .fa-arrow-right:before {
+            content: "\f061";
+        }
+
+        .fa-edit:before {
+            content: "\f044";
+        }
+
+        .fa-trash:before {
+            content: "\f1f8";
+        }
+
+        .fa-eye:before {
+            content: "\f06e";
+        }
+
+        .fa-undo:before {
+            content: "\f0e2";
+        }
+
+        .fa-search:before {
+            content: "\f002";
+        }
+
+        .fa-filter:before {
+            content: "\f0b0";
+        }
+
+        .fa-download:before {
+            content: "\f019";
+        }
+
+        .fa-upload:before {
+            content: "\f093";
+        }
+
+        .fa-cog:before {
+            content: "\f013";
+        }
+
+        .fa-home:before {
+            content: "\f015";
+        }
+
+        .fa-chart-bar:before {
+            content: "\f080";
+        }
+
+        .fa-chart-line:before {
+            content: "\f201";
+        }
+
+        .fa-chart-pie:before {
+            content: "\f200";
+        }
+
+        .fa-calendar:before {
+            content: "\f133";
+        }
+
+        .fa-clock:before {
+            content: "\f017";
+        }
+
+        .fa-bell:before {
+            content: "\f0f3";
+        }
+
+        .fa-envelope:before {
+            content: "\f0e0";
+        }
+
+        .fa-phone:before {
+            content: "\f095";
+        }
+
+        .fa-map-marker-alt:before {
+            content: "\f3c5";
+        }
+
+        .fa-globe:before {
+            content: "\f0ac";
+        }
+
+        .fa-link:before {
+            content: "\f0c1";
+        }
+
+        .fa-external-link-alt:before {
+            content: "\f35d";
+        }
+
+        .fa-info-circle:before {
+            content: "\f05a";
+        }
+
+        .fa-question-circle:before {
+            content: "\f059";
+        }
+
+        .fa-exclamation-circle:before {
+            content: "\f06a";
+        }
+
+        .fa-check:before {
+            content: "\f00c";
+        }
+
+        .fa-times-circle:before {
+            content: "\f057";
+        }
+
+        .fa-ban:before {
+            content: "\f05e";
+        }
+
+        .fa-lock:before {
+            content: "\f023";
+        }
+
+        .fa-unlock:before {
+            content: "\f09c";
+        }
+
+        .fa-key:before {
+            content: "\f084";
+        }
+
+        .fa-shield-alt:before {
+            content: "\f3ed";
+        }
+
+        .fa-user-plus:before {
+            content: "\f234";
+        }
+
+        .fa-user-minus:before {
+            content: "\f503";
+        }
+
+        .fa-user-edit:before {
+            content: "\f4ff";
+        }
+
+        .fa-user-times:before {
+            content: "\f235";
+        }
+
+        .fa-users-cog:before {
+            content: "\f509";
+        }
+
+        .fa-user-friends:before {
+            content: "\f500";
+        }
+
+        .fa-user-check:before {
+            content: "\f4fc";
+        }
+
+        .fa-user-clock:before {
+            content: "\f4fd";
+        }
+
+        .fa-user-graduate:before {
+            content: "\f501";
+        }
+
+        .fa-user-tie:before {
+            content: "\f508";
+        }
+
+        .fa-user-ninja:before {
+            content: "\f504";
+        }
+
+        .fa-user-secret:before {
+            content: "\f21b";
+        }
+
+        .fa-user-astronaut:before {
+            content: "\f4fb";
+        }
+
+        .fa-user-md:before {
+            content: "\f0f0";
+        }
+
+        .fa-user-nurse:before {
+            content: "\f82f";
+        }
+
+        .fa-user-injured:before {
+            content: "\f728";
+        }
+
+        .fa-user-cog:before {
+            content: "\f4fe";
+        }
+
+        .fa-user-edit:before {
+            content: "\f4ff";
+        }
+
+        .fa-user-friends:before {
+            content: "\f500";
+        }
+
+        .fa-user-graduate:before {
+            content: "\f501";
+        }
+
+        .fa-user-lock:before {
+            content: "\f502";
+        }
+
+        .fa-user-minus:before {
+            content: "\f503";
+        }
+
+        .fa-user-ninja:before {
+            content: "\f504";
+        }
+
+        .fa-user-nurse:before {
+            content: "\f82f";
+        }
+
+        .fa-user-plus:before {
+            content: "\f234";
+        }
+
+        .fa-user-secret:before {
+            content: "\f21b";
+        }
+
+        .fa-user-shield:before {
+            content: "\f505";
+        }
+
+        .fa-user-slash:before {
+            content: "\f506";
+        }
+
+        .fa-user-tag:before {
+            content: "\f507";
+        }
+
+        .fa-user-tie:before {
+            content: "\f508";
+        }
+
+        .fa-user-times:before {
+            content: "\f235";
+        }
+
+        .fa-users:before {
+            content: "\f0c0";
+        }
+
+        .fa-users-cog:before {
+            content: "\f509";
+        }
+
+        .fa-users-slash:before {
+            content: "\f73b";
+        }
+
     </style>
 </head>
 <body>
@@ -503,7 +789,7 @@
 </div>
 
 <div class="wrapper">
-    <aside class="sidebar glass-effect animate__animated animate__slideInRight">
+    <aside class="sidebar glass-effect animate__animated animate__slideInRight" id="sideBar">
         <div class="brand px-3 mb-4 d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3">
                 <div class="floating-animation">
@@ -516,156 +802,192 @@
             </div>
         </div>
         <nav class="nav flex-column px-2">
-            <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} glass-effect text-white mb-2 rounded-3" href="{{ route('dashboard') }}" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} glass-effect text-white mb-2 rounded-3"
+               href="{{ route('dashboard') }}" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                 <i class="fa-solid fa-gauge me-2"></i> داشبورد
             </a>
+            <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('dashboard/users') }}">
+                <i class="fa-solid fa-users me-2 text-primary"></i> کاربران
+            </a>
+            <a class="nav-link {{ request()->routeIs('dashboard.students.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('/dashboard/students') }}">
+                <i class="fa-solid fa-id-card me-2 text-info"></i> دانش آموزان
+            </a>
+            <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('/profile') }}">
+                <i class="fa-solid fa-user me-2 text-info"></i> پروفایل
+            </a>
+            <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
+                <sup class="bg-danger text-white">بزودی</sup>
+            </a>
+            <a class="nav-link {{ request()->routeIs('dashboard.classRooms.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('/dashboard/classRooms') }}">
+                <i class="fa-solid fa-chalkboard me-2 text-info"></i> کلاس ها
+            </a>
+            <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
+                <sup class="bg-danger text-white">بزودی</sup>
+            </a>
+            <a class="nav-link {{ request()->routeIs('dashboard.teacherClasses.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('/dashboard/teacher-classes') }}">
+                <i class="fa-solid fa-chalkboard-teacher me-2 text-danger"></i> کلاس های معلمان
+            </a>
+            <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
+                <sup class="bg-danger text-white">بزودی</sup>
+            </a>
 
+            <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('dashboard/users') }}">
+                <i class="fa-solid fa-bell me-2 text-primary"></i>   اطلاع رسانی
+                <sup class="bg-danger text-white">بزودی</sup>
+            </a>
+
+            <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="#">
+                <i class="fa-solid fa-bell me-2 text-primary"></i>   موارد انضباطی
+                <sup class="bg-danger text-white">بزودی</sup>
+            </a>
+
+            <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="#">
+                <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری
+                <sup class="bg-danger text-white">بزودی</sup>
+            </a>
             @admin
             <div class="collapse show" id="grpPersonal">
                 <h6 class="text-muted small px-3 mb-2 mt-3">مدیریت کاربران</h6>
-                <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/users') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/users') }}">
                     <i class="fa-solid fa-users me-2 text-primary"></i> کاربران
                 </a>
-                <a class="nav-link {{ request()->routeIs('dashboard.roles.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/roles') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard.roles.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/roles') }}">
                     <i class="fa-solid fa-user-shield me-2 text-warning"></i> نقش ها
                 </a>
-                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/profile') }}">
+                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('/profile') }}">
                     <i class="fa-solid fa-id-card me-2 text-info"></i> پروفایل
                 </a>
             </div>
             <div class="collapse show" id="grpPublic">
                 <h6 class="text-muted small px-3 mb-2 mt-3">مدیریت محتوا</h6>
 
-                <a class="nav-link {{ request()->routeIs('dashboard.lessons.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/lessons') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard.lessons.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/lessons') }}">
                     <i class="fa-solid fa-book me-2 text-danger"></i> مدیریت درس ها
                 </a>
-                <a class="nav-link {{ request()->routeIs('dashboard.schools.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/schools')  }}">
+                <a class="nav-link {{ request()->routeIs('dashboard.schools.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/schools')  }}">
                     <i class="fa-solid fa-building me-2 text-primary"></i> مدیریت مدارس
                 </a>
-                <a class="nav-link {{ request()->routeIs('dashboard.studyFields.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/study-fields') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard.studyFields.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/study-fields') }}">
                     <i class="fa-solid fa-graduation-cap me-2 text-warning"></i> رشته های تحصیلی
                 </a>
-                <a class="nav-link {{ request()->routeIs('dashboard.studyBases.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/study-bases') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard.studyBases.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/study-bases') }}">
                     <i class="fa-solid fa-layer-group me-2 text-info"></i> پایه های تحصیلی
                 </a>
-                <a class="nav-link {{ request()->routeIs('dashboard.terms.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/terms') }}">
+                <a class="nav-link {{ request()->routeIs('dashboard.terms.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/terms') }}">
                     <i class="fa-solid fa-calendar-alt me-2 text-secondary"></i> مدیریت ترم ها
                 </a>
-                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">
-                    <i class="fa-solid fa-message me-2 text-primary"></i>   نوتیفیکیشن ها
+                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/notifications') }}">
+                    <i class="fa-solid fa-message me-2 text-primary"></i> نوتیفیکیشن ها
+                </a>
+                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="#">
+                    <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری
                 </a>
             </div>
             @endadmin
 
             @owner
             <!-- Accordion for Owner Menu -->
-            <div class="accordion" id="ownerAccordion">
-                <!-- مدیریت کاربران -->
-                <div class="accordion-item border-0 mb-2">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
-                            <i class="fa-solid fa-users me-2 text-primary"></i>
-                            <span class="fw-semibold">مدیریت کاربران</span>
-                        </button>
-                    </h2>
-                    <div id="collapseUsers" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">
-                        <div class="accordion-body p-0">
-                            <div class="px-3 py-2">
-                                <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/users') }}">
-                                    <i class="fa-solid fa-users me-2 text-primary"></i> کاربران
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('dashboard.students.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/dashboard/students') }}">
-                                    <i class="fa-solid fa-id-card me-2 text-info"></i> دانش آموزان
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/profile') }}">
-                                    <i class="fa-solid fa-id-card me-2 text-info"></i> پروفایل
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {{--            <div class="accordion" id="ownerAccordion">--}}
+            {{--                <!-- مدیریت کاربران -->--}}
+            {{--                <div class="accordion-item border-0 mb-2">--}}
+            {{--                    <h2 class="accordion-header">--}}
+            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">--}}
+            {{--                            <i class="fa-solid fa-users me-2 text-primary"></i>--}}
+            {{--                            <span class="fw-semibold">مدیریت کاربران</span>--}}
+            {{--                        </button>--}}
+            {{--                    </h2>--}}
+            {{--                    <div id="collapseUsers" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+            {{--                        <div class="accordion-body p-0">--}}
+            {{--                            <div class="px-3 py-2">--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
 
-                <!-- مدیریت محتوا -->
-                <div class="accordion-item border-0 mb-2">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContent" aria-expanded="false" aria-controls="collapseContent">
-                            <i class="fa-solid fa-file-alt me-2 text-success"></i>
-                            <span class="fw-semibold">مدیریت محتوا</span>
-                        </button>
-                    </h2>
-                    <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">
-                        <div class="accordion-body p-0">
-                            <div class="px-3 py-2">
-                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">
-                                    <i class="fa-solid fa-comments me-2 text-primary"></i> کامنت ها
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">
-                                    <i class="fa-solid fa-file-text me-2 text-info"></i> محتوا ها
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">
-                                    <i class="fa-solid fa-bars me-2 text-warning"></i> منو ها
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">
-                                    <i class="fa-solid fa-images me-2 text-danger"></i> اسلایدر ها
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {{--                <!-- مدیریت محتوا -->--}}
+            {{--                <div class="accordion-item border-0 mb-2">--}}
+            {{--                    <h2 class="accordion-header">--}}
+            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContent" aria-expanded="false" aria-controls="collapseContent">--}}
+            {{--                            <i class="fa-solid fa-file-alt me-2 text-success"></i>--}}
+            {{--                            <span class="fw-semibold" disabled="true">مدیریت محتوا</span>--}}
+            {{--                        </button>--}}
+            {{--                    </h2>--}}
+            {{--                    <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+            {{--                        <div class="accordion-body p-0">--}}
+            {{--                            <div class="px-3 py-2">--}}
+            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+            {{--                                    <i class="fa-solid fa-comments me-2 text-primary"></i> کامنت ها--}}
+            {{--                                </a>--}}
+            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+            {{--                                    <i class="fa-solid fa-file-text me-2 text-info"></i> محتوا ها--}}
+            {{--                                </a>--}}
+            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+            {{--                                    <i class="fa-solid fa-bars me-2 text-warning"></i> منو ها--}}
+            {{--                                </a>--}}
+            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+            {{--                                    <i class="fa-solid fa-images me-2 text-danger"></i> اسلایدر ها--}}
+            {{--                                </a>--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
 
-                <!-- تحصیلی -->
-                <div class="accordion-item border-0 mb-2">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEducation" aria-expanded="false" aria-controls="collapseEducation">
-                            <i class="fa-solid fa-graduation-cap me-2 text-warning"></i>
-                            <span class="fw-semibold">تحصیلی</span>
-                        </button>
-                    </h2>
-                    <div id="collapseEducation" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">
-                        <div class="accordion-body p-0">
-                            <div class="px-3 py-2">
-                                <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/users') }}">
-                                    <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/profile') }}">
-                                    <i class="fa-solid fa-chalkboard me-2 text-info"></i> کلاس ها
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/profile') }}">
-                                    <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/profile') }}">
-                                    <i class="fa-solid fa-calendar-alt me-2 text-warning"></i> برنامه ریزی معلمان
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/profile') }}">
-                                    <i class="fa-solid fa-chalkboard-teacher me-2 text-danger"></i> کلاس های معلمان
-                                </a>
-                                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('/profile') }}">
-                                    <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {{--                <!-- تحصیلی -->--}}
+            {{--                <div class="accordion-item border-0 mb-2">--}}
+            {{--                    <h2 class="accordion-header">--}}
+            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEducation" aria-expanded="false" aria-controls="collapseEducation">--}}
+            {{--                            <i class="fa-solid fa-graduation-cap me-2 text-warning"></i>--}}
+            {{--                            <span class="fw-semibold">تحصیلی</span>--}}
+            {{--                        </button>--}}
+            {{--                    </h2>--}}
+            {{--                    <div id="collapseEducation" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+            {{--                        <div class="accordion-body p-0">--}}
+            {{--                            <div class="px-3 py-2">--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
 
-                <!-- اطلاع رسانی -->
-                <div class="accordion-item border-0 mb-2">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotifications" aria-expanded="false" aria-controls="collapseNotifications">
-                            <i class="fa-solid fa-bell me-2 text-info"></i>
-                            <span class="fw-semibold">اطلاع رسانی</span>
-                        </button>
-                    </h2>
-                    <div id="collapseNotifications" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">
-                        <div class="accordion-body p-0">
-                            <div class="px-3 py-2">
-                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/users') }}">
-                                    <i class="fa-solid fa-bell me-2 text-primary"></i> مدیریت نوتیفیکیشن ها
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{--                <!-- اطلاع رسانی -->--}}
+            {{--                <div class="accordion-item border-0 mb-2">--}}
+            {{--                    <h2 class="accordion-header">--}}
+            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotifications" aria-expanded="false" aria-controls="collapseNotifications">--}}
+            {{--                            <i class="fa-solid fa-bell me-2 text-info"></i>--}}
+            {{--                            <span class="fw-semibold">اطلاع رسانی</span>--}}
+            {{--                        </button>--}}
+            {{--                    </h2>--}}
+            {{--                    <div id="collapseNotifications" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+            {{--                        <div class="accordion-body p-0">--}}
+            {{--                            <div class="px-3 py-2">--}}
+            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/users') }}">--}}
+            {{--                                    <i class="fa-solid fa-bell me-2 text-primary"></i> مدیریت نوتیفیکیشن ها--}}
+            {{--                                </a>--}}
+            {{--                            </div>--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
             @endowner
 
             <hr class="my-3">
@@ -680,11 +1002,12 @@
             <div class="container-fluid py-3">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-3">
-                        <button class="btn btn-outline-primary btn-sm pulse-animation theme-toggle" id="themeToggle" title="تغییر تم">
+                        <button class="btn btn-outline-primary btn-sm pulse-animation theme-toggle" id="themeToggle"
+                                title="تغییر تم">
                             <i class="fa-solid fa-moon me-1 theme-icon"></i>
                             <span class="theme-text">تم روشن</span>
                         </button>
-                        <button class="btn btn-outline-primary d-lg-none" data-toggle="sidebar">
+                        <button class="btn btn-outline-primary d-lg-none" onclick="showSideBar()" data-toggle="sidebar">
                             <i class="fa-solid fa-bars"></i>
                         </button>
                     </div>
@@ -698,23 +1021,33 @@
 
                     <div class="d-flex align-items-center gap-3">
                         <div class="dropdown">
-                            <button class="btn btn-outline-primary d-flex align-items-center gap-2 rounded-pill glass-effect user-dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : asset('assets/img/users/Kylian_Mbappé_2018.jpg') }}"
-                                     class="rounded-circle" width="40px" height="40px" alt="avatar">
-                                <span class="d-none d-sm-inline text-white fw-semibold">{{ Auth::user()->first_name ?? '' }} {{ Auth::user()->last_name ?? '' }}</span>
+                            <button
+                                class="btn btn-outline-primary d-flex align-items-center gap-2 rounded-pill glass-effect user-dropdown-btn"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img
+                                    src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : asset('assets/img/users/Kylian_Mbappé_2018.jpg') }}"
+                                    class="rounded-circle" width="40px" height="40px" alt="avatar">
+                                <span
+                                    class="d-none d-sm-inline text-white fw-semibold">{{ Auth::user()->first_name ?? '' }} {{ Auth::user()->last_name ?? '' }}</span>
                                 <i class="fa-solid fa-chevron-down text-white"></i>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 glass-effect" style="border-radius: 15px; background: rgba(22, 24, 29, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2);">
-                                <li class="dropdown-header small text-white px-3 py-2" style="color: rgba(255, 255, 255, 0.7) !important;">
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 glass-effect"
+                                style="border-radius: 15px; background: rgba(22, 24, 29, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                                <li class="dropdown-header small text-white px-3 py-2"
+                                    style="color: rgba(255, 255, 255, 0.7) !important;">
                                     <i class="fa-solid fa-user-circle me-2"></i>حساب کاربری
                                 </li>
-                                <li><a class="dropdown-item rounded-3 mx-2 text-white" href="{{ route('profile.edit') }}" style="color: #ffffff !important;">
-                                    <i class="fa-solid fa-user ms-2 text-primary"></i> پروفایل
-                                </a></li>
-                                <li><hr class="dropdown-divider" style="border-top-color: rgba(255, 255, 255, 0.2);"></li>
-                                <li><a class="dropdown-item text-danger rounded-3 mx-2" href="{{ url('/logout') }}" style="color: #ef4444 !important;">
-                                    <i class="fa-solid fa-right-from-bracket ms-2"></i> خروج
-                                </a></li>
+                                <li><a class="dropdown-item rounded-3 mx-2 text-white"
+                                       href="{{ route('profile.edit') }}" style="color: #ffffff !important;">
+                                        <i class="fa-solid fa-user ms-2 text-primary"></i> پروفایل
+                                    </a></li>
+                                <li>
+                                    <hr class="dropdown-divider" style="border-top-color: rgba(255, 255, 255, 0.2);">
+                                </li>
+                                <li><a class="dropdown-item text-danger rounded-3 mx-2" href="{{ url('/logout') }}"
+                                       style="color: #ef4444 !important;">
+                                        <i class="fa-solid fa-right-from-bracket ms-2"></i> خروج
+                                    </a></li>
                             </ul>
                         </div>
                     </div>
@@ -744,7 +1077,7 @@
 <script src="{{ asset('assets/js/form-handler.js') }}"></script>
 <script>
     // Theme Toggle Functionality
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('.theme-icon');
         const themeText = themeToggle.querySelector('.theme-text');
@@ -756,7 +1089,7 @@
         updateThemeButton(savedTheme);
 
         // Theme toggle event
-        themeToggle.addEventListener('click', function() {
+        themeToggle.addEventListener('click', function () {
             const currentTheme = html.classList.contains('theme-dark') ? 'dark' : 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
@@ -783,17 +1116,31 @@
     });
 
     // Hide loading overlay when page is fully loaded
-    window.addEventListener('load', function() {
-        setTimeout(function() {
+    window.addEventListener('load', function () {
+        setTimeout(function () {
             const loadingOverlay = document.getElementById('loadingOverlay');
             if (loadingOverlay) {
                 loadingOverlay.style.opacity = '0';
-                setTimeout(function() {
+                setTimeout(function () {
                     loadingOverlay.style.display = 'none';
                 }, 500);
             }
         }, 500); // Show loading for at least 0.5 second
     });
+
+    let sideBarStatus = true;
+
+    function showSideBar () {
+        if (sideBarStatus) {
+            document.getElementById('sideBar').style.left = '0%';
+
+            sideBarStatus = false;
+        }
+        else {
+            document.getElementById('sideBar').style.left = '-100%';
+            sideBarStatus = true;
+        }
+    }
 </script>
 
 </body>

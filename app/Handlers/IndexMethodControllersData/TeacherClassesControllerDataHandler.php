@@ -3,23 +3,20 @@
 namespace App\Handlers\IndexMethodControllersData;
 
 use App\Abstracts\ControllerDataHandler;
-use App\Repositories\RolesRepository;
-use App\Repositories\SchoolsRepository;
-use App\Repositories\UsersRepository;
+use App\Repositories\TeacherClassesRepository;
 use App\Services\JalaliDateServiceStatic;
 use Illuminate\Support\Facades\Auth;
-use function Webmozart\Assert\Tests\StaticAnalysis\null;
 
-class UsersControllerDataHandler extends ControllerDataHandler
+class TeacherClassesControllerDataHandler extends ControllerDataHandler
 {
-    protected UsersRepository $usersRepository;
+    protected TeacherClassesRepository $teacherClassesRepository;
     protected JalaliDateServiceStatic $jalaliDateService;
 
     protected ControllerDataHandler $next;
 
     public function __construct()
     {
-        $this->usersRepository = new UsersRepository();
+        $this->teacherClassesRepository = new TeacherClassesRepository();
         $this->jalaliDateService = new JalaliDateServiceStatic();
     }
 
@@ -33,22 +30,22 @@ class UsersControllerDataHandler extends ControllerDataHandler
     public function adminData(): array
     {
         return [
-            'users' => $this->usersRepository->getAllUsersWithRoles(),
-            'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd')
+            'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd'),
+            'teacherClasses' => $this->teacherClassesRepository->getAllByPaginate()
         ];
     }
 
     public function ownerData(string $schoolId): array
     {
         return [
-            'users' => $this->usersRepository->geUsersBySchoolId($schoolId),
-            'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd')
+            'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd'),
+            'teacherClasses' => $this->teacherClassesRepository->getTeacherClassesBySchoolId($schoolId),
         ];
     }
 
     public function handle(string $request)
     {
-        if ($request == 'usersData') {
+        if ($request == 'TeacherClassesData') {
             if (Auth::user()->hasRole('admin')) {
 
                 return $this->adminData();
@@ -64,6 +61,6 @@ class UsersControllerDataHandler extends ControllerDataHandler
             }
         }
 
-         return $this->next->handle($request);;
+        return $this->next->handle($request);
     }
 }
