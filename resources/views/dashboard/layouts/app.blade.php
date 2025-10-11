@@ -818,7 +818,7 @@
                href="{{ url('/profile') }}">
                 <i class="fa-solid fa-user me-2 text-info"></i> پروفایل
             </a>
-            <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1" href="#">
+            <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances')  }}">
                 <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
                 <sup class="bg-success text-white">جدید</sup>
             </a>
