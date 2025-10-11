@@ -21,10 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \App\Http\Middleware\RoleMiddleware::class,
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
             'teacher' => \App\Http\Middleware\TeacherMiddleware::class,
+            'isAdmin' => \App\Http\Middleware\IsAdmin::class
         ]);
 
-        //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
     })->create();

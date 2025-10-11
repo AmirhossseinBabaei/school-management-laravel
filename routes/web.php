@@ -21,33 +21,36 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        // Test route for layout
-        Route::get('/test-layout', function () {
-            return view('test-layout');
-        })->name('dashboard.test-layout');
-
         Route::resource('users', UsersController::class)->names('dashboard.users');
 
         Route::resource('students', StudentsController::class)->names('dashboard.students');
 
-        Route::resource('roles', RolesController::class)->names('dashboard.roles');
+        Route::resource('roles', RolesController::class)->names('dashboard.roles')
+            ->middleware('isAdmin');
 
         Route::resource('study-fields', StudyFiledsController::class)
-            ->names('dashboard.studyFields');
+            ->names('dashboard.studyFields')
+            ->middleware('isAdmin');;
 
         Route::resource('study-bases', StudyBasesController::class)
-            ->names('dashboard.studyBases');
+            ->names('dashboard.studyBases')
+            ->middleware('isAdmin');;
 
         Route::get('{id}/show-children', [StudyFiledsController::class, 'showChildrenOfStudyFields'])
-            ->name('dashboard.studyFields.showChildren');
+            ->name('dashboard.studyFields.showChildren')
+            ->middleware('isAdmin');;
 
-        Route::resource('terms', TermsController::class)->names('dashboard.terms');
+        Route::resource('terms', TermsController::class)
+            ->names('dashboard.terms')
+            ->middleware('isAdmin');;
 
         Route::resource('schools', SchoolsController::class)
-            ->names('dashboard.schools');
+            ->names('dashboard.schools')
+            ->middleware('isAdmin');;
 
         Route::resource('lessons', LessonsController::class)
-            ->names('dashboard.lessons');
+            ->names('dashboard.lessons')
+            ->middleware('isAdmin');;
 
         Route::resource('/notifications', NotificationsController::class)
             ->names('dashboard.notifications');
@@ -58,7 +61,7 @@ Route::middleware('auth')
         Route::get('/notifications-failed/{id}', [NotificationsController::class, 'showNotificationFailed'])
         ->name('dashboard.notifications.showFailed');
 
-        Route::get('/attendances/students', [AttendanceController::class, 'getStudents'])
+        Route::get('/attendances/students/{classId}', [AttendanceController::class, 'getStudents'])
             ->name('dashboard.attendance.students');
 
         Route::resource('classRooms', ClassRoomsController::class)
@@ -71,7 +74,7 @@ Route::middleware('auth')
             ->names('dashboard.scheduleTeachers');
 
         Route::resource('attendances', AttendanceController::class)
-        ->names('dashboard.attendance');
+        ->names('dashboard.attendances');
     });
 
 require __DIR__ . '/auth.php';

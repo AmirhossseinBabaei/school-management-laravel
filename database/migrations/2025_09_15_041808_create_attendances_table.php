@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('lesson_id')->constrained('lessons')->onDelete('cascade')->onUpdate('cascade');
 
             $table->enum('status', ['present', 'absent', 'late']);
+            $table->text('description')->nullable();
 
             $table->foreignId('attendance_by_user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
 

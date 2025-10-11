@@ -820,7 +820,7 @@
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.users.*') ? 'active' : '' }} rounded-3 mb-1" href="#">
                 <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
-                <sup class="bg-danger text-white">بزودی</sup>
+                <sup class="bg-success text-white">جدید</sup>
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.classRooms.*') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('/dashboard/classRooms') }}">
