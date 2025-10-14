@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test AJAX</title>
+</head>
+<body>
+    <h1>Test AJAX Request</h1>
+    <button id="testBtn">Test Request</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('testBtn').addEventListener('click', function() {
+            console.log('Button clicked!');
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/get-attendance-students-data', true);
+            xhr.setRequestHeader('X-CSRF-TOKEN', 'test-token');
+            
+            const formData = new FormData();
+            formData.append('class_id', 'all');
+            formData.append('lesson_id', 'all');
+            formData.append('from_date', '1/1/1403');
+            formData.append('to_date', '30/12/1403');
+            formData.append('status', 'all');
+            
+            xhr.onload = function() {
+                console.log('Status:', xhr.status);
+                console.log('Response:', xhr.responseText);
+                document.getElementById('result').innerHTML = xhr.responseText;
+            };
+            
+            xhr.onerror = function() {
+                console.error('Request failed');
+            };
+            
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>
