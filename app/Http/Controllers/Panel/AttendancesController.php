@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAttendanceRequest;
+use App\Http\Requests\Panel\GetAttendanceStudentsDataRequest;
 use App\Repositories\AttendancesRepository;
 use App\Repositories\ClassRoomRepository;
 use App\Repositories\LessonsRepository;
 use App\Repositories\StudentsRepository;
 use App\Repositories\UsersRepository;
 use App\Services\JalaliDateService;
+use App\Services\JalaliDateServiceStatic;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AttendanceController extends Controller
+class AttendancesController extends Controller
 {
     protected StudentsRepository $studentsRepository;
     protected ClassRoomRepository $classRoomRepository;
@@ -44,14 +46,9 @@ class AttendanceController extends Controller
 
     public function index()
     {
-        $schoolId = Auth::user()->school_id;
+        $chain = app('chain.indexMethodControllersData');
+        $data = $chain->handle('attendancesData');
 
-        $data = [
-            'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd'),
-            'classes' => $this->classRoomRepository->getClassesBySchoolId($schoolId),
-            'lessons' => $this->lessonsRepository->all(),
-            'teachers' => $this->usersRepository->getTeachersBySchoolId($schoolId)
-        ];
         return view('dashboard.attendances.all', compact('data'));
     }
 
@@ -74,7 +71,7 @@ class AttendanceController extends Controller
             $users[] = $user;
         }
 
-        usort($users, function($a, $b) {
+        usort($users, function ($a, $b) {
             return $this->comparePersianNames($a['full_name'], $b['full_name']);
         });
 
@@ -148,17 +145,8 @@ class AttendanceController extends Controller
         return 'other';
     }
 
-    public function store(Request $request)
+    public function store(CreateAttendanceRequest $request)
     {
-        $request->validate([
-            'class_id' => 'required|exists:classes,id',
-            'lesson_id' => 'required|exists:lessons,id',
-            'students' => 'required|array|min:1',
-            'students.*.student_id' => 'required|exists:students,id',
-            'students.*.status' => 'required|in:present,absent,late',
-            'students.*.description' => 'nullable|string|max:500'
-        ]);
-
         $requested = $request->toArray();
 
         $data = [];
@@ -188,5 +176,47 @@ class AttendanceController extends Controller
         }
 
         return response()->json(['status' => 0]);
+    }
+
+    public function getReportPageData()
+    {
+        $chain = app('chain.indexMethodControllersData');
+        $data = $chain->handle('attendancesData');
+
+        return view('dashboard.attendances.reports', compact('data'));
+    }
+
+    public function getReportChartsPageData()
+    {
+        return view('dashboard.attendances.reports');
+    }
+
+    public function getAttendanceStudentsData(GetAttendanceStudentsDataRequest $request)
+    {
+        $results = $this->attendancesRepository->all();
+
+        foreach ($results as $result) {
+            $result->studentName = $result->student->user->first_name ?? ''
+                . $result->student->user->last_name ?? '';
+        }
+
+//        $classId = $request['class_id'] == 'all' ? null : $request['class_id'];
+//        $lessonId = $request['lesson_id'] == 'all' ? null : $request['lesson_id'];
+//        $status = $request['status'] == 'all' ? null : $request['status'];
+//
+//        $fromDate = JalaliDateServiceStatic::toGregorian($request['from_date']);
+//        $toDate = JalaliDateServiceStatic::toGregorian($request['to_date']);
+//
+//        $students = $this->attendancesRepository
+//            ->setModel()::where('school_id', Auth::user()->school_id)
+//            ->when($classId, fn($q) => $q->where('class_id', $classId))
+//            ->when($lessonId, fn($q) => $q->where('lesson_id', $lessonId))
+//            ->when($status, fn($q) => $q->where('status', $status))
+//            ->whereBetween('created_at', [$fromDate, $toDate])
+//            ->with(['student.user', 'classRoom', 'lesson'])
+//            ->orderBy('id', 'desc')
+//            ->get();
+
+        return response()->json(['data' => $results]);
     }
 }

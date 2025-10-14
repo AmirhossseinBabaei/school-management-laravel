@@ -13,7 +13,7 @@ use App\Http\Controllers\Panel\NotificationsController;
 use App\Http\Controllers\Panel\ClassRoomsController;
 use App\Http\Controllers\Panel\TeacherClassesController;
 use App\Http\Controllers\Panel\ScheduleTeachersController;
-use App\Http\Controllers\Panel\AttendanceController;
+use App\Http\Controllers\Panel\AttendancesController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')
@@ -61,7 +61,7 @@ Route::middleware('auth')
         Route::get('/notifications-failed/{id}', [NotificationsController::class, 'showNotificationFailed'])
         ->name('dashboard.notifications.showFailed');
 
-        Route::get('/attendances/students/{classId}', [AttendanceController::class, 'getStudents'])
+        Route::get('/attendances/students/{classId}', [AttendancesController::class, 'getStudents'])
             ->name('dashboard.attendance.students');
 
         Route::resource('classRooms', ClassRoomsController::class)
@@ -73,8 +73,28 @@ Route::middleware('auth')
         Route::resource('schedule-teachers', ScheduleTeachersController::class)
             ->names('dashboard.scheduleTeachers');
 
-        Route::resource('attendances', AttendanceController::class)
+        Route::resource('attendances', AttendancesController::class)
         ->names('dashboard.attendances');
+
+        Route::get('/get-report/attendances', [AttendancesController::class, 'getReportPageData'])
+            ->name('dashboard.attendances.reports');
+
+        Route::get('/get-report-by-chart-type/attendances',
+            [AttendancesController::class, 'getReportChartsPageData'])
+            ->name('dashboard.attendances.charts');
+
+        Route::post('/get-attendance-students-data',
+            [AttendancesController::class, 'getAttendanceStudentsData']);
+
+//        Route::get('/test', function (){
+//            $results = \App\Models\Attendance::all();
+//
+//            foreach ($results as $result) {
+//                $result'student_id'] = $result->student->user->first_name
+//                    . $result->student->user->last_name;
+//            }
+//            dd($results->toArray());
+//        });
     });
 
 require __DIR__ . '/auth.php';

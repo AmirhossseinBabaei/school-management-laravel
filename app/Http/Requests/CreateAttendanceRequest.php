@@ -24,11 +24,10 @@ class CreateAttendanceRequest extends FormRequest
         return [
             'class_id' => 'required|exists:classes,id',
             'lesson_id' => 'required|exists:lessons,id',
-            'date' => 'required|date',
-            'students' => 'required|array',
+            'students' => 'required|array|min:1',
             'students.*.student_id' => 'required|exists:students,id',
-            'students.*.status' => 'required|in:present,absent,excused',
-            'students.*.description' => 'nullable|string|max:500',
+            'students.*.status' => 'required|in:present,absent,late',
+            'students.*.description' => 'nullable|string|max:500'
         ];
     }
 }

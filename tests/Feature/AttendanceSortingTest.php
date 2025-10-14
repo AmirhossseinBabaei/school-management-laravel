@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\Panel\AttendanceController;
+use App\Http\Controllers\Panel\AttendancesController;
 use App\Models\ClassRoom;
 use App\Models\Lesson;
 use App\Models\School;
@@ -23,7 +23,7 @@ class AttendanceSortingTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->school = School::factory()->create();
         $this->user = User::factory()->create([
             'school_id' => $this->school->id,
@@ -53,7 +53,7 @@ class AttendanceSortingTest extends TestCase
                 'first_name' => $studentData['first_name'],
                 'last_name' => $studentData['last_name']
             ]);
-            
+
             Student::factory()->create([
                 'user_id' => $user->id,
                 'school_id' => $this->school->id,
@@ -65,10 +65,10 @@ class AttendanceSortingTest extends TestCase
             ->get(route('dashboard.attendances.students', $this->classRoom->id));
 
         $response->assertStatus(200);
-        
+
         $data = $response->json();
         $students = $data['students'];
-        
+
         // بررسی ترتیب صحیح
         $expectedOrder = [
             'احمد محمدی',    // فارسی
@@ -89,7 +89,7 @@ class AttendanceSortingTest extends TestCase
     /** @test */
     public function name_type_detection_works_correctly()
     {
-        $controller = new AttendanceController(
+        $controller = new AttendancesController(
             app(\App\Repositories\StudentsRepository::class),
             app(\App\Repositories\ClassRoomRepository::class),
             app(\App\Services\JalaliDateService::class),

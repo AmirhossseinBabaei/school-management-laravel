@@ -23,14 +23,14 @@ class User extends Authenticatable
         'last_name',
         'avatar_src',
         'avatar_type',
-        'otp_code',
         'otp_expire_at',
         'phone',
         'email',
         'password_hash',
         'status',
         'school_id',
-        'role_id'
+        'role_id',
+        'national_code'
     ];
 
     /**
@@ -41,6 +41,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password_hash',
         'remember_token',
+        'otp_code'
     ];
 
     /**

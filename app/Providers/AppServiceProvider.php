@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Handlers\CreateMethodControllersData\ClassRoomsCreateControllerData;
 use App\Handlers\CreateMethodControllersData\StudentsCreateControllerDataHandler;
 use App\Handlers\CreateMethodControllersData\TeacherClassesCreateControllerDataHandler;
+use App\Handlers\IndexMethodControllersData\AttendancesControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\ClassRoomsControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\DashboardControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\ScheduleTeachersControllerDataHandler;
@@ -85,11 +86,11 @@ class AppServiceProvider extends ServiceProvider
             $studentsControllersData = new StudentsControllerDataHandler();
             $classRoomControllerData = new ClassRoomsControllerDataHandler();
             $teacherClassesControllerData = new TeacherClassesControllerDataHandler();
-            $scheduleTeachersControllerData = new ScheduleTeachersControllerDataHandler();
+            $attendacesControllerData = new AttendancesControllerDataHandler();
 
             $dashboardControllerData->setNext($usersControllerData)->setNext($studentsControllersData)
             ->setNext($classRoomControllerData)->setNext($teacherClassesControllerData)
-            ->setNext($scheduleTeachersControllerData);
+            ->setNext($attendacesControllerData);
 
             return $dashboardControllerData;
         });

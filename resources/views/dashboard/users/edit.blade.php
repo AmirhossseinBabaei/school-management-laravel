@@ -88,6 +88,15 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
+                                <i class="fa-solid fa-code me-2 text-info"></i>کد ملی<span
+                                    class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="national_code" class="form-control" placeholder="example@mail.com"
+                                   value="{{ $data['user']->national_code ?? '' }}" required>
+                            <div class="invalid-feedback">لطفاً کد ملی معتبر وارد کنید</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
                                 <i class="fa-solid fa-user-shield me-2 text-danger"></i>انتخاب نقش <span
                                     class="text-danger">*</span>
                             </label>

@@ -26,7 +26,10 @@ return new class extends Migration
             $table->string('otp_code', 20)->nullable();
             $table->timestamp('otp_expire_at')->nullable();
 
-            $table->string('phone', 20);
+            $table->string('phone', 20)->unique();
+
+            $table->string('national_code',30)->unique();
+
             $table->string('email')->nullable();
 
             $table->string('password_hash');

@@ -40,25 +40,31 @@
                                     <label class="form-label fw-semibold">
                                         <i class="fa-solid fa-user me-2 text-primary"></i>نام
                                     </label>
-                                    <input type="text" disabled value="{{ $data['user']->first_name }}" class="form-control" style="background: rgba(255,255,255,0.05);">
+                                    <input type="text" disabled value="{{ $data['user']->first_name ?? '' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">
                                         <i class="fa-solid fa-user me-2 text-primary"></i>نام خانوادگی
                                     </label>
-                                    <input type="text" disabled value="{{ $data['user']->last_name }}" class="form-control" style="background: rgba(255,255,255,0.05);">
+                                    <input type="text" disabled value="{{ $data['user']->last_name ?? '' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">
                                         <i class="fa-solid fa-envelope me-2 text-info"></i>ایمیل
                                     </label>
-                                    <input type="email" disabled value="{{ $data['user']->email }}" class="form-control" style="background: rgba(255,255,255,0.05);">
+                                    <input type="email" disabled value="{{ $data['user']->email ?? '' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fa-solid fa-envelope me-2 text-info"></i>کد ملی
+                                    </label>
+                                    <input type="email" disabled value="{{ $data['user']->national_code ?? '' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">
                                         <i class="fa-solid fa-phone me-2 text-success"></i>شماره تلفن
                                     </label>
-                                    <input type="tel" disabled value="{{ $data['user']->phone }}" class="form-control" style="background: rgba(255,255,255,0.05);">
+                                    <input type="tel" disabled value="{{ $data['user']->phone ?? '' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">

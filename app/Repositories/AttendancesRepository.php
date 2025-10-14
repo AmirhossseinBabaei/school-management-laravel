@@ -35,6 +35,12 @@ class AttendancesRepository extends BaseRepository
     public function getAbsentStudentsTodayCount($schoolId): string
     {
         return $this->setModel()::where('school_id', $schoolId)
-            ->where('created_at', '>', Carbon::now()->format('Y-m-d'))->pluck('id')->count();
+            ->where('created_at', '>', Carbon::now()->format('Y-m-d'))->where('status', 'absent')
+            ->pluck('id')->count();
+    }
+
+    public function all()
+    {
+        return $this->setModel()::all();
     }
 }

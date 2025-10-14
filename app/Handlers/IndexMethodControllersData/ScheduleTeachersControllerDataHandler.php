@@ -75,6 +75,6 @@ class ScheduleTeachersControllerDataHandler extends ControllerDataHandler
             }
         }
 
-        return null;
+        return $this->next->handle($request);
     }
 }
