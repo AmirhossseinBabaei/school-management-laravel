@@ -32,13 +32,13 @@ class ClassRoom extends Model
         return $this->belongsTo(StudyField::class);
     }
 
-    public function getCreatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
-    }
-
-    public function getUpdatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
-    }
+//    public function getCreatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
+//    }
+//
+//    public function getUpdatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
+//    }
 }

@@ -84,4 +84,9 @@ class UsersRepository extends BaseRepository
     {
         return $this->setModel()::where('school_id', $schoolId)->where('role_id', 3)->get();
     }
+
+    public function insert($data): bool
+    {
+        return $this->connection()->insert($data);
+    }
 }

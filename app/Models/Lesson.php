@@ -26,13 +26,13 @@ class Lesson extends Model
         return $this->belongsTo(StudyField::class);
     }
 
-    public function getCreatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value);
-    }
-
-    public function getUpdatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value);
-    }
+//    public function getCreatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value);
+//    }
+//
+//    public function getUpdatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value);
+//    }
 }

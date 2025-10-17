@@ -73,15 +73,15 @@ class User extends Authenticatable
         return $this->belongsTo(School::class);
     }
 
-    public function getUpdatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
-    }
-
-    public function getCreatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
-    }
+//    public function getUpdatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss') ?? '';
+//    }
+//
+//    public function getCreatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss') ?? '';
+//    }
 
     public function hasRole(string $role):bool
     {

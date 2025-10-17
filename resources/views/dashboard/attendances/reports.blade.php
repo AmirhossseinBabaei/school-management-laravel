@@ -659,33 +659,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="chart-container">
                                     <h6 class="text-center mb-3">نمودار وضعیت حضور</h6>
-                                    <canvas id="statusChart" width="400" height="300"></canvas>
+                                    <canvas id="statusChart" width="1000" height="1000"></canvas>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="chart-container">
-                                    <h6 class="text-center mb-3">نمودار غیبت بر اساس کلاس</h6>
-                                    <canvas id="classChart" width="400" height="300"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="chart-container">
-                                    <h6 class="text-center mb-3">نمودار غیبت بر اساس درس</h6>
-                                    <canvas id="lessonChart" width="400" height="300"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="chart-container">
-                                    <h6 class="text-center mb-3">نمودار روند زمانی</h6>
-                                    <canvas id="trendChart" width="400" height="300"></canvas>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -831,12 +810,11 @@
 
                 // تبدیل تاریخ میلادی به شمسی برای نمایش
                 const persianDate = convertToPersianDate(item.created_at);
-
                 tbody.innerHTML += `
                     <tr>
                         <td>${index + 1}</td>
-                        <td>${item.student_id ? item.studentName : 'نامشخص'}</td>
-                        <td>${item.classRoom ? item.classRoom.name : 'نامشخص'}</td>
+                        <td>${item.student_id ? item.student.user.first_name +' '+ item.student.user.last_name : 'نامشخص'}</td>
+                        <td>${item.class_id ? item.class_room.name : 'نامشخص'}</td>
                         <td>${item.lesson ? item.lesson.name : 'نامشخص'}</td>
                         <td>${persianDate}</td>
                         <td><span class="${statusClass}">${statusText}</span></td>

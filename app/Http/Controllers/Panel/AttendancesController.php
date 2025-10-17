@@ -191,32 +191,32 @@ class AttendancesController extends Controller
         return view('dashboard.attendances.reports');
     }
 
-    public function getAttendanceStudentsData(GetAttendanceStudentsDataRequest $request)
+    public function getAttendanceStudentsData(Request $request)
     {
-        $results = $this->attendancesRepository->all();
+        $classId = $request['class_id'] == 'all' ? null : $request['class_id'];
+        $lessonId = $request['lesson_id'] == 'all' ? null : $request['lesson_id'];
+        $status = $request['status'] == 'all' ? null : $request['status'];
 
-        foreach ($results as $result) {
-            $result->studentName = $result->student->user->first_name ?? ''
-                . $result->student->user->last_name ?? '';
-        }
+        $fromDate = JalaliDateServiceStatic::toGregorian($request['from_date']);
+        $toDate = JalaliDateServiceStatic::toGregorian($request['to_date']);
 
-//        $classId = $request['class_id'] == 'all' ? null : $request['class_id'];
-//        $lessonId = $request['lesson_id'] == 'all' ? null : $request['lesson_id'];
-//        $status = $request['status'] == 'all' ? null : $request['status'];
-//
-//        $fromDate = JalaliDateServiceStatic::toGregorian($request['from_date']);
-//        $toDate = JalaliDateServiceStatic::toGregorian($request['to_date']);
-//
-//        $students = $this->attendancesRepository
-//            ->setModel()::where('school_id', Auth::user()->school_id)
-//            ->when($classId, fn($q) => $q->where('class_id', $classId))
-//            ->when($lessonId, fn($q) => $q->where('lesson_id', $lessonId))
-//            ->when($status, fn($q) => $q->where('status', $status))
-//            ->whereBetween('created_at', [$fromDate, $toDate])
-//            ->with(['student.user', 'classRoom', 'lesson'])
-//            ->orderBy('id', 'desc')
-//            ->get();
+//        $classId = 31;
+//        $lessonId = 27;
+//        $status = 'absent';
+//        $fromDate = '2025-09-09';
+//        $toDate = '2026-09-09';
 
-        return response()->json(['data' => $results]);
+        $students = $this->attendancesRepository
+            ->setModel()
+            ::with('student.user', 'classRoom', 'lesson')
+            ->where('school_id', Auth::user()->school_id)
+            ->when($classId, fn($q) => $q->where('class_id', $classId))
+            ->when($lessonId, fn($q) => $q->where('lesson_id', $lessonId))
+            ->when($status, fn($q) => $q->where('status', $status))
+            ->where('attended_at', '>=', $fromDate)
+            ->where('attended_at', '<=', $toDate)
+            ->get();
+
+        return response()->json(['data' => $students]);
     }
 }

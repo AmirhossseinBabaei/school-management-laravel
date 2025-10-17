@@ -40,14 +40,14 @@ class Student extends Model
     {
         return $this->belongsTo(ClassRoom::class, 'class_id');
     }
-
-    public function getCreatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
-    }
-
-    public function getUpdatedAtAttribute($value): string
-    {
-        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss');
-    }
+//
+//    public function getCreatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss') ?? $value;
+//    }
+//
+//    public function getUpdatedAtAttribute($value): string
+//    {
+//        return JalaliDateServiceStatic::toJalali($value, 'yyyy/MM/dd HH:mm:ss') ?? $value;
+//    }
 }

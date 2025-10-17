@@ -8,10 +8,15 @@ use App\Http\Requests\Panel\UpdateUserRequest;
 use App\Repositories\RolesRepository;
 use App\Repositories\SchoolsRepository;
 use App\Repositories\UsersRepository;
+use App\Services\ExcelReader;
 use App\Services\JalaliDateServiceStatic;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use Shuchkin\SimpleXLSX;
 
 class UsersController extends Controller
 {
@@ -155,5 +160,27 @@ class UsersController extends Controller
         }
 
         return response()->json(['status' => 0, 'message' => __('messages.users.deleteUserError')]);
+    }
+
+    public function createByExcel(Request $request)
+    {
+        $request->validate([
+            'users' => 'required|file|mimes:xlsx,xls',
+        ]);
+
+        $filePath = $request->file('users')->getRealPath();
+
+        if ($xlsx = SimpleXLSX::parse($filePath)) {
+            $rows = $xlsx->rows();
+
+            $data = array_slice($rows, 1);
+
+            $this->usersRepository->insert($data);
+
+        } else {
+            return response()->json([
+                'error' => SimpleXLSX::parseError(),
+            ], 400);
+        }
     }
 }

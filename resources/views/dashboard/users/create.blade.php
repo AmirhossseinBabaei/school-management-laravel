@@ -132,9 +132,7 @@
                         </div>
                         @endadmin
                         <div class="col-12 d-flex gap-3 justify-content-center">
-                            <button class="btn bg-success btn-pill">
                                 <input type="submit" class="btn bg-success btn-pill px-4" value="ایجاد کاربر">
-                            </button>
                             <a href="{{ url('dashboard/users') }}" class="btn bg-danger btn-pill px-4">
                                 <i class="fa-solid fa-times me-2"></i>لغو
                             </a>
@@ -142,6 +140,22 @@
                     </form>
                 </div>
             </div>
+            <form action="{{ route('dashboard.students.crateByExcel') }}" method="POST" enctype="multipart/form-data" class="p-4 bg-dark rounded shadow-sm mt-5" style="max-width: 450px; margin:auto;">
+                @csrf
+                <div class="mb-4 text-center mt-4">
+                    <label for="excelFile" class="form-label text-white fs-4 fw-bold">آپلود فایل اکسل</label>
+                    <input class="form-control" type="file" id="excelFile" name="users" accept=".xlsx, .xls, .csv" required>
+                    <small class="form-text text-muted mt-1">فقط فایل‌های Excel با فرمت XLSX، XLS یا CSV قابل قبول هستند.</small>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3">
+                        <input type="submit" class="btn bg-success btn-pill px-4" value="ایجاد کاربر">
+
+                    <a href="{{ url('dashboard/users') }}" class="btn btn-danger btn-lg px-4 rounded-pill">
+                        <i class="fas fa-times me-2"></i> لغو
+                    </a>
+                </div>
+            </form>
         </div>
-    </div>
+            </div>
 @endsection

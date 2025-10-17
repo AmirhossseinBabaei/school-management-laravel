@@ -25,6 +25,9 @@ Route::middleware('auth')
 
         Route::resource('students', StudentsController::class)->names('dashboard.students');
 
+        Route::post('students/create-by-excel', [UsersController::class, 'createByExcel'])
+        ->name('dashboard.students.crateByExcel');
+
         Route::resource('roles', RolesController::class)->names('dashboard.roles')
             ->middleware('isAdmin');
 
@@ -52,16 +55,16 @@ Route::middleware('auth')
             ->names('dashboard.lessons')
             ->middleware('isAdmin');;
 
-        Route::resource('/notifications', NotificationsController::class)
+        Route::resource('notifications', NotificationsController::class)
             ->names('dashboard.notifications');
 
-        Route::get('/notifications-failed', [NotificationsController::class, 'allNotificationFailed'])
+        Route::get('notifications-failed', [NotificationsController::class, 'allNotificationFailed'])
             ->name('dashboard.notifications.allFailed');
 
-        Route::get('/notifications-failed/{id}', [NotificationsController::class, 'showNotificationFailed'])
+        Route::get('notifications-failed/{id}', [NotificationsController::class, 'showNotificationFailed'])
         ->name('dashboard.notifications.showFailed');
 
-        Route::get('/attendances/students/{classId}', [AttendancesController::class, 'getStudents'])
+        Route::get('attendances/students/{classId}', [AttendancesController::class, 'getStudents'])
             ->name('dashboard.attendance.students');
 
         Route::resource('classRooms', ClassRoomsController::class)
@@ -76,14 +79,14 @@ Route::middleware('auth')
         Route::resource('attendances', AttendancesController::class)
         ->names('dashboard.attendances');
 
-        Route::get('/get-report/attendances', [AttendancesController::class, 'getReportPageData'])
+        Route::get('get-report/attendances/', [AttendancesController::class, 'getReportPageData'])
             ->name('dashboard.attendances.reports');
 
-        Route::get('/get-report-by-chart-type/attendances',
+        Route::get('get-report-by-chart-type/attendances',
             [AttendancesController::class, 'getReportChartsPageData'])
             ->name('dashboard.attendances.charts');
 
-        Route::post('/get-attendance-students-data',
+        Route::any('get-attendance-students-data',
             [AttendancesController::class, 'getAttendanceStudentsData']);
 
 //        Route::get('/test', function (){
