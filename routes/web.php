@@ -79,14 +79,14 @@ Route::middleware('auth')
         Route::resource('attendances', AttendancesController::class)
         ->names('dashboard.attendances');
 
-        Route::get('get-report/attendances/', [AttendancesController::class, 'getReportPageData'])
-            ->name('dashboard.attendances.reports');
+        Route::get('get-report/attendances', [AttendancesController::class, 'getReportPageData'])
+            ->name('dashboard.attendance.reports');
 
         Route::get('get-report-by-chart-type/attendances',
             [AttendancesController::class, 'getReportChartsPageData'])
             ->name('dashboard.attendances.charts');
 
-        Route::any('get-attendance-students-data',
+        Route::post('get-attendance-students-data',
             [AttendancesController::class, 'getAttendanceStudentsData']);
 
 //        Route::get('/test', function (){

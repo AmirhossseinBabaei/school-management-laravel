@@ -851,10 +851,10 @@
                 <sup class="bg-danger text-white">بزودی</sup>
             </a>
 
-            <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
-               href="#">
+            <a class="nav-link {{ request()->routeIs('dashboard.attendance.reports') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('dashboard/get-report/attendances') }}">
                 <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری
-                <sup class="bg-danger text-white">بزودی</sup>
+                <sup class="bg-success text-white">جدید</sup>
             </a>
             @admin
             <div class="collapse show" id="grpPersonal">
