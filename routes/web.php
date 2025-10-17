@@ -88,16 +88,6 @@ Route::middleware('auth')
 
         Route::post('get-attendance-students-data',
             [AttendancesController::class, 'getAttendanceStudentsData']);
-
-//        Route::get('/test', function (){
-//            $results = \App\Models\Attendance::all();
-//
-//            foreach ($results as $result) {
-//                $result'student_id'] = $result->student->user->first_name
-//                    . $result->student->user->last_name;
-//            }
-//            dd($results->toArray());
-//        });
     });
 
 require __DIR__ . '/auth.php';
