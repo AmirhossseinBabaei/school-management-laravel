@@ -189,9 +189,7 @@
                             <a href="{{ url()->previous() }}" class="btn bg-danger btn-pill">
                                 <i class="fa-solid fa-times me-2"></i>انصراف
                             </a>
-                            <button type="submit" class="btn bg-warning btn-pill">
-                                <i class="fa-solid fa-paper-plane me-2"></i>ارسال نوتیفیکیشن
-                            </button>
+                            <input type="submit" class="btn bg-warning btn-pill" value="ارسال نوتیف">
                         </div>
                     </div>
                 </div>

@@ -77,9 +77,7 @@ class DashboardControllerDataHandler extends ControllerDataHandler
                 return $this->getAdminData();
             } else if ($request == Auth::user()->hasRole('owner')) {
 
-                $schoolId = Auth::user()->school_id;
-
-                return $this->getOwnerData($schoolId);
+                return $this->getOwnerData(Auth::user()->school_id);
             } else {
                 return $this->getAdminData();
             }

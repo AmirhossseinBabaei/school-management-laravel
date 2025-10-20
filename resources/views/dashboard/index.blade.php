@@ -146,7 +146,7 @@
                         <div>
                             @owner
                             <div class="text-muted small mb-1">غایبان امروز</div>
-                            <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] ?? 0  }}</div>
+                            <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] }}</div>
                             @endowner
 
                         </div>

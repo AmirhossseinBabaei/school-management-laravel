@@ -826,7 +826,7 @@
                href="{{ url('/dashboard/classRooms') }}">
                 <i class="fa-solid fa-chalkboard me-2 text-info"></i> کلاس ها
             </a>
-            <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="#">
+            <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
                 <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
                 <sup class="bg-danger text-white">بزودی</sup>
             </a>
@@ -834,7 +834,7 @@
                href="{{ url('/dashboard/teacher-classes') }}">
                 <i class="fa-solid fa-chalkboard-teacher me-2 text-danger"></i> کلاس های معلمان
             </a>
-            <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1" href="#">
+            <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
                 <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
                 <sup class="bg-danger text-white">بزودی</sup>
             </a>
