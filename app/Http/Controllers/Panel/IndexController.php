@@ -9,6 +9,6 @@ class IndexController extends Controller
 {
     public function downloadApkFile()
     {
-        return response()->download(public_path('/applications/schoolpromgs.apk'));
+        return response()->download(public_path('/applications/school_management_system_android.apk'));
     }
 }
