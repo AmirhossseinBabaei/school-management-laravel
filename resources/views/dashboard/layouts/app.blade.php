@@ -16,6 +16,10 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+
+    <!-- icon -->
+    <link rel="icon" href="{{ asset('assets/img/logos/icon.png')  }}">
+
     @stack('styles')
     <style>
         body {
