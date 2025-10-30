@@ -21,6 +21,8 @@
             width: 100%;
             height: 100%;
         }
+
+
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -45,8 +47,14 @@
                 </div>
                 <h3 class="mb-2 gradient-text fw-bold">خوش آمدید به داشبورد مدیریت</h3>
                 @owner
-                <h5 class="mb-2 gradient-text fw-bold">مدیر مدرسه ی  {{ Auth::user()->school->name }}</h5>
+                <h5 class="mb-2 gradient-text fw-bold">مدیر مدرسه ی {{ Auth::user()->school->name }}</h5>
                 @endowner
+                @deputy
+                <h5 class="mb-2 gradient-text fw-bold">معاون مدرسه ی {{ Auth::user()->school->name }}</h5>
+                @enddeputy
+                @teacher
+                <h5 class="mb-2 gradient-text fw-bold">معلم مدرسه ی {{ Auth::user()->school->name }}</h5>
+                @endteacher
                 @admin
                 <p class="text-muted mb-3">آخرین ثبت نام مدرسه: <span
                         class="fw-semibold text-primary">{{ $data['lastCreatedSchoolTime'] }}</span></p>
@@ -70,6 +78,7 @@
     </div>
 
     <!-- KPI cards -->
+
     <div class="row g-4">
         <div class="col-xl-3 col-md-6">
             <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
@@ -79,9 +88,6 @@
                         <div>
                             <div class="text-muted small mb-1">دانش آموزان</div>
                             <div class="fs-2 fw-bold text-primary">{{ $data['studentsCount'] ?? 0}}</div>
-                            <div class="text-success small">
-                                <i class="fa-solid fa-arrow-up me-1"></i>+12% از ماه قبل
-                            </div>
                         </div>
                         <div class="card-icon pulse-animation"
                              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
@@ -106,6 +112,16 @@
                             <div class="text-muted small mb-1">معلمان</div>
                             <div class="fs-2 fw-bold text-success">{{ $data['teachersCount'] ?? 0  }}</div>
                             @endowner
+
+                            @teacher
+                            <div class="text-muted small mb-1">شمارنده</div>
+                            <div class="fs-2 fw-bold text-success" style="font-size: 20px !important;" id="cardCounter">0</div>
+                            @endteacher
+
+                            @deputy
+                            <div class="text-muted small mb-1">کل غایبین تا الان</div>
+                            <div class="fs-2 fw-bold text-success">{{ $data['absentCount'] ?? 0  }}</div>
+                            @enddeputy
                         </div>
                         <div class="card-icon pulse-animation"
                              style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
@@ -129,6 +145,16 @@
                             <div class="text-muted small mb-1">کلاس ها</div>
                             <div class="fs-2 fw-bold text-warning">{{ $data['classRoomCount'] ?? 0  }}</div>
                             @endowner
+
+                            @deputy
+                            <div class="text-muted small mb-1">مورد های انضباطی ثبت شده امروز</div>
+                            <div class="fs-2 fw-bold text-success">{{ $data['disciplinyRecordsCount'] ?? 0  }}</div>
+                            @enddeputy
+
+                            @teacher
+                            <div class="text-muted small mb-1">دانش آموزان غایب امروز</div>
+                            <div class="fs-2 fw-bold text-warning">{{ $data['absentStudentsTodayCount'] ?? 0  }}</div>
+                            @endteacher
                         </div>
                         <div class="card-icon pulse-animation"
                              style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
@@ -146,9 +172,18 @@
                         <div>
                             @owner
                             <div class="text-muted small mb-1">غایبان امروز</div>
-                            <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] }}</div>
+                            <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] ?? 0 }}</div>
                             @endowner
 
+                            @deputy
+                            <div class="text-muted small mb-1">غایبان امروز</div>
+                            <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] ?? 0 }}</div>
+                            @enddeputy
+
+                            @teacher
+                            <div class="text-muted small mb-1">وضعیت سیستم</div>
+                            <div class="fs-2 fw-bold text-info">😆😬</div>
+                            @endteacher
                         </div>
                         <div class="card-icon pulse-animation"
                              style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
@@ -161,6 +196,16 @@
     </div>
 
     <div class="row g-4 mt-2">
+
+        @deputy
+        <canvas id="myChart" style="width:100%;max-width:100%;"></canvas>
+        @enddeputy
+
+        @teacher
+        <h5 class="text-center">چارت آماری نمرات دانش آموزان <sub class="text-danger">بزودی</sub></h5>
+        <canvas id="myChart" style="width:100%;max-width:100%;"></canvas>
+        @endteacher
+
         @admin
         <div class="col-lg-8">
             <div class="card glass-effect border-0 shadow-lg h-100 animate__animated animate__fadeInUp"
@@ -204,127 +249,127 @@
             </div>
         </div>
         @endowner
-        <div class="col-lg-4">
-            <div class="card glass-effect border-0 shadow-lg h-100 animate__animated animate__fadeInUp"
-                 style="animation-delay: 0.6s;">
-                <div class="card-header glass-effect border-0">
-                    <h5 class="mb-0 gradient-text fw-bold">
-                        <i class="fa-solid fa-bolt me-2"></i>اکشن‌های سریع
-                    </h5>
-                </div>
-                <div class="card-body p-4">
-                    @admin
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="{{ route('dashboard.users.index') }}">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-users text-primary" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">کاربران</div>
-                                <small class="text-muted">مدیریت کاربران</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="{{ route('dashboard.studyFields.index') }}">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-graduation-cap text-success" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">رشته ها</div>
-                                <small class="text-muted">رشته های تحصیلی</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="{{ route('dashboard.roles.index') }}">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-user-shield text-warning" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">نقش ها</div>
-                                <small class="text-muted">مدیریت نقش ها</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="{{ route('dashboard.studyBases.index') }}">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">پایه ها</div>
-                                <small class="text-muted">پایه های تحصیلی</small>
-                            </a>
-                        </div>
-                    </div>
-                    @endadmin
+{{--        <div class="col-lg-4">--}}
+{{--            <div class="card glass-effect border-0 shadow-lg h-100 animate__animated animate__fadeInUp"--}}
+{{--                 style="animation-delay: 0.6s;">--}}
+{{--                <div class="card-header glass-effect border-0">--}}
+{{--                    <h5 class="mb-0 gradient-text fw-bold">--}}
+{{--                        <i class="fa-solid fa-bolt me-2"></i>اکشن‌های سریع--}}
+{{--                    </h5>--}}
+{{--                </div>--}}
+{{--                <div class="card-body p-4">--}}
+{{--                    @admin--}}
+{{--                    <div class="row g-3">--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="{{ route('dashboard.users.index') }}">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-users text-primary" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">کاربران</div>--}}
+{{--                                <small class="text-muted">مدیریت کاربران</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="{{ route('dashboard.studyFields.index') }}">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-graduation-cap text-success" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">رشته ها</div>--}}
+{{--                                <small class="text-muted">رشته های تحصیلی</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="{{ route('dashboard.roles.index') }}">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-user-shield text-warning" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">نقش ها</div>--}}
+{{--                                <small class="text-muted">مدیریت نقش ها</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="{{ route('dashboard.studyBases.index') }}">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">پایه ها</div>--}}
+{{--                                <small class="text-muted">پایه های تحصیلی</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    @endadmin--}}
 
-                    @owner
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="{{ route('dashboard.users.index') }}">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-users text-primary" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">کاربران</div>
-                                <small class="text-muted">مدیریت کاربران</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="#">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-graduation-cap text-success" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">چارت ها</div>
-                                <small class="text-muted">چارت ها</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="#">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-user-shield text-warning" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">نمرات</div>
-                                <small class="text-muted">مدیریت نمرات</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="#">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">مدیریت وبسایت</div>
-                                <small class="text-muted">مدیریت وبسایت</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="#">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">مشاهده ی وبسایت</div>
-                                <small class="text-muted">وبسایت</small>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"
-                               href="#">
-                                <div class="mb-2">
-                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <div class="fw-semibold">نوتیفیکیشن ها</div>
-                                <small class="text-muted">مدیریت نوتیف ها</small>
-                            </a>
-                        </div>
-                    </div>
-                    @endowner
-                </div>
-            </div>
-        </div>
+{{--                    @owner--}}
+{{--                    <div class="row g-3">--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="{{ route('dashboard.users.index') }}">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-users text-primary" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">کاربران</div>--}}
+{{--                                <small class="text-muted">مدیریت کاربران</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="#">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-graduation-cap text-success" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">چارت ها</div>--}}
+{{--                                <small class="text-muted">چارت ها</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="#">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-user-shield text-warning" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">نمرات</div>--}}
+{{--                                <small class="text-muted">مدیریت نمرات</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="#">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">مدیریت وبسایت</div>--}}
+{{--                                <small class="text-muted">مدیریت وبسایت</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="#">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">مشاهده ی وبسایت</div>--}}
+{{--                                <small class="text-muted">وبسایت</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-6">--}}
+{{--                            <a class="quick-action d-block text-decoration-none rounded-3 p-3 text-center"--}}
+{{--                               href="#">--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <i class="fa-solid fa-layer-group text-info" style="font-size: 1.5rem;"></i>--}}
+{{--                                </div>--}}
+{{--                                <div class="fw-semibold">نوتیفیکیشن ها</div>--}}
+{{--                                <small class="text-muted">مدیریت نوتیف ها</small>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    @endowner--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 
     <footer class="mt-4 py-3 text-center footer">
@@ -333,6 +378,21 @@
 @endsection
 
 @push('scripts')
+    @teacher
+    <script>
+        let counterDiv = document.getElementById('cardCounter');
+
+        function showNowDateByInterval(){
+            setInterval(()=>{
+                counterDiv.innerHTML = new Date().toLocaleString('fa-IR');
+            },1000)
+        }
+
+        showNowDateByInterval();
+
+        // alert('hello');
+    </script>
+    @endteacher
     @admin
     <script>
         const xValues = {!! json_encode($data['dataChartOwners'][0]) !!};
@@ -408,4 +468,37 @@
         });
     </script>
     @endadmin
+
+    @deputy
+    <!-- Load Chart.js first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <script>
+        let xValues = @json($data['classNames']);
+        xValues = JSON.parse(xValues);
+
+        let yValues = @json($data['attendancesCountChart']);
+        yValues = JSON.parse(yValues);
+
+        let barColors = ["red", "green","blue","orange"];
+
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: "World Wine Production 2018"
+                }
+            }
+        });
+    </script>
+    @enddeputy
 @endpush

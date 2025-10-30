@@ -14,6 +14,7 @@ use App\Http\Controllers\Panel\ClassRoomsController;
 use App\Http\Controllers\Panel\TeacherClassesController;
 use App\Http\Controllers\Panel\ScheduleTeachersController;
 use App\Http\Controllers\Panel\AttendancesController;
+use App\Http\Controllers\Panel\IndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')
@@ -89,6 +90,12 @@ Route::middleware('auth')
         Route::post('get-attendance-students-data',
             [AttendancesController::class, 'getAttendanceStudentsData']);
     });
+
+    Route::get('/', function(){
+        return view('dashboard.showCase.index');
+    });
+
+    Route::get('download-apk-file-system', [IndexController::class, 'downloadApkFile']);
 
 require __DIR__ . '/auth.php';
 

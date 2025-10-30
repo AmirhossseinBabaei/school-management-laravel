@@ -191,22 +191,64 @@
                 <div class="row g-4 align-items-end mb-4">
                     <div class="col-md-4">
                         <label class="form-label fw-semibold">کلاس</label>
+                        @owner
                         <select id="classSelect" class="form-select">
                             <option value="">-- انتخاب کنید --</option>
                             @foreach($data['classes'] as $class)
                                 <option value="{{ $class->id }}">{{ $class->name }}</option>
                             @endforeach
                         </select>
+                        @endowner
+
+                        @deputy
+                        <select id="classSelect" class="form-select">
+                            <option value="">-- انتخاب کنید --</option>
+                            @foreach($data['classes'] as $class)
+                                <option value="{{ $class->id }}">{{ $class->name }}</option>
+                            @endforeach
+                        </select>
+                        @enddeputy
+
+                        @teacher
+                        <select id="classSelect" class="form-select">
+                            <option value="">-- انتخاب کنید --</option>
+                            @foreach($data['classes'] as $class)
+                                <option value="{{ $class->classRoom->id }}">{{ $class->classRoom->name }}</option>
+                            @endforeach
+                        </select>
+                        @endteacher
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label fw-semibold">درس</label>
+
+                        @owner
                         <select id="lessonSelect" class="form-select">
                             <option value="">-- انتخاب کنید --</option>
                             @foreach($data['lessons'] as $lesson)
                                 <option value="{{ $lesson->id }}">{{ $lesson->name }}</option>
                             @endforeach
                         </select>
+                        @endowner
+
+                        @deputy
+                        <select id="lessonSelect" class="form-select">
+                            <option value="">-- انتخاب کنید --</option>
+                            @foreach($data['lessons'] as $lesson)
+                                <option value="{{ $lesson->id }}">{{ $lesson->name }}</option>
+                            @endforeach
+                        </select>
+                        @enddeputy
+
+                        @teacher
+                        <select id="lessonSelect" class="form-select">
+                            <option value="">-- انتخاب کنید --</option>
+                            @foreach($data['lessons'] as $lesson)
+                                <option value="{{ $lesson->lesson->id }}">{{ $lesson->lesson->name }}</option>
+                            @endforeach
+                        </select>
+                        @endteacher
+
                     </div>
 
                     <div class="col-md-4">

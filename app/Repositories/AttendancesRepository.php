@@ -43,4 +43,9 @@ class AttendancesRepository extends BaseRepository
     {
         return $this->setModel()::all();
     }
+
+    public function getCountBySchoolId($schoolId): int
+    {
+        return $this->setModel()::where('school_id', $schoolId)->where('status', 'absent')->pluck('id')->count();
+    }
 }

@@ -59,9 +59,18 @@
                 <p class="text-muted mb-0">مدیریت کلاس معلم‌ها </p>
             </div>
             <div class="d-flex gap-2">
+               @owner
                 <a href="{{ route('dashboard.teacherClasses.create') }}" class="btn bg-warning btn-pill">
                     <i class="fa-solid fa-plus me-2"></i>افزودن کلاس معلم جدید
                 </a>
+                @endowner
+                @deputy
+                <a href="{{ route('dashboard.teacherClasses.create') }}" class="btn bg-warning btn-pill">
+                    <i class="fa-solid fa-plus me-2"></i>افزودن کلاس معلم جدید
+                </a>
+                @enddeputy
+                @teacher
+                @endteacher
             </div>
         </div>
     </div>
@@ -192,6 +201,7 @@
                             </td>
                             <td class="text-center">
                                 <div class="btn-group" role="group">
+                                   @owner
                                     <a href="{{ route('dashboard.teacherClasses.show', $teacherClasse->id) }}"
                                        class="btn btn-sm btn-primary" title="مشاهده">
                                         <i class="fa-solid fa-eye me-1"></i>مشاهده
@@ -204,6 +214,26 @@
                                             class="bg-red-500 text-white px-3 py-1 bg-danger btn-sm">
                                         حذف
                                     </button>
+                                    @endowner
+
+                                    @deputy
+                                    <a href="{{ route('dashboard.teacherClasses.show', $teacherClasse->id) }}"
+                                       class="btn btn-sm btn-primary" title="مشاهده">
+                                        <i class="fa-solid fa-eye me-1"></i>مشاهده
+                                    </a>
+                                    <a href="{{ route('dashboard.teacherClasses.edit', $teacherClasse->id) }}"
+                                       class="btn btn-sm btn-warning" title="ویرایش">
+                                        <i class="fa-solid fa-edit me-1"></i>ویرایش
+                                    </a>
+                                    <button onclick="confirmDelete({{ $teacherClasse->id }})"
+                                            class="bg-red-500 text-white px-3 py-1 bg-danger btn-sm">
+                                        حذف
+                                    </button>
+                                    @enddeputy
+
+                                    @teacher
+                                    <p class="text-danger">شما دسترسی انجام عملیات را ندارید!</p>
+                                    @endteacher
                                 </div>
                             </td>
                         </tr>

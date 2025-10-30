@@ -54,6 +54,8 @@ class AttendancesController extends Controller
 
     public function getStudents($classId): JsonResponse
     {
+//        $this->authorize('getStudentsByClassId', $classId);
+
         $students = $this->studentsRepository
             ->setModel()
             ::where('class_id', $classId)

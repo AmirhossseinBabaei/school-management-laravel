@@ -13,8 +13,10 @@ use App\Handlers\IndexMethodControllersData\StudentsControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\TeacherClassesControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\UsersControllerDataHandler;
 use App\Handlers\Notifications\{AllAttendanceSchoolHandler, AllOwnersHandler, AllUsersHandler, StudentHandler};
+use App\Models\Attendance;
 use App\Models\Student;
 use App\Models\User;
+use App\Policies\AttendancePolicy;
 use App\Policies\StudentPolicy;
 use App\Policies\UserPolicy;
 use App\Repositories\AttendancesRepository;
@@ -30,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
 
     protected array $policies = [
         User::class => UserPolicy::class,
-        Student::class => StudentPolicy::class
+        Student::class => StudentPolicy::class,
+        Attendance::class => AttendancePolicy::class
     ];
 
     /**
@@ -60,6 +63,22 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('endowner', function () {
+            return "<?php endif; ?>";
+        });
+
+        Blade::directive('deputy', function () {
+            return "<?php if (auth()->check() && auth()->user()->role_id === 4): ?>";
+        });
+
+        Blade::directive('enddeputy', function (){
+            return "<?php endif; ?>";
+        });
+
+        Blade::directive('teacher', function () {
+            return "<?php if (auth()->check() && auth()->user()->role_id === 3): ?>";
+        });
+
+        Blade::directive('endteacher', function (){
             return "<?php endif; ?>";
         });
 

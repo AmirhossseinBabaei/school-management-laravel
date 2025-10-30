@@ -801,6 +801,7 @@
                 </div>
             </div>
         </div>
+        @owner
         <nav class="nav flex-column px-2">
             <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} glass-effect text-white mb-2 rounded-3"
                href="{{ route('dashboard') }}" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
@@ -820,7 +821,7 @@
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
                 <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
-                <sup class="bg-success text-white">جدید</sup>
+                <sup class="text-success">جدید</sup>
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.classRooms.*') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('/dashboard/classRooms') }}">
@@ -828,7 +829,7 @@
             </a>
             <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
                 <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
-                <sup class="bg-danger text-white">بزودی</sup>
+                <sup class="text-danger">بزودی</sup>
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.teacherClasses.*') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('/dashboard/teacher-classes') }}">
@@ -836,26 +837,97 @@
             </a>
             <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
                 <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
-                <sup class="bg-danger text-white">بزودی</sup>
+                <sup class="text-danger">بزودی</sup>
             </a>
 
             <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('dashboard/users') }}">
                 <i class="fa-solid fa-bell me-2 text-primary"></i>   اطلاع رسانی
-                <sup class="bg-danger text-white">بزودی</sup>
+                <sup class="text-danger">بزودی</sup>
             </a>
 
             <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
                href="#">
                 <i class="fa-solid fa-bell me-2 text-primary"></i>   موارد انضباطی
-                <sup class="bg-danger text-white">بزودی</sup>
+                <sup class="text-danger">بزودی</sup>
             </a>
 
             <a class="nav-link {{ request()->routeIs('dashboard.attendance.reports') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('dashboard/get-report/attendances') }}">
                 <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری
-                <sup class="bg-success text-white">جدید</sup>
+                <sup class="text-success">جدید</sup>
             </a>
+            @endowner
+            @deputy
+            <nav class="nav flex-column px-2">
+                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} glass-effect text-white mb-2 rounded-3"
+                   href="{{ route('dashboard') }}" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <i class="fa-solid fa-gauge me-2"></i> داشبورد
+                </a>
+                <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('/profile') }}">
+                    <i class="fa-solid fa-user me-2 text-info"></i> پروفایل
+                </a>
+                <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
+                    <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
+                    <sup class="text-success">جدید</sup>
+                </a>
+                <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                    <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
+                    <sup class="text-danger">بزودی</sup>
+                </a>
+                <a class="nav-link {{ request()->routeIs('dashboard.teacherClasses.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('/dashboard/teacher-classes') }}">
+                    <i class="fa-solid fa-chalkboard-teacher me-2 text-danger"></i> کلاس های معلمان
+                </a>
+                <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                    <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
+                    <sup class="text-danger">بزودی</sup>
+                </a>
+
+                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/users') }}">
+                    <i class="fa-solid fa-bell me-2 text-primary"></i>   اطلاع رسانی
+                    <sup class="text-danger">بزودی</sup>
+                </a>
+
+                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="#">
+                    <i class="fa-solid fa-bell me-2 text-primary"></i>   موارد انضباطی
+                    <sup class="text-danger">بزودی</sup>
+                </a>
+
+                <a class="nav-link {{ request()->routeIs('dashboard.attendance.reports') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/get-report/attendances') }}">
+                    <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری
+                    <sup class="text-success">جدید</sup>
+                </a>
+                @enddeputy
+
+                @teacher
+                <nav class="nav flex-column px-2">
+                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} glass-effect text-white mb-2 rounded-3"
+                       href="{{ route('dashboard') }}" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fa-solid fa-gauge me-2"></i> داشبورد
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }} rounded-3 mb-1"
+                       href="{{ url('/profile') }}">
+                        <i class="fa-solid fa-user me-2 text-info"></i> پروفایل
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
+                        <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
+                        <sup class="text-success">جدید</sup>
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                        <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
+                        <sup class="text-danger">بزودی</sup>
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('dashboard.teacherClasses.*') ? 'active' : '' }} rounded-3 mb-1"
+                       href="{{ url('/dashboard/teacher-classes') }}">
+                        <i class="fa-solid fa-chalkboard-teacher me-2 text-danger"></i> کلاس های معلمان
+                    </a>
+                    @endteacher
+
             @admin
             <div class="collapse show" id="grpPersonal">
                 <h6 class="text-muted small px-3 mb-2 mt-3">مدیریت کاربران</h6>
@@ -907,87 +979,87 @@
             @endadmin
 
             @owner
-            <!-- Accordion for Owner Menu -->
-            {{--            <div class="accordion" id="ownerAccordion">--}}
-            {{--                <!-- مدیریت کاربران -->--}}
-            {{--                <div class="accordion-item border-0 mb-2">--}}
-            {{--                    <h2 class="accordion-header">--}}
-            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">--}}
-            {{--                            <i class="fa-solid fa-users me-2 text-primary"></i>--}}
-            {{--                            <span class="fw-semibold">مدیریت کاربران</span>--}}
-            {{--                        </button>--}}
-            {{--                    </h2>--}}
-            {{--                    <div id="collapseUsers" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
-            {{--                        <div class="accordion-body p-0">--}}
-            {{--                            <div class="px-3 py-2">--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
+{{--            <!-- Accordion for Owner Menu -->--}}
+{{--            --}}{{--            <div class="accordion" id="ownerAccordion">--}}
+{{--            --}}{{--                <!-- مدیریت کاربران -->--}}
+{{--            --}}{{--                <div class="accordion-item border-0 mb-2">--}}
+{{--            --}}{{--                    <h2 class="accordion-header">--}}
+{{--            --}}{{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">--}}
+{{--            --}}{{--                            <i class="fa-solid fa-users me-2 text-primary"></i>--}}
+{{--            --}}{{--                            <span class="fw-semibold">مدیریت کاربران</span>--}}
+{{--            --}}{{--                        </button>--}}
+{{--            --}}{{--                    </h2>--}}
+{{--            --}}{{--                    <div id="collapseUsers" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+{{--            --}}{{--                        <div class="accordion-body p-0">--}}
+{{--            --}}{{--                            <div class="px-3 py-2">--}}
+{{--            --}}{{--                            </div>--}}
+{{--            --}}{{--                        </div>--}}
+{{--            --}}{{--                    </div>--}}
+{{--            --}}{{--                </div>--}}
 
-            {{--                <!-- مدیریت محتوا -->--}}
-            {{--                <div class="accordion-item border-0 mb-2">--}}
-            {{--                    <h2 class="accordion-header">--}}
-            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContent" aria-expanded="false" aria-controls="collapseContent">--}}
-            {{--                            <i class="fa-solid fa-file-alt me-2 text-success"></i>--}}
-            {{--                            <span class="fw-semibold" disabled="true">مدیریت محتوا</span>--}}
-            {{--                        </button>--}}
-            {{--                    </h2>--}}
-            {{--                    <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
-            {{--                        <div class="accordion-body p-0">--}}
-            {{--                            <div class="px-3 py-2">--}}
-            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
-            {{--                                    <i class="fa-solid fa-comments me-2 text-primary"></i> کامنت ها--}}
-            {{--                                </a>--}}
-            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
-            {{--                                    <i class="fa-solid fa-file-text me-2 text-info"></i> محتوا ها--}}
-            {{--                                </a>--}}
-            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
-            {{--                                    <i class="fa-solid fa-bars me-2 text-warning"></i> منو ها--}}
-            {{--                                </a>--}}
-            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
-            {{--                                    <i class="fa-solid fa-images me-2 text-danger"></i> اسلایدر ها--}}
-            {{--                                </a>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
+{{--            --}}{{--                <!-- مدیریت محتوا -->--}}
+{{--            --}}{{--                <div class="accordion-item border-0 mb-2">--}}
+{{--            --}}{{--                    <h2 class="accordion-header">--}}
+{{--            --}}{{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContent" aria-expanded="false" aria-controls="collapseContent">--}}
+{{--            --}}{{--                            <i class="fa-solid fa-file-alt me-2 text-success"></i>--}}
+{{--            --}}{{--                            <span class="fw-semibold" disabled="true">مدیریت محتوا</span>--}}
+{{--            --}}{{--                        </button>--}}
+{{--            --}}{{--                    </h2>--}}
+{{--            --}}{{--                    <div id="collapseContent" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+{{--            --}}{{--                        <div class="accordion-body p-0">--}}
+{{--            --}}{{--                            <div class="px-3 py-2">--}}
+{{--            --}}{{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+{{--            --}}{{--                                    <i class="fa-solid fa-comments me-2 text-primary"></i> کامنت ها--}}
+{{--            --}}{{--                                </a>--}}
+{{--            --}}{{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+{{--            --}}{{--                                    <i class="fa-solid fa-file-text me-2 text-info"></i> محتوا ها--}}
+{{--            --}}{{--                                </a>--}}
+{{--            --}}{{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+{{--            --}}{{--                                    <i class="fa-solid fa-bars me-2 text-warning"></i> منو ها--}}
+{{--            --}}{{--                                </a>--}}
+{{--            --}}{{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/notifications') }}">--}}
+{{--            --}}{{--                                    <i class="fa-solid fa-images me-2 text-danger"></i> اسلایدر ها--}}
+{{--            --}}{{--                                </a>--}}
+{{--            --}}{{--                            </div>--}}
+{{--            --}}{{--                        </div>--}}
+{{--            --}}{{--                    </div>--}}
+{{--            --}}{{--                </div>--}}
 
-            {{--                <!-- تحصیلی -->--}}
-            {{--                <div class="accordion-item border-0 mb-2">--}}
-            {{--                    <h2 class="accordion-header">--}}
-            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEducation" aria-expanded="false" aria-controls="collapseEducation">--}}
-            {{--                            <i class="fa-solid fa-graduation-cap me-2 text-warning"></i>--}}
-            {{--                            <span class="fw-semibold">تحصیلی</span>--}}
-            {{--                        </button>--}}
-            {{--                    </h2>--}}
-            {{--                    <div id="collapseEducation" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
-            {{--                        <div class="accordion-body p-0">--}}
-            {{--                            <div class="px-3 py-2">--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
+{{--            --}}{{--                <!-- تحصیلی -->--}}
+{{--            --}}{{--                <div class="accordion-item border-0 mb-2">--}}
+{{--            --}}{{--                    <h2 class="accordion-header">--}}
+{{--            --}}{{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEducation" aria-expanded="false" aria-controls="collapseEducation">--}}
+{{--            --}}{{--                            <i class="fa-solid fa-graduation-cap me-2 text-warning"></i>--}}
+{{--            --}}{{--                            <span class="fw-semibold">تحصیلی</span>--}}
+{{--            --}}{{--                        </button>--}}
+{{--            --}}{{--                    </h2>--}}
+{{--            --}}{{--                    <div id="collapseEducation" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+{{--            --}}{{--                        <div class="accordion-body p-0">--}}
+{{--            --}}{{--                            <div class="px-3 py-2">--}}
+{{--            --}}{{--                            </div>--}}
+{{--            --}}{{--                        </div>--}}
+{{--            --}}{{--                    </div>--}}
+{{--            --}}{{--                </div>--}}
 
-            {{--                <!-- اطلاع رسانی -->--}}
-            {{--                <div class="accordion-item border-0 mb-2">--}}
-            {{--                    <h2 class="accordion-header">--}}
-            {{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotifications" aria-expanded="false" aria-controls="collapseNotifications">--}}
-            {{--                            <i class="fa-solid fa-bell me-2 text-info"></i>--}}
-            {{--                            <span class="fw-semibold">اطلاع رسانی</span>--}}
-            {{--                        </button>--}}
-            {{--                    </h2>--}}
-            {{--                    <div id="collapseNotifications" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
-            {{--                        <div class="accordion-body p-0">--}}
-            {{--                            <div class="px-3 py-2">--}}
-            {{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/users') }}">--}}
-            {{--                                    <i class="fa-solid fa-bell me-2 text-primary"></i> مدیریت نوتیفیکیشن ها--}}
-            {{--                                </a>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
+{{--            --}}{{--                <!-- اطلاع رسانی -->--}}
+{{--            --}}{{--                <div class="accordion-item border-0 mb-2">--}}
+{{--            --}}{{--                    <h2 class="accordion-header">--}}
+{{--            --}}{{--                        <button class="accordion-button collapsed glass-effect" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotifications" aria-expanded="false" aria-controls="collapseNotifications">--}}
+{{--            --}}{{--                            <i class="fa-solid fa-bell me-2 text-info"></i>--}}
+{{--            --}}{{--                            <span class="fw-semibold">اطلاع رسانی</span>--}}
+{{--            --}}{{--                        </button>--}}
+{{--            --}}{{--                    </h2>--}}
+{{--            --}}{{--                    <div id="collapseNotifications" class="accordion-collapse collapse" data-bs-parent="#ownerAccordion">--}}
+{{--            --}}{{--                        <div class="accordion-body p-0">--}}
+{{--            --}}{{--                            <div class="px-3 py-2">--}}
+{{--            --}}{{--                                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ url('dashboard/users') }}">--}}
+{{--            --}}{{--                                    <i class="fa-solid fa-bell me-2 text-primary"></i> مدیریت نوتیفیکیشن ها--}}
+{{--            --}}{{--                                </a>--}}
+{{--            --}}{{--                            </div>--}}
+{{--            --}}{{--                        </div>--}}
+{{--            --}}{{--                    </div>--}}
+{{--            --}}{{--                </div>--}}
+{{--            --}}{{--            </div>--}}
             @endowner
 
             <hr class="my-3">
@@ -1007,7 +1079,7 @@
                             <i class="fa-solid fa-moon me-1 theme-icon"></i>
                             <span class="theme-text">تم روشن</span>
                         </button>
-                        <button class="btn btn-outline-primary d-lg-none" onclick="showSideBar()" data-toggle="sidebar">
+                        <button class="btn btn-outline-primary d-lg-none" onclick="showSideBar(this)" data-toggle="sidebar">
                             <i class="fa-solid fa-bars"></i>
                         </button>
                     </div>
@@ -1025,7 +1097,7 @@
                                 class="btn btn-outline-primary d-flex align-items-center gap-2 rounded-pill glass-effect user-dropdown-btn"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <img
-                                    src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : asset('assets/img/users/Kylian_Mbappé_2018.jpg') }}"
+                                    src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : asset('assets/img/users/user.webp') }}"
                                     class="rounded-circle" width="40px" height="40px" alt="avatar">
                                 <span
                                     class="d-none d-sm-inline text-white fw-semibold">{{ Auth::user()->first_name ?? '' }} {{ Auth::user()->last_name ?? '' }}</span>
@@ -1130,14 +1202,25 @@
 
     let sideBarStatus = true;
 
-    function showSideBar () {
+    function showSideBar (thisMenu) {
         if (sideBarStatus) {
             document.getElementById('sideBar').style.left = '0%';
+
+            thisMenu.children[0].classList.remove('fa-bars');
+            thisMenu.children[0].classList.add('fa-close');
+
+            thisMenu.children[0].style.color='red';
 
             sideBarStatus = false;
         }
         else {
             document.getElementById('sideBar').style.left = '-100%';
+
+            thisMenu.children[0].classList.remove('fa-close');
+            thisMenu.children[0].classList.add('fa-bars');
+
+            thisMenu.children[0].style.color='black';
+
             sideBarStatus = true;
         }
     }
