@@ -38,7 +38,7 @@
                 <div class="card-body text-center p-4">
                     <div class="position-relative d-inline-block mb-4">
                         <img
-                            src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : asset('assets/img/users/user.webp') }}"
+                            src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : 'https://www.jowhareh.com/images/Jowhareh/galleries_7/large_2995a95f-3081-4487-a314-b8ca04c6f2d8.webp' }}"
                             class="rounded-circle border border-3 border-primary" width="150" height="150" alt="avatar">
                         <div class="position-absolute bottom-0 end-0">
                             <button class="btn btn-primary btn-sm rounded-circle">

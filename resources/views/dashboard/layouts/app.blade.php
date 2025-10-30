@@ -1097,7 +1097,7 @@
                                 class="btn btn-outline-primary d-flex align-items-center gap-2 rounded-pill glass-effect user-dropdown-btn"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <img
-                                    src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : asset('assets/img/users/user.webp') }}"
+                                    src="{{ Auth::user()->avatar_src ? asset(Auth::user()->avatar_src) : 'https://www.jowhareh.com/images/Jowhareh/galleries_7/large_2995a95f-3081-4487-a314-b8ca04c6f2d8.webp' }}"
                                     class="rounded-circle" width="40px" height="40px" alt="avatar">
                                 <span
                                     class="d-none d-sm-inline text-white fw-semibold">{{ Auth::user()->first_name ?? '' }} {{ Auth::user()->last_name ?? '' }}</span>
