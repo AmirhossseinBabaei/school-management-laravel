@@ -71,15 +71,6 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
-                                <i class="fa-solid fa-envelope me-2 text-info"></i>ایمیل <span
-                                    class="text-danger">*</span>
-                            </label>
-                            <input type="email" name="email" class="form-control" value="{{ $data['user']->email }}"
-                                   placeholder="example@mail.com" required>
-                            <div class="invalid-feedback">لطفاً ایمیل معتبر وارد کنید</div>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-semibold">
                                 <i class="fa-solid fa-image me-2 text-success"></i>تصویر پروفایل
                             </label>
                             <input type="file" name="avatar_src" class="form-control" >
@@ -89,16 +80,16 @@
                             <label class="form-label fw-semibold">
                                 <i class="fa-solid fa-phone me-2 text-success"></i>شماره تلفن
                             </label>
-                            <input type="tel" name="phone" class="form-control" value="{{ $data['user']->phone }}"
-                                   placeholder="09*********">
-                            <div class="invalid-feedback">لطفاً شماره تلفن معتبر وارد کنید</div>
+                            <input type="tel" class="form-control" value="{{ $data['user']->phone }}"
+                                   placeholder="09*********" disabled>
+                            <div class="invalid-feedback">شماره تلفن قابل تغییر نیست.</div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
                                 <i class="fa-solid fa-code me-2 text-info"></i>کد ملی<span
                                     class="text-danger">*</span>
                             </label>
-                            <input type="text" name="national_code" class="form-control" placeholder="example@mail.com"
+                            <input type="text" name="national_code" class="form-control" placeholder="0000000000000"
                                    value="{{ $data['user']->national_code ?? '' }}" required>
                             <div class="invalid-feedback">لطفاً کد ملی معتبر وارد کنید</div>
                         </div>

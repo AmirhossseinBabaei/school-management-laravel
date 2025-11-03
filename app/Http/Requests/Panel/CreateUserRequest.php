@@ -25,8 +25,7 @@ class CreateUserRequest extends FormRequest
         return [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|numeric',
+            'phone' => 'required|numeric|unique:users,phone',
             'password_hash' => 'required',
             'national_code' => 'required|max:30',
             'role_id' => 'required|exists:roles,id',

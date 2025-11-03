@@ -50,12 +50,6 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-semibold">
-                                        <i class="fa-solid fa-envelope me-2 text-info"></i>ایمیل
-                                    </label>
-                                    <input type="email" disabled value="{{ $data['user']->email ?? '' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">
                                         <i class="fa-solid fa-envelope me-2 text-info"></i>کد ملی
                                     </label>
                                     <input type="email" disabled value="{{ $data['user']->national_code ?? '' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
