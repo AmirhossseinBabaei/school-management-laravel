@@ -10,6 +10,7 @@ use App\Repositories\SchoolsRepository;
 use App\Repositories\UsersRepository;
 use App\Services\ExcelReader;
 use App\Services\JalaliDateServiceStatic;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -93,6 +94,19 @@ class UsersController extends Controller
             }
         }
 
+        $avatar = $requested->file('avatar');
+
+        if (null === $avatar) {
+            $requested['avatar_src'] = null;
+        }
+        else {
+            $userAvatarUrl = Carbon::now()->format('YdmHis') . "_" . $avatar->getClientOriginalName();
+
+            $avatar->move(public_path('assets/img/users/'), $userAvatarUrl);
+
+            $requested['avatar_src'] = $userAvatarUrl;
+        }
+
         $user = $this->usersRepository->store($requested);
 
         if (false === $user) {
@@ -132,6 +146,18 @@ class UsersController extends Controller
 
         if (null === $user) {
             return redirect()->route('dashboard.users.index')->with('error', __('messages.users.findUserError'));
+        }
+        $avatar = $request->file('avatar_src');
+
+        if (null === $avatar) {
+            $requested['avatar_src'] = $user->avatar_src;
+        }
+        else {
+            $userAvatarUrl = Carbon::now()->format('YdmHis') . "_" . $avatar->getClientOriginalName();
+
+            $avatar->move(public_path('assets/img/users/'), $userAvatarUrl);
+
+            $requested['avatar_src'] = $userAvatarUrl;
         }
 
         $updateUser = $this->usersRepository->update($id, $requested);
@@ -173,9 +199,27 @@ class UsersController extends Controller
         if ($xlsx = SimpleXLSX::parse($filePath)) {
             $rows = $xlsx->rows();
 
-            $data = array_slice($rows, 1);
+            $users = array_slice($rows, 1);
 
-            $this->usersRepository->insert($data);
+            $dataInsert = [];
+
+            for ($i=1;$i<count($users);$i++) {
+                $data = [
+                    'school_id' => Auth::user()->school_id,
+                    'role_id' => 5,
+                    'first_name' => $users[$i][2],
+                    'last_name' => $users[$i][3],
+                    'phone' => "0".$users[$i][7],
+                    'national_code' => $users[$i][1],
+                    'status' => 'active',
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                ];
+
+                $dataInsert[] = $data;
+            }
+
+           return redirect()->back()->with('success', $this->usersRepository->insert($dataInsert));
 
         } else {
             return response()->json([

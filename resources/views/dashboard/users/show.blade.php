@@ -78,6 +78,12 @@
                                     </label>
                                     <input type="text" disabled value="{{ $data['user']->school->name ?? 'تعریف نشده' }}" class="form-control" style="background: rgba(255,255,255,0.05);">
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fa-solid fa-school me-2 text-info"></i>تصویر کاربر
+                                        <img width="100px" height="100px" src="{{ asset('assets/img/users/' . $data['user']->avatar_src) ?? '' }}">
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>

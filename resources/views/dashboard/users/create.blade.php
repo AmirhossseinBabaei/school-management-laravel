@@ -47,7 +47,7 @@
                     @endif
 
                     <form class="row g-4" method="post" action="{{ route('dashboard.users.store') }}"
-                          novalidate>
+                          novalidate enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
@@ -93,6 +93,15 @@
                             <input type="hidden" name="school_id" value="1">
                             <div class="invalid-feedback">لطفاً شماره تلفن معتبر وارد کنید</div>
                         </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                <i class="fa-solid fa-phone me-2 text-success"></i>تصویر پروفایل
+                            </label>
+                            <input type="file" name="avatar_src" class="form-control">
+                            <div class="invalid-feedback">لطفا یک عکس برای پروفایل کاربر انتخاب کنید.</div>
+                        </div>
+
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
                                 <i class="fa-solid fa-lock me-2 text-warning"></i>رمز عبور <span

@@ -28,7 +28,8 @@ class UpdateUserRequest extends FormRequest
             'phone' => 'required|numeric',
             'role_id' => 'required',
             'school_id' => 'required',
-            'national_code' => 'required|max:30'
+            'national_code' => 'required|max:30',
+            'avatar_src' => 'mimes:jpg,svg,jepg,webp,png|max:10000'
         ];
     }
 }

@@ -71,7 +71,7 @@
                             <i class="fa-solid fa-user me-2"></i>نام کاربر
                         </th>
                         <th>
-                            <i class="fa-solid fa-envelope me-2"></i>ایمیل
+                            <i>تصویر کاربر</i>
                         </th>
                         <th>
                             <i class="fa-solid fa-phone me-2"></i>تلفن
@@ -96,9 +96,6 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center gap-2">
-                                    <img
-                                        src="{{ $user->avatar_src ? asset($user->avatar_src) : asset('assets/img/users/Kylian_Mbappé_2018.jpg') }}"
-                                        class="rounded-circle" width="35" height="35" alt="avatar">
                                     <div>
                                         <div class="fw-semibold">{{ $user->first_name . ' ' . $user->last_name }}</div>
                                         <small class="text-muted">کاربر فعال</small>
@@ -106,7 +103,7 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="text-primary">{{ $user->email ?? 'نامشخص' }}</span>
+                                <img width="60px" height="60px" src="{{ asset('assets/img/users/' . $user->avatar_src) ?? '' }}">
                             </td>
                             <td>
                                 <span class="text-muted">{{ $user->phone ?? 'نامشخص' }}</span>

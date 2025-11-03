@@ -49,7 +49,7 @@
 
                     <form class="row g-4 needs-validation"
                           action="{{ route('dashboard.users.update', ['user' => $data['user']->id]) }}" method="post"
-                          novalidate>
+                          novalidate enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="col-md-6">
@@ -77,6 +77,13 @@
                             <input type="email" name="email" class="form-control" value="{{ $data['user']->email }}"
                                    placeholder="example@mail.com" required>
                             <div class="invalid-feedback">لطفاً ایمیل معتبر وارد کنید</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                <i class="fa-solid fa-image me-2 text-success"></i>تصویر پروفایل
+                            </label>
+                            <input type="file" name="avatar_src" class="form-control" >
+                            <div class="invalid-feedback">لطفا یک عکس برای پروفایل کاربر انتخاب کنید.</div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
