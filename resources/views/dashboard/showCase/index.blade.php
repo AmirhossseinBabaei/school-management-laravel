@@ -78,7 +78,7 @@
         <h2>📱 اپلیکیشن مدرسه</h2>
         <p>همراه مدرسه خود باشید! اپلیکیشن موبایل را دانلود کنید</p>
         <div class="download-buttons">
-            <a href="{{ url('download-apk-file-system') }}" class="download-btn">
+            <a href="https://biaupload.com/do.php?filename=org-c3153e76baf01.apk" class="download-btn">
                 <span class="download-icon android">🤖</span>
                 <div>
                     <div style="font-size:12px;color:var(--muted)">دانلود برای</div>
