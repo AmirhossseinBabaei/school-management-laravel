@@ -103,9 +103,6 @@
                                 </div>
                             </td>
                             <td>
-                                <img width="60px" height="60px" src="{{ asset('assets/img/users/' . $user->avatar_src) ?? '' }}">
-                            </td>
-                            <td>
                                 <span class="text-muted">{{ $user->phone ?? 'نامشخص' }}</span>
                             </td>
                             <td>
