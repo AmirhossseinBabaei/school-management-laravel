@@ -66,15 +66,15 @@
                                    placeholder="نام خانوادگی را وارد کنید" value="{{ old('last_name') }}" required>
                             <div class="invalid-feedback">لطفاً نام خانوادگی را وارد کنید</div>
                         </div>
-{{--                        <div class="col-md-6">--}}
-{{--                            <label class="form-label fw-semibold">--}}
-{{--                                <i class="fa-solid fa-code me-2 text-info"></i>کد ملی<span--}}
-{{--                                    class="text-danger">*</span>--}}
-{{--                            </label>--}}
-{{--                            <input type="text" name="national_code" class="form-control" placeholder="example@mail.com"--}}
-{{--                                   value="{{ old('national_code') }}" required>--}}
-{{--                            <div class="invalid-feedback">لطفاً کد ملی معتبر وارد کنید</div>--}}
-{{--                        </div>--}}
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                <i class="fa-solid fa-code me-2 text-info"></i>کد ملی<span
+                                    class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="national_code" class="form-control" placeholder="example@mail.com"
+                                   value="00000000000000" required>
+                            <div class="invalid-feedback">لطفاً کد ملی معتبر وارد کنید</div>
+                        </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
                                 <i class="fa-solid fa-phone me-2 text-success"></i>شماره تلفن
@@ -93,15 +93,15 @@
 {{--                            <div class="invalid-feedback">لطفا یک عکس برای پروفایل کاربر انتخاب کنید.</div>--}}
 {{--                        </div>--}}
 
-{{--                        <div class="col-md-6">--}}
-{{--                            <label class="form-label fw-semibold">--}}
-{{--                                <i class="fa-solid fa-lock me-2 text-warning"></i>رمز عبور <span--}}
-{{--                                    class="text-danger">*</span>--}}
-{{--                            </label>--}}
-{{--                            <input type="password" name="password_hash" class="form-control" placeholder="••••••••"--}}
-{{--                                   required minlength="6">--}}
-{{--                            <div class="invalid-feedback">رمز عبور باید حداقل 6 کاراکتر باشد</div>--}}
-{{--                        </div>--}}
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">
+                                <i class="fa-solid fa-lock me-2 text-warning"></i>رمز عبور <span
+                                    class="text-danger">*</span>
+                            </label>
+                            <input type="password" name="password_hash" class="form-control" placeholder="••••••••"
+                                   required minlength="6" value="00000000000">
+                            <div class="invalid-feedback">رمز عبور باید حداقل 6 کاراکتر باشد</div>
+                        </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">
                                 <i class="fa-solid fa-user-shield me-2 text-danger"></i>انتخاب نقش <span
