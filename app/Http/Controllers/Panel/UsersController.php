@@ -94,19 +94,6 @@ class UsersController extends Controller
             }
         }
 
-        $avatar = $requested->file('avatar');
-
-        if (null === $avatar) {
-            $requested['avatar_src'] = null;
-        }
-        else {
-            $userAvatarUrl = Carbon::now()->format('YdmHis') . "_" . $avatar->getClientOriginalName();
-
-            $avatar->move(public_path('assets/img/users/'), $userAvatarUrl);
-
-            $requested['avatar_src'] = $userAvatarUrl;
-        }
-
         $user = $this->usersRepository->store($requested);
 
         if (false === $user) {
