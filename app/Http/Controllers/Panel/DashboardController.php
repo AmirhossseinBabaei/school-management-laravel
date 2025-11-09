@@ -48,7 +48,6 @@ class DashboardController extends Controller
         $data = $chain->handle('dashboardData');
 
 //        dd($data);
-//        dd($data);
 
         return view('dashboard.index', compact("data"));
     }

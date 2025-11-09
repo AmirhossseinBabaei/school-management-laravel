@@ -29,182 +29,180 @@
 @endpush
 
 @section('content')
-    <!-- Hero -->
-    <div class="hero glass-effect p-5 mb-4 animate__animated animate__fadeInUp"
-         style="background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);">
-        <div class="d-flex align-items-center justify-content-between flex-wrap gap-4">
-            <div class="flex-grow-1">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div class="floating-animation">
-                        <i class="fa-solid fa-sun text-warning" style="font-size: 2rem;"></i>
-                    </div>
-                    <div>
+
+   @notstudent
+   <!-- Hero -->
+   <div class="hero glass-effect p-5 mb-4 animate__animated animate__fadeInUp"
+        style="background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);">
+       <div class="d-flex align-items-center justify-content-between flex-wrap gap-4">
+           <div class="flex-grow-1">
+               <div class="d-flex align-items-center gap-3 mb-3">
+                   <div class="floating-animation">
+                       <i class="fa-solid fa-sun text-warning" style="font-size: 2rem;"></i>
+                   </div>
+                   <div>
                                 <span class="badge-accent px-3 py-2"
                                       style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px;">
                                     <i class="fa-solid fa-hand-wave me-2"></i>سلام! {{ Auth::user()->first_name ?? '' }}
                                 </span>
-                    </div>
-                </div>
-                <h3 class="mb-2 gradient-text fw-bold">خوش آمدید به داشبورد مدیریت</h3>
-                @owner
-                <h5 class="mb-2 gradient-text fw-bold">مدیر مدرسه ی {{ Auth::user()->school->name }}</h5>
-                @endowner
-                @deputy
-                <h5 class="mb-2 gradient-text fw-bold">معاون مدرسه ی {{ Auth::user()->school->name }}</h5>
-                @enddeputy
-                @teacher
-                <h5 class="mb-2 gradient-text fw-bold">معلم مدرسه ی {{ Auth::user()->school->name }}</h5>
-                @endteacher
-                @admin
-                <p class="text-muted mb-3">آخرین ثبت نام مدرسه: <span
-                        class="fw-semibold text-primary">{{ $data['lastCreatedSchoolTime'] }}</span></p>
+                   </div>
+               </div>
+               <h3 class="mb-2 gradient-text fw-bold">خوش آمدید به داشبورد مدیریت</h3>
+               @owner
+               <h5 class="mb-2 gradient-text fw-bold">مدیر مدرسه ی {{ Auth::user()->school->name }}</h5>
+               @endowner
+               @deputy
+               <h5 class="mb-2 gradient-text fw-bold">معاون مدرسه ی {{ Auth::user()->school->name }}</h5>
+               @enddeputy
+               @teacher
+               <h5 class="mb-2 gradient-text fw-bold">معلم مدرسه ی {{ Auth::user()->school->name }}</h5>
+               @endteacher
+               @admin
+               <p class="text-muted mb-3">آخرین ثبت نام مدرسه: <span
+                       class="fw-semibold text-primary">{{ $data['lastCreatedSchoolTime'] }}</span></p>
 
-                <div class="d-flex gap-2 flex-wrap">
-                    <a class="btn btn-primary btn-pill" href="{{ route('dashboard.users.index') }}">
-                        <i class="fa-solid fa-users me-2"></i>مشاهده کاربران
-                    </a>
-                    <a class="btn btn-outline-primary btn-pill" href="{{ route('dashboard.studyFields.index') }}">
-                        <i class="fa-solid fa-graduation-cap me-2"></i>رشته های تحصیلی
-                    </a>
-                </div>
-                @endadmin
-            </div>
-            <div class="text-center">
-                <div class="floating-animation">
-                    <i class="fa-solid fa-graduation-cap text-primary" style="font-size: 4rem; opacity: 0.3;"></i>
-                </div>
-            </div>
-        </div>
-    </div>
+               <div class="d-flex gap-2 flex-wrap">
+                   <a class="btn btn-primary btn-pill" href="{{ route('dashboard.users.index') }}">
+                       <i class="fa-solid fa-users me-2"></i>مشاهده کاربران
+                   </a>
+                   <a class="btn btn-outline-primary btn-pill" href="{{ route('dashboard.studyFields.index') }}">
+                       <i class="fa-solid fa-graduation-cap me-2"></i>رشته های تحصیلی
+                   </a>
+               </div>
+               @endadmin
+           </div>
+           <div class="text-center">
+               <div class="floating-animation">
+                   <i class="fa-solid fa-graduation-cap text-primary" style="font-size: 4rem; opacity: 0.3;"></i>
+               </div>
+           </div>
+       </div>
+   </div>
 
-    <!-- KPI cards -->
+   <!-- KPI cards -->
 
-    <div class="row g-4">
-        <div class="col-xl-3 col-md-6">
-            <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
-                 style="animation-delay: 0.1s;">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <div class="text-muted small mb-1">دانش آموزان</div>
-                            <div class="fs-2 fw-bold text-primary">{{ $data['studentsCount'] ?? 0}}</div>
-                        </div>
-                        <div class="card-icon pulse-animation"
-                             style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
-                            <i class="fa-solid fa-users" style="font-size: 1.5rem;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
-                 style="animation-delay: 0.2s;">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            @admin
-                            <div class="text-muted small mb-1">مدیران</div>
-                            <div class="fs-2 fw-bold text-success">{{ $data['ownerUsersCount'] ?? 0}}</div>
-                            @endadmin
+   <div class="row g-4">
+       <div class="col-xl-3 col-md-6">
+           <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
+                style="animation-delay: 0.1s;">
+               <div class="card-body p-4">
+                   <div class="d-flex align-items-center justify-content-between">
+                       <div>
+                           <div class="text-muted small mb-1">دانش آموزان</div>
+                           <div class="fs-2 fw-bold text-primary">{{ $data['studentsCount'] ?? 0}}</div>
+                       </div>
+                       <div class="card-icon pulse-animation"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
+                           <i class="fa-solid fa-users" style="font-size: 1.5rem;"></i>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="col-xl-3 col-md-6">
+           <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
+                style="animation-delay: 0.2s;">
+               <div class="card-body p-4">
+                   <div class="d-flex align-items-center justify-content-between">
+                       <div>
+                           @admin
+                           <div class="text-muted small mb-1">مدیران</div>
+                           <div class="fs-2 fw-bold text-success">{{ $data['ownerUsersCount'] ?? 0}}</div>
+                           @endadmin
 
-                            @owner
-                            <div class="text-muted small mb-1">معلمان</div>
-                            <div class="fs-2 fw-bold text-success">{{ $data['teachersCount'] ?? 0  }}</div>
-                            @endowner
+                           @owner
+                           <div class="text-muted small mb-1">معلمان</div>
+                           <div class="fs-2 fw-bold text-success">{{ $data['teachersCount'] ?? 0  }}</div>
+                           @endowner
 
-                            @teacher
-                            <div class="text-muted small mb-1">شمارنده</div>
-                            <div class="fs-2 fw-bold text-success" style="font-size: 20px !important;" id="cardCounter">0</div>
-                            @endteacher
+                           @teacher
+                           <div class="text-muted small mb-1">شمارنده</div>
+                           <div class="fs-2 fw-bold text-success" style="font-size: 20px !important;" id="cardCounter">0</div>
+                           @endteacher
 
-                            @deputy
-                            <div class="text-muted small mb-1">کل غایبین تا الان</div>
-                            <div class="fs-2 fw-bold text-success">{{ $data['absentCount'] ?? 0  }}</div>
-                            @enddeputy
-                        </div>
-                        <div class="card-icon pulse-animation"
-                             style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
-                            <i class="fa-solid fa-user-shield" style="font-size: 1.5rem;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
-                 style="animation-delay: 0.3s;">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            @admin
-                            <div class="text-muted small mb-1">مدارس</div>
-                            <div class="fs-2 fw-bold text-warning">{{ $data['schoolsCount'] ?? 0 }}</div>
-                            @endadmin
-                            @owner
-                            <div class="text-muted small mb-1">کلاس ها</div>
-                            <div class="fs-2 fw-bold text-warning">{{ $data['classRoomCount'] ?? 0  }}</div>
-                            @endowner
+                           @deputy
+                           <div class="text-muted small mb-1">کل غایبین تا الان</div>
+                           <div class="fs-2 fw-bold text-success">{{ $data['absentCount'] ?? 0  }}</div>
+                           @enddeputy
+                       </div>
+                       <div class="card-icon pulse-animation"
+                            style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
+                           <i class="fa-solid fa-user-shield" style="font-size: 1.5rem;"></i>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="col-xl-3 col-md-6">
+           <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
+                style="animation-delay: 0.3s;">
+               <div class="card-body p-4">
+                   <div class="d-flex align-items-center justify-content-between">
+                       <div>
+                           @admin
+                           <div class="text-muted small mb-1">مدارس</div>
+                           <div class="fs-2 fw-bold text-warning">{{ $data['schoolsCount'] ?? 0 }}</div>
+                           @endadmin
+                           @owner
+                           <div class="text-muted small mb-1">کلاس ها</div>
+                           <div class="fs-2 fw-bold text-warning">{{ $data['classRoomCount'] ?? 0  }}</div>
+                           @endowner
 
-                            @deputy
-                            <div class="text-muted small mb-1">مورد های انضباطی ثبت شده امروز</div>
-                            <div class="fs-2 fw-bold text-success">{{ $data['disciplinyRecordsCount'] ?? 0  }}</div>
-                            @enddeputy
+                           @deputy
+                           <div class="text-muted small mb-1">مورد های انضباطی ثبت شده امروز</div>
+                           <div class="fs-2 fw-bold text-success">{{ $data['disciplinyRecordsCount'] ?? 0  }}</div>
+                           @enddeputy
 
-                            @teacher
-                            <div class="text-muted small mb-1">دانش آموزان غایب امروز</div>
-                            <div class="fs-2 fw-bold text-warning">{{ $data['absentStudentsTodayCount'] ?? 0  }}</div>
-                            @endteacher
-                        </div>
-                        <div class="card-icon pulse-animation"
-                             style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
-                            <i class="fa-solid fa-school" style="font-size: 1.5rem;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
-                 style="animation-delay: 0.4s;">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            @owner
-                            <div class="text-muted small mb-1">غایبان امروز</div>
-                            <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] ?? 0 }}</div>
-                            @endowner
+                           @teacher
+                           <div class="text-muted small mb-1">دانش آموزان غایب امروز</div>
+                           <div class="fs-2 fw-bold text-warning">{{ $data['absentStudentsTodayCount'] ?? 0  }}</div>
+                           @endteacher
+                       </div>
+                       <div class="card-icon pulse-animation"
+                            style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
+                           <i class="fa-solid fa-school" style="font-size: 1.5rem;"></i>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="col-xl-3 col-md-6">
+           <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
+                style="animation-delay: 0.4s;">
+               <div class="card-body p-4">
+                   <div class="d-flex align-items-center justify-content-between">
+                       <div>
+                           @owner
+                           <div class="text-muted small mb-1">غایبان امروز</div>
+                           <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] ?? 0 }}</div>
+                           @endowner
 
-                            @deputy
-                            <div class="text-muted small mb-1">غایبان امروز</div>
-                            <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] ?? 0 }}</div>
-                            @enddeputy
+                           @deputy
+                           <div class="text-muted small mb-1">غایبان امروز</div>
+                           <div class="fs-2 fw-bold text-info">{{ $data['absentStudentsTodayCount'] ?? 0 }}</div>
+                           @enddeputy
 
-                            @teacher
-                            <div class="text-muted small mb-1">وضعیت سیستم</div>
-                            <div class="fs-2 fw-bold text-info">😆😬</div>
-                            @endteacher
-                        </div>
-                        <div class="card-icon pulse-animation"
-                             style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
-                            <i class="fa-solid fa-chalkboard" style="font-size: 1.5rem;"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                           @teacher
+                           <div class="text-muted small mb-1">وضعیت سیستم</div>
+                           <div class="fs-2 fw-bold text-info">😆😬</div>
+                           @endteacher
+                       </div>
+                       <div class="card-icon pulse-animation"
+                            style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
+                           <i class="fa-solid fa-chalkboard" style="font-size: 1.5rem;"></i>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   @endnotstudent
 
     <div class="row g-4 mt-2">
 
         @deputy
         <canvas id="myChart" style="width:100%;max-width:100%;"></canvas>
         @enddeputy
-
-        @teacher
-        <h5 class="text-center">چارت آماری نمرات دانش آموزان <sub class="text-danger">بزودی</sub></h5>
-        <canvas id="myChart" style="width:100%;max-width:100%;"></canvas>
-        @endteacher
 
         @admin
         <div class="col-lg-8">
@@ -228,6 +226,44 @@
             </div>
         </div>
         @endadmin
+
+        @student
+        <div class="col-xl-6 col-md-12">
+            <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
+                 style="animation-delay: 0.2s;">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="text-muted small mb-1">دریافت کارنامه</div>
+                            <div class="text-success"><a href="">دریافت سریع</a></div>
+                            </div>
+                        <div class="card-icon pulse-animation"
+                             style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
+                            <i class="fa-solid fa-user-shield" style="font-size: 1.5rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-md-12">
+            <div class="card glass-effect border-0 shadow-lg animate__animated animate__fadeInUp"
+                 style="animation-delay: 0.2s;">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <div class="text-muted small mb-1">مشاهده ی انضباط</div>
+                            <div class="text-success"><a href="">دریافت سریع</a></div>
+                        </div>
+                        <div class="card-icon pulse-animation"
+                             style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; width: 60px; height: 60px; border-radius: 15px;">
+                            <i class="fa-solid fa-user-shield" style="font-size: 1.5rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endstudent
 
         @owner
         <div class="col-lg-8">

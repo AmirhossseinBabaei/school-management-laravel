@@ -22,11 +22,37 @@
 
     @stack('styles')
     <style>
+        /* ====== Enhanced Body & Base Styles ====== */
         body {
             font-family: Vazirmatn, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             background: linear-gradient(135deg, #1a1d29 0%, #0f1115 100%);
+            background-attachment: fixed;
             min-height: 100vh;
             color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(102, 126, 234, 0.05) 0%, transparent 50%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
         }
 
         .form-control {
@@ -135,9 +161,19 @@
         }
 
         .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-effect:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
         }
 
         .gradient-text {
@@ -793,7 +829,7 @@
 </div>
 
 <div class="wrapper">
-    <aside class="sidebar glass-effect animate__animated animate__slideInRight" id="sideBar">
+    <aside class="sidebar glass-effect animate__animated animate__slideInRight" id="sideBar" style="overflow-y:scroll ">
         <div class="brand px-3 mb-4 d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center gap-3">
                 <div class="floating-animation">
@@ -825,43 +861,57 @@
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
                 <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
-                <sup class="text-success">جدید</sup>
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.classRooms.*') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('/dashboard/classRooms') }}">
                 <i class="fa-solid fa-chalkboard me-2 text-info"></i> کلاس ها
             </a>
-            <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
+            <a class="nav-link {{ request()->routeIs('dashboard.grades.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.grades.index') }}">
                 <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
-                <sup class="text-danger">بزودی</sup>
             </a>
             <a class="nav-link {{ request()->routeIs('dashboard.teacherClasses.*') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('/dashboard/teacher-classes') }}">
                 <i class="fa-solid fa-chalkboard-teacher me-2 text-danger"></i> کلاس های معلمان
             </a>
-            <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
+            <a class="nav-link {{ request()->routeIs('dashboard.reportCards.index') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.reportCards.index')  }}">
                 <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
-                <sup class="text-danger">بزودی</sup>
+            </a>
+
+            <a class="nav-link {{ request()->routeIs('dashboard.reportCards.class.index') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.reportCards.class.index')  }}">
+                <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه کلاسی
             </a>
 
             <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('dashboard/users') }}">
                 <i class="fa-solid fa-bell me-2 text-primary"></i>   اطلاع رسانی
-                <sup class="text-danger">بزودی</sup>
             </a>
 
-            <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
-               href="#">
+            <a class="nav-link {{ request()->routeIs('dashboard.disciplinaryRecords.create') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ route('dashboard.disciplinaryRecords.create') }}">
                 <i class="fa-solid fa-bell me-2 text-primary"></i>   موارد انضباطی
-                <sup class="text-danger">بزودی</sup>
             </a>
 
             <a class="nav-link {{ request()->routeIs('dashboard.attendance.reports') ? 'active' : '' }} rounded-3 mb-1"
                href="{{ url('dashboard/get-report/attendances') }}">
-                <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری
-                <sup class="text-success">جدید</sup>
+                <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری حضور و غیاب
+            </a>
+
+            <a class="nav-link {{ request()->routeIs('dashboard.disciplinaryRecords.report') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ route('dashboard.disciplinaryRecords.report') }}">
+                <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری موارد انضباطی
             </a>
             @endowner
+
+            @student
+            <a class="nav-link {{ request()->routeIs('dashboard.reportCards.index') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.reportCards.index')  }}">
+                <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
+            </a>
+
+            <a class="nav-link {{ request()->routeIs('dashboard.disciplinaryRecords.report') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ route('dashboard.disciplinaryRecords.report') }}">
+                <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری موارد انضباطی
+            </a>
+            @endstudent
             @deputy
             <nav class="nav flex-column px-2">
                 <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }} glass-effect text-white mb-2 rounded-3"
@@ -874,11 +924,9 @@
                 </a>
                 <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
                     <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
-                    <sup class="text-success">جدید</sup>
                 </a>
-                <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                <a class="nav-link {{ request()->routeIs('dashboard.grades.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.grades.index') }}">
                     <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
-                    <sup class="text-danger">بزودی</sup>
                 </a>
                 <a class="nav-link {{ request()->routeIs('dashboard.teacherClasses.*') ? 'active' : '' }} rounded-3 mb-1"
                    href="{{ url('/dashboard/teacher-classes') }}">
@@ -886,25 +934,31 @@
                 </a>
                 <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
                     <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه
-                    <sup class="text-danger">بزودی</sup>
+                </a>
+
+
+                <a class="nav-link {{ request()->routeIs('dashboard.reportCards.class.index') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.reportCards.class.index')  }}">
+                    <i class="fa-solid fa-file-alt me-2 text-info"></i> دریافت کارنامه کلاسی
                 </a>
 
                 <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
                    href="{{ url('dashboard/users') }}">
                     <i class="fa-solid fa-bell me-2 text-primary"></i>   اطلاع رسانی
-                    <sup class="text-danger">بزودی</sup>
                 </a>
 
                 <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
                    href="#">
                     <i class="fa-solid fa-bell me-2 text-primary"></i>   موارد انضباطی
-                    <sup class="text-danger">بزودی</sup>
                 </a>
 
                 <a class="nav-link {{ request()->routeIs('dashboard.attendance.reports') ? 'active' : '' }} rounded-3 mb-1"
                    href="{{ url('dashboard/get-report/attendances') }}">
-                    <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری
-                    <sup class="text-success">جدید</sup>
+                    <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری حضور و غیاب
+                </a>
+
+                <a class="nav-link {{ request()->routeIs('dashboard.disciplinaryRecords.report') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ route('dashboard.disciplinaryRecords.report') }}">
+                    <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری موارد انضباطی
                 </a>
                 @enddeputy
 
@@ -918,17 +972,16 @@
                        href="{{ url('/profile') }}">
                         <i class="fa-solid fa-user me-2 text-info"></i> پروفایل
                     </a>
-                    <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
-                        <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
-                        <sup class="text-success">جدید</sup>
-                    </a>
-                    <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }} rounded-3 mb-1" href="#">
+                    <a class="nav-link {{ request()->routeIs('dashboard.grades.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.grades.index') }}">
                         <i class="fa-solid fa-chart-line me-2 text-success"></i> نمرات
-                        <sup class="text-danger">بزودی</sup>
                     </a>
                     <a class="nav-link {{ request()->routeIs('dashboard.teacherClasses.*') ? 'active' : '' }} rounded-3 mb-1"
                        href="{{ url('/dashboard/teacher-classes') }}">
                         <i class="fa-solid fa-chalkboard-teacher me-2 text-danger"></i> کلاس های معلمان
+                    </a>
+
+                    <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
+                        <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
                     </a>
                     @endteacher
 

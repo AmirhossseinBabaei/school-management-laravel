@@ -122,6 +122,12 @@ class DashboardControllerDataHandler extends ControllerDataHandler
         ];
     }
 
+    public function getStudentData ($schoolId): array {
+        return [
+            'nowDate' => $this->jalaliDateService->now('yyyy/MM/dd'),
+        ];
+    }
+
     public function handle(string $request)
     {
         if ($request == 'dashboardData') {
@@ -136,6 +142,10 @@ class DashboardControllerDataHandler extends ControllerDataHandler
             }
             else if (Auth::user()->hasRole('teacher')) {
                 return $this->getTeacherData(Auth::user()->school_id);
+            }
+            else if (Auth::user()->hasRole('student'))
+            {
+                return $this->getStudentData(Auth::user()->school_id);
             }
             else {
                 return $this->getAdminData();

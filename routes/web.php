@@ -14,6 +14,9 @@ use App\Http\Controllers\Panel\ClassRoomsController;
 use App\Http\Controllers\Panel\TeacherClassesController;
 use App\Http\Controllers\Panel\ScheduleTeachersController;
 use App\Http\Controllers\Panel\AttendancesController;
+use App\Http\Controllers\Panel\GradesController;
+use App\Http\Controllers\Panel\ReportCardsController;
+use App\Http\Controllers\Panel\DisciplinaryRecordsController;
 use App\Http\Controllers\Panel\IndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +83,41 @@ Route::middleware('auth')
         Route::resource('attendances', AttendancesController::class)
         ->names('dashboard.attendances');
 
+        Route::get('attendances/search-by-national-code', [AttendancesController::class, 'searchByNationalCode'])
+            ->name('dashboard.attendances.searchByNationalCode');
+        Route::post('attendances/search-by-national-code', [AttendancesController::class, 'getStudentAbsences'])
+            ->name('dashboard.attendances.getStudentAbsences');
+        Route::post('attendances/update-status', [AttendancesController::class, 'updateAttendanceStatus'])
+            ->name('dashboard.attendances.updateStatus');
+
+        Route::resource('grades', GradesController::class)
+            ->names('dashboard.grades');
+
+        Route::post('get-grade-students-data', [GradesController::class, 'getGradeStudentsData'])
+            ->name('dashboard.grades.getStudentsWithGrades');
+
+        Route::get('report-cards', [ReportCardsController::class, 'index'])
+            ->name('dashboard.reportCards.index');
+        Route::post('report-cards/fetch', [ReportCardsController::class, 'fetch'])
+            ->name('dashboard.reportCards.fetch');
+        Route::get('report-cards/class', [ReportCardsController::class, 'classIndex'])
+            ->name('dashboard.reportCards.class.index');
+        Route::post('report-cards/class/fetch', [ReportCardsController::class, 'fetchClass'])
+            ->name('dashboard.reportCards.class.fetch');
+
+        Route::get('disciplinary-records/create', [DisciplinaryRecordsController::class, 'create'])
+            ->name('dashboard.disciplinaryRecords.create');
+        Route::post('disciplinary-records', [DisciplinaryRecordsController::class, 'store'])
+            ->name('dashboard.disciplinaryRecords.store');
+        Route::get('disciplinary-records/report', [DisciplinaryRecordsController::class, 'report'])
+            ->name('dashboard.disciplinaryRecords.report');
+        Route::post('disciplinary-records/report', [DisciplinaryRecordsController::class, 'fetchReport'])
+            ->name('dashboard.disciplinaryRecords.fetch');
+
+        Route::get('reports', function () {
+            return view('dashboard.reports.index');
+        })->name('dashboard.reports.index');
+
         Route::get('get-report/attendances', [AttendancesController::class, 'getReportPageData'])
             ->name('dashboard.attendance.reports');
 
@@ -96,6 +134,15 @@ Route::middleware('auth')
     });
 
     Route::get('download-apk-file-system', [IndexController::class, 'downloadApkFile']);
+
+    // Phone login (view-only) routes
+    Route::get('auth/phone', function () {
+        return view('auth.phone-login');
+    })->name('auth.phone.login');
+
+    Route::get('auth/phone/verify', function () {
+        return view('auth.phone-verify');
+    })->name('auth.phone.verify');
 
 require __DIR__ . '/auth.php';
 

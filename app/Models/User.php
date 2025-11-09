@@ -97,6 +97,9 @@ class User extends Authenticatable
         else if ('teacher' === $role) {
             return Auth::user()->role_id == 3;
         }
+        else if ('student' === $role) {
+            return Auth::user()->role_id == 5;
+        }
         else {
             return false;
         }

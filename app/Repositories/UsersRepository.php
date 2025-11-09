@@ -13,7 +13,7 @@ class UsersRepository extends BaseRepository
         return DB::table('users');
     }
 
-    protected function setModel()
+    public function setModel()
     {
         return User::class;
     }

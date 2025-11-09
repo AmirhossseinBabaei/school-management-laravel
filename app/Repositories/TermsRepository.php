@@ -13,7 +13,7 @@ class TermsRepository extends BaseRepository
         return DB::table('terms');
     }
 
-    protected function setModel()
+    public function setModel()
     {
         return Term::class;
     }

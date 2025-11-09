@@ -82,6 +82,22 @@ class AppServiceProvider extends ServiceProvider
             return "<?php endif; ?>";
         });
 
+        Blade::directive('student', function () {
+            return "<?php if (auth()->check() && auth()->user()->role_id === 5): ?>";
+        });
+
+        Blade::directive('endstudent', function (){
+            return "<?php endif; ?>";
+        });
+
+        Blade::directive('notstudent', function () {
+            return "<?php if (auth()->check() && auth()->user()->role_id !== 5): ?>";
+        });
+
+        Blade::directive('endnotstudent', function (){
+            return "<?php endif; ?>";
+        });
+
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
             return config('app.frontend_url') . "/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
