@@ -71,9 +71,6 @@
                             <i class="fa-solid fa-user me-2"></i>نام کاربر
                         </th>
                         <th>
-                            <i>تصویر کاربر</i>
-                        </th>
-                        <th>
                             <i class="fa-solid fa-phone me-2"></i>تلفن
                         </th>
                         <th>
