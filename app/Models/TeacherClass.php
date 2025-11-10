@@ -34,7 +34,7 @@ class TeacherClass extends Model
 
     public function classRoom(): BelongsTo
     {
-        return $this->belongsTo(classRoom::class, 'class_id');
+        return $this->belongsTo(ClassRoom::class, 'class_id');
     }
 
     public function teacher(): BelongsTo
