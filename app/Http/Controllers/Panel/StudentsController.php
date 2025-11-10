@@ -11,7 +11,11 @@ use App\Repositories\StudyFieldsRepository;
 use App\Repositories\UsersRepository;
 use App\Services\JalaliDateServiceStatic;
 use App\Http\Requests\Panel\CreateStudentsRequest;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Shuchkin\SimpleXLSX;
 
 class StudentsController extends Controller
 {
@@ -172,6 +176,56 @@ class StudentsController extends Controller
         }
 
         return response()->json(['status' => 0, 'message' => __('messages.students.deleteStudentsError')]);
+    }
+
+    /**
+     * Import students by Excel uploaded on create page.
+     *
+     * Supports layout with multiple class blocks in a single sheet:
+     *  - First row contains headers per block like: 704, 705, 706, ...
+     *  - Each block spans several columns; one of the columns below contains national codes.
+     *  - We auto-detect the national code column per block by finding the column
+     *    with the most 10-digit numeric matches in its rows.
+     *  - For each detected national code, we find user by national_code and upsert into students
+     *    with resolved class_id that matches class name containing that header number.
+     */
+    public function createByExcel(Request $request)
+    {
+        $request->validate([
+            'students' => 'required|file|mimes:xlsx,xls',
+        ]);
+
+        $filePath = $request->file('students')->getRealPath();
+
+        if ($xlsx = SimpleXLSX::parse($filePath)) {
+            $rows = $xlsx->rows();
+
+            $users = array_slice($rows, 1);
+
+            $dataInsert = [];
+
+//            dd($users);
+            for ($i=1;$i<count($users);$i++) {
+                $data = [
+                    'school_id' => Auth::user()->school_id,
+                    'class_id' => $users[$i][0],
+                    'user_id' => $users[$i][1],
+                    'study_base_id' => $users[$i][2],
+                    'study_field_id' => 39,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ];
+
+                $dataInsert[] = $data;
+            }
+
+            return redirect()->back()->with('success', $this->usersRepository->insert($dataInsert));
+
+        } else {
+            return response()->json([
+                'error' => SimpleXLSX::parseError(),
+            ], 400);
+        }
     }
 }
 

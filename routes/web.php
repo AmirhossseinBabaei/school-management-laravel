@@ -29,6 +29,9 @@ Route::middleware('auth')
 
         Route::resource('students', StudentsController::class)->names('dashboard.students');
 
+        Route::post('students/import-by-excel', [StudentsController::class, 'createByExcel'])
+        ->name('dashboard.students.importByExcel');
+
         Route::post('students/create-by-excel', [UsersController::class, 'createByExcel'])
         ->name('dashboard.students.crateByExcel');
 

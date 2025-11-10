@@ -129,4 +129,43 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Import by Excel -->
+            <div class="card glass-effect border-0 shadow-lg mt-4 animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                <div class="card-header glass-effect border-0">
+                    <h5 class="mb-0 gradient-text fw-bold">
+                        <i class="fa-solid fa-file-excel me-2"></i>ایمپورت دانش‌آموزان با اکسل
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" action="{{ route('dashboard.students.importByExcel') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    <i class="fa-solid fa-upload me-2 text-success"></i> فایل اکسل (.xlsx, .xls)
+                                </label>
+                                <input type="file" class="form-control" name="students" accept=".xlsx,.xls" required>
+                                <small class="text-muted d-block mt-2">
+                                    نکته: در ردیف اول، عنوان کلاس (مثلاً "کلاس 704") درج شود. ردیف دوم عنوان ستون‌ها و شامل ستون کد ملی باشد.
+                                </small>
+                                @if (session('import_skipped'))
+                                    <div class="alert alert-warning mt-3" style="max-height: 180px; overflow:auto;">
+                                        <ul class="mb-0">
+                                            @foreach(session('import_skipped') as $skip)
+                                                <li>{{ $skip }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex gap-3 justify-content-end">
+                                    <input type="submit" class="btn bg-primary btn-pill" value="شروع">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 @endsection
