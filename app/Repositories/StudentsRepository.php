@@ -100,4 +100,9 @@ class StudentsRepository extends BaseRepository
     {
         return $this->setModel()::where('school_id', $id)->orderBy('id', 'desc')->paginate(10);
     }
+
+    public function insert()
+    {
+        return $this->insert();
+    }
 }
