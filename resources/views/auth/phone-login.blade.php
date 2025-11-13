@@ -291,17 +291,17 @@
                 <p class="auth-subtitle">لطفاً شماره موبایل خود را وارد کنید</p>
             </div>
             <div class="auth-body">
-                <form action="{{ route('auth.phone.verify') }}" method="get" id="loginForm">
+                <form action="{{ route('auth.checkPhone') }}" method="get" id="loginForm">
                     <div class="mb-4">
                         <label class="form-label">
                             <i class="bi bi-telephone-fill"></i>
                             شماره موبایل
                         </label>
-                        <input 
-                            type="tel" 
-                            name="phone" 
-                            class="form-control" 
-                            placeholder="09123456789" 
+                        <input
+                            type="tel"
+                            name="phone"
+                            class="form-control"
+                            placeholder="09123456789"
                             required
                             pattern="09[0-9]{9}"
                             maxlength="11"

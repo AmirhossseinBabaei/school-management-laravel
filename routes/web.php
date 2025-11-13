@@ -136,12 +136,16 @@ Route::middleware('auth')
         return view('dashboard.showCase.index');
     });
 
+    Route::view('/contact', 'contact')->name('contact');
+
     Route::get('download-apk-file-system', [IndexController::class, 'downloadApkFile']);
 
     // Phone login (view-only) routes
     Route::get('auth/phone', function () {
         return view('auth.phone-login');
     })->name('auth.phone.login');
+
+    Route::get('auth/checkPhone', [\App\Http\Controllers\Panel\AuthController::class, 'loginByPhoneNumber'])->name('auth.checkPhone');
 
     Route::get('auth/phone/verify', function () {
         return view('auth.phone-verify');
