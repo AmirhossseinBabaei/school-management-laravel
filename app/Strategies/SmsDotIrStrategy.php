@@ -49,11 +49,11 @@ class SmsDotIrStrategy implements SendNotificationInterface, ShouldQueue
             return ['data' => $response->getBody()->getContents(), 'status' => $response->getStatusCode()];
 
         } catch (GuzzleException $e) {
-            $this->notificationsFailedRepository->create([
-                'message' => $message,
-                'recipient' => $recipient,
-                'error' => $e->getMessage()
-            ]);
+//            $this->notificationsFailedRepository->setModel()::create([
+//                'message' => $message,
+//                'recipient' => $recipient,
+//                'error' => $e->getMessage()
+//            ]);
 
             return ['data' => $e->getMessage(), 'status' => 500];
         }
