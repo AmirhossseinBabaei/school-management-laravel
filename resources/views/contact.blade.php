@@ -168,7 +168,13 @@
         <div class="contact-info">
             <h1>تماس با ما</h1>
             <p>برای ارتباط با تیم پشتیبانی سامانه، می‌توانید از اطلاعات زیر استفاده کنید یا فرم کنار صفحه را تکمیل نمایید.</p>
-
+            <div class="info-item">
+                <span>📞</span>
+                <div>
+                    <strong>صاحب سایت</strong>
+                    <div>احمد سلیمی زو</div>
+                </div>
+            </div>
             <div class="info-item">
                 <span>📞</span>
                 <div>
