@@ -141,15 +141,18 @@ Route::middleware('auth')
     Route::get('download-apk-file-system', [IndexController::class, 'downloadApkFile']);
 
     // Phone login (view-only) routes
-    Route::get('auth/phone', function () {
+    Route::get('login', function () {
         return view('auth.phone-login');
-    })->name('auth.phone.login');
+    })->name('login');
 
     Route::get('auth/checkPhone', [\App\Http\Controllers\Panel\AuthController::class, 'loginByPhoneNumber'])->name('auth.checkPhone');
 
-    Route::get('auth/phone/verify', function () {
+    Route::get('login/verify', function () {
         return view('auth.phone-verify');
     })->name('auth.phone.verify');
+
+    Route::post('auth/check-and-login-by-phone', [\App\Http\Controllers\Panel\AuthController::class, 'checkAndLogin'])
+    ->name('checkAndLoginByPhone');
 
 require __DIR__ . '/auth.php';
 

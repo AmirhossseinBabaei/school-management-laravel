@@ -20,12 +20,12 @@ class NotificationContextService
         $this->sendNotification = $sendNotification;
     }
 
-    public function sendNotification(string $message, array $recipients): array
+    public function sendNotification(string $message, array $recipients, string $param1): array
     {
         $results = [];
 
         foreach ($recipients as $recipient) {
-            $result = $this->sendNotification->sendMessage($message, $recipient);
+            $result = $this->sendNotification->sendMessage($message, $recipient, $param1);
             $results[] = $result;
         }
 

@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>تایید کد</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <title>تأیید کد | سامانه مدیریت مدرسه</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -21,349 +21,285 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            padding: 20px;
+            background: radial-gradient(1200px 800px at 90% -200px, rgba(99, 102, 241, 0.16), transparent),
+                        radial-gradient(1200px 1200px at 0% 100%, rgba(45, 212, 191, 0.12), transparent),
+                        #020617;
+            color: #e2e8f0;
+            padding: 32px 12px;
             position: relative;
             overflow: hidden;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* دایره‌های شناور در پس‌زمینه */
         body::before,
         body::after {
-            content: '';
+            content: "";
             position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: float 20s infinite;
-        }
-
-        body::before {
-            width: 300px;
-            height: 300px;
-            top: -100px;
-            right: -100px;
-            animation-delay: 0s;
+            inset: 0;
+            opacity: 0.55;
+            background:
+                radial-gradient(circle at 20% 15%, rgba(148, 163, 184, 0.08) 0, transparent 40%),
+                radial-gradient(circle at 80% -10%, rgba(59, 130, 246, 0.18) 0, transparent 55%);
+            animation: aurora 18s ease-in-out infinite alternate;
+            pointer-events: none;
         }
 
         body::after {
-            width: 200px;
-            height: 200px;
-            bottom: -50px;
-            left: -50px;
-            animation-delay: 10s;
+            opacity: 0.32;
+            filter: blur(42px);
+            transform: scale(1.08);
+            animation-duration: 23s;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        @keyframes aurora {
+            0% { transform: translate3d(-20px, 0, 0) rotate(-1deg); }
+            50% { transform: translate3d(18px, 8px, 0) rotate(1deg); }
+            100% { transform: translate3d(-12px, 18px, 0) rotate(0deg); }
         }
 
-        .auth-container {
+        .grid-noise {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(15, 23, 42, 0.55) 1px, transparent 0),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.3) 1px, transparent 0);
+            background-size: 90px 90px;
+            mix-blend-mode: overlay;
+            opacity: 0.18;
+            pointer-events: none;
+            animation: slow-pan 34s linear infinite;
+        }
+
+        @keyframes slow-pan {
+            0% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(40px, -16px, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+
+        .auth-wrapper {
             width: 100%;
-            max-width: 450px;
+            max-width: 480px;
             position: relative;
             z-index: 1;
+        }
+
+        .brand {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .brand-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.38), rgba(6, 182, 212, 0.32));
+            box-shadow: 0 22px 48px rgba(49, 46, 129, 0.32);
+            color: #f8fafc;
+            font-size: 1.7rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand span {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #cbd5f5;
+            letter-spacing: 0.6px;
         }
 
         .auth-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-            overflow: hidden;
-            animation: slideUp 0.6s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .auth-header {
-            padding: 40px 30px 30px;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-        }
-
-        .auth-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #fff, transparent);
-            border-radius: 2px;
-        }
-
-        .auth-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .auth-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .auth-subtitle {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 400;
-        }
-
-        .phone-display {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 12px 20px;
-            margin-bottom: 25px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .phone-display i {
-            margin-left: 8px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .phone-display span {
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .auth-body {
-            padding: 40px 30px;
-        }
-
-        .form-label {
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 600;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-label i {
-            font-size: 1.1rem;
-        }
-
-        .code-input-container {
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .code-input {
-            width: 100%;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-            padding: 18px 20px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-align: center;
-            letter-spacing: 12px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-family: 'Courier New', monospace;
-        }
-
-        .code-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 8px;
-            font-size: 1.5rem;
-        }
-
-        .code-input:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.6);
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
-                        0 8px 25px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .btn-success {
-            border-radius: 15px;
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            border: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            padding: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+            background: rgba(2, 6, 23, 0.68);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 28px;
+            padding: 38px 34px 44px;
             position: relative;
             overflow: hidden;
-            width: 100%;
+            box-shadow:
+                0 30px 55px rgba(2, 6, 23, 0.62),
+                0 0 0 1px rgba(148, 163, 184, 0.1);
         }
 
-        .btn-success::before {
-            content: '';
+        .auth-card::before {
+            content: "";
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            inset: 0;
+            background:
+                radial-gradient(circle at 75% 0%, rgba(59, 130, 246, 0.16), transparent 55%),
+                radial-gradient(circle at 20% 90%, rgba(56, 189, 248, 0.12), transparent 60%);
+            mix-blend-mode: screen;
+            opacity: 0.8;
+            animation: pulse-soft 13s ease-in-out infinite alternate;
         }
 
-        .btn-success:hover::before {
-            width: 300px;
-            height: 300px;
+        .auth-card::after {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: 26px;
+            background: linear-gradient(160deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.92));
+            box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.08);
         }
 
-        .btn-success:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.5);
+        @keyframes pulse-soft {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.05); opacity: 0.75; }
         }
 
-        .btn-success:active {
-            transform: translateY(-1px);
-        }
-
-        .btn-success span {
+        .auth-content {
             position: relative;
             z-index: 1;
         }
 
-        .btn-link {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
+        .auth-heading {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .auth-heading h1 {
+            font-size: 1.58rem;
+            margin-bottom: 10px;
+            color: #f8fafc;
+            font-weight: 700;
+        }
+
+        .auth-heading p {
+            font-size: 0.94rem;
+            color: rgba(203, 213, 225, 0.7);
+            line-height: 1.8;
+        }
+
+        .phone-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            color: rgba(226, 232, 240, 0.92);
+            font-weight: 600;
+            margin-bottom: 28px;
+            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.08);
+        }
+
+        .phone-display i {
+            color: rgba(56, 189, 248, 0.85);
+            font-size: 1.1rem;
+        }
+
+        form {
+            display: grid;
+            gap: 24px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.92rem;
+            color: rgba(203, 213, 225, 0.78);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            inset-inline-start: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(96, 165, 250, 0.75);
+            font-size: 1.1rem;
+        }
+
+        input[name="verficationCode"] {
+            width: 100%;
+            padding: 18px 20px 18px 58px;
+            border-radius: 18px;
+            border: 1px solid rgba(51, 65, 85, 0.65);
+            background: rgba(15, 23, 42, 0.78);
+            color: #f8fafc;
+            font-size: 1.6rem;
+            letter-spacing: 12px;
+            text-align: center;
+            transition: all 0.25s ease;
+            box-shadow: inset 0 0 0 1px rgba(129, 140, 248, 0.18);
+            font-family: "Vazirmatn", sans-serif;
+        }
+
+        input[name="verficationCode"]::placeholder {
+            color: rgba(148, 163, 184, 0.35);
+            letter-spacing: 8px;
+        }
+
+        input[name="verficationCode"]:focus {
+            outline: none;
+            border-color: rgba(62, 166, 255, 0.65);
+            background: rgba(15, 23, 42, 0.9);
+            box-shadow:
+                0 0 0 6px rgba(79, 70, 229, 0.14),
+                inset 0 0 0 1px rgba(56, 189, 248, 0.32);
+        }
+
+        button {
+            border: none;
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.92), rgba(22, 163, 74, 0.88));
+            color: #022c22;
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
             display: inline-flex;
+            justify-content: center;
             align-items: center;
-            gap: 6px;
-            margin-top: 15px;
+            gap: 10px;
+            letter-spacing: 0.4px;
+            width: 100%;
         }
 
-        .btn-link:hover {
-            color: #fff;
-            transform: translateX(-3px);
+        button::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(226, 232, 240, 0.55), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .btn-link i {
-            font-size: 0.85rem;
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 18px 38px rgba(22, 163, 74, 0.35),
+                0 4px 10px rgba(22, 101, 52, 0.36);
         }
 
-        .resend-code {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        button:hover::after {
+            opacity: 1;
         }
 
-        .resend-code-text {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            box-shadow: none;
         }
 
-        .resend-btn {
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            padding: 10px 20px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .resend-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
-            color: #fff;
-        }
-
-        .resend-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* Responsive */
-        @media (max-width: 576px) {
-            .auth-card {
-                border-radius: 25px;
-            }
-
-            .auth-header {
-                padding: 30px 20px 25px;
-            }
-
-            .auth-body {
-                padding: 30px 20px;
-            }
-
-            .auth-title {
-                font-size: 1.5rem;
-            }
-
-            .auth-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 2rem;
-            }
-
-            .code-input {
-                font-size: 1.5rem;
-                letter-spacing: 8px;
-                padding: 15px;
-            }
-        }
-
-        /* Loading animation */
-        .loading {
-            display: none;
-        }
-
-        .loading.active {
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(15, 23, 42, 0.18);
+            border-top-color: rgba(15, 23, 42, 0.7);
+            border-radius: 50%;
             display: inline-block;
             animation: spin 1s linear infinite;
         }
@@ -372,70 +308,133 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .edit-link {
+            text-decoration: none;
+            color: rgba(148, 163, 184, 0.86);
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .edit-link:hover {
+            color: rgba(191, 219, 254, 0.95);
+            transform: translateX(-3px);
+        }
+
+        .support-hint {
+            margin-top: 22px;
+            font-size: 0.86rem;
+            color: rgba(148, 163, 184, 0.65);
+            text-align: center;
+        }
+
+        @media (max-width: 520px) {
+            .auth-card {
+                padding: 30px 24px 36px;
+                border-radius: 24px;
+            }
+
+            .auth-heading h1 {
+                font-size: 1.42rem;
+            }
+
+            input[name="verficationCode"] {
+                font-size: 1.4rem;
+                letter-spacing: 10px;
+                padding: 16px 18px 16px 54px;
+            }
+
+            .brand span {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <div class="auth-icon">
-                    <i class="bi bi-shield-check"></i>
-                </div>
-                <h1 class="auth-title">تایید کد</h1>
-                <p class="auth-subtitle">کد ارسال شده به شماره شما را وارد کنید</p>
+    <div class="grid-noise"></div>
+
+    <div class="auth-wrapper">
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="bi bi-shield-check"></i>
             </div>
-            <div class="auth-body">
+            <span>تأیید امنیتی | سامانه مدیریت مدرسه</span>
+        </div>
+
+        <div class="auth-card">
+            <div class="auth-content">
+                <div class="auth-heading">
+                    <h1>کد امنیتی را وارد کنید</h1>
+                    <p>کد شش رقمی ارسال شده به شماره همراه شما برای تکمیل ورود الزامی است.</p>
+                </div>
+
                 <div class="phone-display">
                     <i class="bi bi-telephone-fill"></i>
-                    <span>{{ request('phone') ?? '09123456789' }}</span>
+                    <span>{{ session('phone') ?? 'شماره یافت نشد' }}</span>
                 </div>
-                <form id="verifyForm">
-                    <div class="code-input-container">
-                        <label class="form-label">
-                            <i class="bi bi-key-fill"></i>
-                            کد تایید
-                        </label>
-                        <input 
-                            type="text" 
-                            name="code" 
-                            class="code-input" 
-                            placeholder="000000" 
-                            maxlength="6" 
-                            required
-                            pattern="[0-9]{6}"
-                            autocomplete="one-time-code"
-                            inputmode="numeric"
-                        >
+
+                @if (session('error'))
+                    <div style="margin-bottom:18px;border-radius:14px;padding:12px 14px;background:rgba(248, 113, 113, 0.14);color:#fecaca;border:1px solid rgba(248, 113, 113, 0.35);text-align:center;">
+                        {{ session('error') }}
                     </div>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-success" type="submit">
-                            <span>
-                                <i class="bi bi-check-circle loading" id="loadingIcon"></i>
-                                ورود
-                            </span>
+                @endif
+
+                <form method="post" action="{{ route('checkAndLoginByPhone') }}" id="verifyForm">
+                    @csrf
+                    <input type="hidden" name="phone" value="{{ session('phone') }}">
+
+                    <label>
+                        کد تأیید
+                        <div class="input-wrapper">
+                            <i class="bi bi-key-fill"></i>
+                            <input
+                                type="text"
+                                name="verficationCode"
+                                placeholder="000000"
+                                maxlength="6"
+                                autocomplete="one-time-code"
+                                inputmode="numeric"
+                                required
+                            >
+                        </div>
+                    </label>
+
+                    <div class="actions">
+                        <button type="submit" id="verifyButton">
+                            <i class="bi bi-check-circle-fill"></i>
+                            ورود به سامانه
                         </button>
-                        <a class="btn-link text-center" href="{{ route('auth.phone.login') }}">
+                        <a class="edit-link" href="{{ route('login') }}">
                             <i class="bi bi-arrow-right"></i>
-                            ویرایش شماره
+                            اصلاح شماره موبایل
                         </a>
                     </div>
                 </form>
-                <div class="resend-code">
-                    <div class="resend-code-text">کد را دریافت نکردید؟</div>
-                    <button type="button" class="resend-btn" id="resendBtn">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        ارسال مجدد کد
-                    </button>
+
+                <div class="support-hint">
+                    در صورت عدم دریافت کد، با پشتیبانی مدرسه تماس بگیرید.
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Auto focus and move to next digit
-        const codeInput = document.querySelector('.code-input');
-        
-        codeInput.addEventListener('input', function(e) {
+        const verifyForm = document.getElementById('verifyForm');
+        const verifyButton = document.getElementById('verifyButton');
+        const codeInput = document.querySelector('input[name="verficationCode"]');
+
+        codeInput.addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 6) {
                 value = value.slice(0, 6);
@@ -443,60 +442,17 @@
             e.target.value = value;
         });
 
-        codeInput.addEventListener('paste', function(e) {
+        codeInput.addEventListener('paste', function (e) {
             e.preventDefault();
             const pasted = (e.clipboardData || window.clipboardData).getData('text');
             const numbers = pasted.replace(/\D/g, '').slice(0, 6);
             this.value = numbers;
         });
 
-        // Form submission
-        document.getElementById('verifyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            const icon = document.getElementById('loadingIcon');
-            btn.disabled = true;
-            icon.classList.add('active');
-            btn.querySelector('span').innerHTML = '<i class="bi bi-check-circle loading active"></i> در حال بررسی...';
-            
-            // Here you would normally submit to your backend
-            // For now, just simulate a delay
-            setTimeout(() => {
-                alert('کد تایید با موفقیت بررسی شد!');
-                btn.disabled = false;
-                icon.classList.remove('active');
-                btn.querySelector('span').innerHTML = '<i class="bi bi-check-circle loading"></i> ورود';
-            }, 2000);
+        verifyForm.addEventListener('submit', function () {
+            verifyButton.disabled = true;
+            verifyButton.innerHTML = '<span class="spinner"></span> در حال بررسی...';
         });
-
-        // Resend code functionality
-        let resendTimer = 60;
-        const resendBtn = document.getElementById('resendBtn');
-        
-        function updateResendButton() {
-            if (resendTimer > 0) {
-                resendBtn.disabled = true;
-                resendBtn.innerHTML = `<i class="bi bi-clock"></i> ارسال مجدد (${resendTimer} ثانیه)`;
-                resendTimer--;
-                setTimeout(updateResendButton, 1000);
-            } else {
-                resendBtn.disabled = false;
-                resendBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> ارسال مجدد کد';
-            }
-        }
-
-        resendBtn.addEventListener('click', function() {
-            if (this.disabled) return;
-            
-            resendTimer = 60;
-            updateResendButton();
-            
-            // Here you would normally call your backend to resend the code
-            alert('کد تایید مجدداً ارسال شد!');
-        });
-
-        // Start the timer on page load
-        updateResendButton();
     </script>
 </body>
 </html>

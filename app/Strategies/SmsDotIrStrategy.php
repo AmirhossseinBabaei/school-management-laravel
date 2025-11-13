@@ -17,36 +17,33 @@ class SmsDotIrStrategy implements SendNotificationInterface, ShouldQueue
     public function __construct()
     {
         $this->apiKey = '70a92m4ogdnN3YQzgRc3fYvq6FcqKrCaeEWjflE4DfgqTFlM';
-//        $this->secretKey = env('SMS_IR_SECRET_KEY');
 
         $this->client = new Client([
             'base_uri' => "https://api.sms.ir/v1/",
-            'timeout' => 5.0,
         ]);
 
         $this->notificationsFailedRepository = new NotificationsFailedRepository();
     }
 
-    public function sendMessage(string $message, string $recipient)
+    public function sendMessage(string $message, string $recipient, string $param1)
     {
-        $lineNumber = '30002101005257';
 
         $payload = [
-            'Mobile' => [$recipient],
-            'Messages' => [$message],
-            'Templated' => $lineNumber,
-            'Parameters' => ['name' => 'code', 'value' => '123456'],
-            'CanContinueInCaseOfError' => 'false'
+            'mobile' => $recipient,
+            'templateId' => 713537,
+            'parameters' => [
+                ['name' => 'CODE', 'value' => $param1],
+            ],
         ];
 
         try {
             $response = $this->client->request('POST', 'send/verify', [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'X-API-KEY' => $this->apiKey,
-//                    'X-SECRET-KEY' => $this->secretKey,
+                    'Accept' => 'application/json',
+                    'x-api-key' => $this->apiKey,
                 ],
-                'body' => json_encode($payload)
+                'json' => $payload
             ]);
 
             return ['data' => $response->getBody()->getContents(), 'status' => $response->getStatusCode()];
