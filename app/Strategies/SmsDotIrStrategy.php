@@ -25,7 +25,7 @@ class SmsDotIrStrategy implements SendNotificationInterface, ShouldQueue
         $this->notificationsFailedRepository = new NotificationsFailedRepository();
     }
 
-    public function sendMessage(string $message, string $recipient, string $param1)
+    public function sendMessage($message, string $recipient, string $param1)
     {
 
         $payload = [

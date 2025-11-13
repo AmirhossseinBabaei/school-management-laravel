@@ -20,7 +20,7 @@ class NotificationContextService
         $this->sendNotification = $sendNotification;
     }
 
-    public function sendNotification(string $message, array $recipients, string $param1): array
+    public function sendNotification($message, array $recipients, string $param1): array
     {
         $results = [];
 

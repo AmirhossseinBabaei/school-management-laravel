@@ -4,5 +4,5 @@ namespace App\Interfaces;
 
 interface SendNotificationInterface
 {
-    public function sendMessage(string $message, string $recipient);
+    public function sendMessage($message, string $recipient, string $param1);
 }

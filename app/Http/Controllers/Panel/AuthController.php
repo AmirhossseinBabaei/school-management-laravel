@@ -35,7 +35,7 @@ class AuthController extends Controller
 
         $code = mt_rand(1, 1000000);
 
-        $notifiationContex1->sendNotification(null, $request['phone'], $code);
+        $notifiationContex1->sendNotification(null, [$request['phone']], $code);
 
         $this->usersRepository->setModel()::where('phone', $phone)->update(['otp_code' => $code]);
 
