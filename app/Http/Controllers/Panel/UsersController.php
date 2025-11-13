@@ -190,22 +190,25 @@ class UsersController extends Controller
 
             $dataInsert = [];
 
+//            dd($users[1][1]);
             for ($i=1;$i<count($users);$i++) {
                 $data = [
                     'school_id' => Auth::user()->school_id,
                     'role_id' => 5,
-                    'first_name' => $users[$i][2],
-                    'last_name' => $users[$i][3],
-                    'phone' => "0".$users[$i][7],
-                    'national_code' => $users[$i][1],
+                    'first_name' => $users[$i][1],
+                    'last_name' => $users[$i][2],
+                    'phone' => "0".$users[$i][3],
+                    'national_code' => $users[$i][0],
                     'status' => 'active',
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                 ];
 
+
                 $dataInsert[] = $data;
             }
 
+//            dd($dataInsert);
            return redirect()->back()->with('success', $this->usersRepository->insert($dataInsert));
 
         } else {
