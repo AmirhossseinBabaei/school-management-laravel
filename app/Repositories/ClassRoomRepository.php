@@ -35,6 +35,6 @@ class ClassRoomRepository extends BaseRepository
 
     public function getClassesBySchoolId($schoolId)
     {
-        return $this->setModel()::where('school_id', $schoolId)->orderBy('id', 'desc')->paginate(10);
+        return $this->setModel()::where('school_id', $schoolId)->orderBy('id', 'desc')->get();
     }
 }

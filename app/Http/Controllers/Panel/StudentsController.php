@@ -219,6 +219,7 @@ class StudentsController extends Controller
                 $dataInsert[] = $data;
             }
 
+            dd($dataInsert);
             return redirect()->back()->with('success', $this->studentsRepository->setModel()::insert($dataInsert));
 
         } else {
