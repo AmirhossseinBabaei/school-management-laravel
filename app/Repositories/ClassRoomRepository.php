@@ -37,4 +37,9 @@ class ClassRoomRepository extends BaseRepository
     {
         return $this->setModel()::where('school_id', $schoolId)->orderBy('id', 'desc')->get();
     }
+
+    public function getClassesBySchoolIdWithOutPaginate($schoolId)
+    {
+        return $this->setModel()::where('school_id', $schoolId)->orderBy('id', 'desc')->get();
+    }
 }
