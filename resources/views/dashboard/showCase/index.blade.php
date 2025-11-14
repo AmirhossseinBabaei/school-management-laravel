@@ -51,7 +51,7 @@
     <header>
         <a class="brand" href="#">
             <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="56" height="48" rx="12" fill="#38bdf8"/><path d="M12 48 L32 20 L52 48" stroke="#001018" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>امیر حسین بابایی دولوپر سامانه</span>
+            <span>آلفا البرز دولوپر سامانه</span>
         </a>
     </header>
 
@@ -114,7 +114,7 @@
         <div class="tile"><h3><a href="darolfonoon-site/admissions.html" style="color:inherit;text-decoration:none;">ثبت‌نام</a></h3><p>راهنمای ثبت‌نام و فرم‌ها.</p></div>
     </section>
 
-    <footer>طراحی و توسعه توسط <a href="https://t.me/amirhosseinbabaei">امیر حسین بابایی</a></footer>
+    <footer>طراحی و توسعه توسط <a href="https://t.me/amirhosseinbabaei">تیم نرم افزاری آلفا البرز</a></footer>
 </div>
 </body>
 </html>

@@ -266,24 +266,6 @@
         @endstudent
 
         @owner
-        <div class="col-lg-8">
-            <div class="card glass-effect border-0 shadow-lg h-100 animate__animated animate__fadeInUp"
-                 style="animation-delay: 0.5s;">
-                <div class="card-header glass-effect border-0">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h5 class="mb-0 gradient-text fw-bold">
-                            <i class="fa-solid fa-video-camera me-2"></i>ویدیو ی آموزشی کار با سامانه
-                        </h5>
-                    </div>
-                </div>
-                <div class="card-body p-4">
-                    <div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span>
-                        <iframe src="https://www.aparat.com/video/video/embed/videohash/mrgd18t/vt/frame"
-                                allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
         @endowner
 {{--        <div class="col-lg-4">--}}
 {{--            <div class="card glass-effect border-0 shadow-lg h-100 animate__animated animate__fadeInUp"--}}
@@ -409,7 +391,7 @@
     </div>
 
     <footer class="mt-4 py-3 text-center footer">
-        ساخته شده توسط <a href="">امیر حسین بابایی</a>
+        ساخته شده توسط <a href="">تیم آلفا البرز</a>
     </footer>
 @endsection
 
