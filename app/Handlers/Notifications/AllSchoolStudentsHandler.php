@@ -21,7 +21,7 @@ class AllSchoolStudentsHandler extends AudiencePhoneNotificationHandler
     {
         if ($request === 'allSchoolStudents') {
             $schoolId = $id ?? Auth::user()->school_id;
-            
+
             if (null == $schoolId) {
                 return [];
             }

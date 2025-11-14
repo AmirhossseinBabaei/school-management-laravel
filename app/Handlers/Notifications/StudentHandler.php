@@ -32,6 +32,8 @@ class StudentHandler extends AudiencePhoneNotificationHandler
 
             return [$this->studentsRepository->getOneById($id)->user->phone] ?? [];
         }
+
+        return parent::handle($request, $id);
     }
 
 }

@@ -22,7 +22,7 @@ class AllTeachersHandler extends AudiencePhoneNotificationHandler
         if ($request === 'allTeachers') {
             $schoolId = Auth::user()->school_id ?? null;
 
-            $teachers = $schoolId 
+            $teachers = $schoolId
                 ? $this->usersRepository->getTeachersBySchoolId($schoolId)
                 : $this->usersRepository->getAllTeachers();
 

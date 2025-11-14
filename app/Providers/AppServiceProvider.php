@@ -86,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php if (auth()->check() && auth()->user()->role_id === 4): ?>";
         });
 
-        Blade::directive('enddeputy', function (){
+        Blade::directive('enddeputy', function () {
             return "<?php endif; ?>";
         });
 
@@ -94,7 +94,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php if (auth()->check() && auth()->user()->role_id === 3): ?>";
         });
 
-        Blade::directive('endteacher', function (){
+        Blade::directive('endteacher', function () {
             return "<?php endif; ?>";
         });
 
@@ -102,7 +102,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php if (auth()->check() && auth()->user()->role_id === 5): ?>";
         });
 
-        Blade::directive('endstudent', function (){
+        Blade::directive('endstudent', function () {
             return "<?php endif; ?>";
         });
 
@@ -110,7 +110,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php if (auth()->check() && auth()->user()->role_id !== 5): ?>";
         });
 
-        Blade::directive('endnotstudent', function (){
+        Blade::directive('endnotstudent', function () {
             return "<?php endif; ?>";
         });
 
@@ -135,23 +135,24 @@ class AppServiceProvider extends ServiceProvider
             $class = new ClassHandler(new StudentsRepository());
             $studyBase = new StudyBaseHandler(new StudentsRepository());
 
-            $allUsers->setNext($allOwners)
+            $allUsers
                 ->setNext($allTeachers)
+                ->setNext($class)
+                ->setNext($studyBase)
                 ->setNext($allAttendanceSchools)
                 ->setNext($allSchoolStudents)
-                ->setNext($absentStudents)
-                ->setNext($debtStudents)
-                ->setNext($lowGradeStudents)
+            ->setNext($absentStudents)
                 ->setNext($student)
-                ->setNext($parent)
                 ->setNext($multipleStudents)
-                ->setNext($class)
-                ->setNext($studyBase);
+                            ->setNext($allOwners);
+//                ->setNext($debtStudents)
+//                ->setNext($lowGradeStudents)
+//                ->setNext($parent);
 
             return $allUsers;
         });
 
-        $this->app->singleton('chain.indexMethodControllersData', function (){
+        $this->app->singleton('chain.indexMethodControllersData', function () {
             $dashboardControllerData = new DashboardControllerDataHandler();
             $usersControllerData = new UsersControllerDataHandler();
             $studentsControllersData = new StudentsControllerDataHandler();
@@ -160,13 +161,13 @@ class AppServiceProvider extends ServiceProvider
             $attendacesControllerData = new AttendancesControllerDataHandler();
 
             $dashboardControllerData->setNext($usersControllerData)->setNext($studentsControllersData)
-            ->setNext($classRoomControllerData)->setNext($teacherClassesControllerData)
-            ->setNext($attendacesControllerData);
+                ->setNext($classRoomControllerData)->setNext($teacherClassesControllerData)
+                ->setNext($attendacesControllerData);
 
             return $dashboardControllerData;
         });
 
-        $this->app->singleton('chain.createMethodControllersData', function (){
+        $this->app->singleton('chain.createMethodControllersData', function () {
             $studentsControllersData = new StudentsCreateControllerDataHandler();
             $classRoomsControllerData = new ClassRoomsCreateControllerData();
             $teacherClassesControllerData = new TeacherClassesCreateControllerDataHandler();

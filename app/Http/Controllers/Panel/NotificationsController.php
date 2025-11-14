@@ -125,6 +125,7 @@ class NotificationsController extends Controller
                 break;
         }
 
+//        dd($requested['audience_data']);
 
         $getPhones = $chain->handle($audienceData, $id);
         dd($getPhones);

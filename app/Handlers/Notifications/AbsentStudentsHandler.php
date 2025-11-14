@@ -29,7 +29,7 @@ class AbsentStudentsHandler extends AudiencePhoneNotificationHandler
 
             // Get absent students today
             $absentStudents = $this->attendancesRepository->setModel()::where('school_id', $schoolId)
-                ->whereDate('attended_at', Carbon::today())
+                ->whereDate('created_at', Carbon::today())
                 ->where('status', 'absent')
                 ->with('student.user')
                 ->get();

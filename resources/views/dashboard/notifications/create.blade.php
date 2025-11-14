@@ -226,7 +226,6 @@
 
                             <!-- School Wide -->
                             <optgroup label="مدرسه">
-                                <option value="allSchool" {{ old('audience_data') === 'allSchool' ? 'selected' : '' }}>کل مدرسه</option>
                                 <option value="allSchoolStudents" {{ old('audience_data') === 'allSchoolStudents' ? 'selected' : '' }}>کل دانش‌آموزان مدرسه</option>
                                 <option value="allTeachers" {{ old('audience_data') === 'allTeachers' ? 'selected' : '' }}>کل معلمان</option>
                             </optgroup>
