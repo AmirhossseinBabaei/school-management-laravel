@@ -50,18 +50,6 @@
             animation-duration: 22s;
         }
 
-        @keyframes aurora {
-            0% {
-                transform: translate3d(0px, -10px, 0) scale(1.05) rotate(0deg);
-            }
-            50% {
-                transform: translate3d(-32px, 12px, 0) scale(1.08) rotate(-1deg);
-            }
-            100% {
-                transform: translate3d(28px, 18px, 0) scale(1.04) rotate(1deg);
-            }
-        }
-
         .grid-noise {
             position: absolute;
             inset: 0;
@@ -73,12 +61,6 @@
             opacity: 0.18;
             pointer-events: none;
             animation: slow-pan 30s linear infinite;
-        }
-
-        @keyframes slow-pan {
-            0% { transform: translate3d(0, 0, 0); }
-            50% { transform: translate3d(30px, -20px, 0); }
-            100% { transform: translate3d(0, 0, 0); }
         }
 
         .auth-wrapper {
@@ -120,12 +102,6 @@
             animation: shimmer 18s linear infinite;
         }
 
-        @keyframes shimmer {
-            0%   { transform: translate(-40%, -40%) rotate(0deg); }
-            50%  { transform: translate(20%, 10%) rotate(160deg); }
-            100% { transform: translate(-40%, -40%) rotate(360deg); }
-        }
-
         .brand span {
             font-size: 1.05rem;
             font-weight: 600;
@@ -153,11 +129,6 @@
             opacity: 0.75;
             mix-blend-mode: screen;
             animation: pulse-soft 11s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulse-soft {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.05); opacity: 0.78; }
         }
 
         .auth-card::after {
@@ -361,11 +332,8 @@
                             <input
                                 type="tel"
                                 name="phone"
-                                placeholder="09xxxxxxxxx"
                                 required
-                                pattern="09[0-9]{9}"
                                 maxlength="11"
-                                autocomplete="tel"
                             >
                         </div>
                     </label>
@@ -389,17 +357,6 @@
         loginForm.addEventListener('submit', function () {
             submitButton.disabled = true;
             submitButton.innerHTML = '<span class="spinner"></span> در حال ارسال...';
-        });
-
-        document.querySelector('input[name="phone"]').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 0 && !value.startsWith('09')) {
-                value = '09' + value;
-            }
-            if (value.length > 11) {
-                value = value.slice(0, 11);
-            }
-            e.target.value = value;
         });
     </script>
 </body>

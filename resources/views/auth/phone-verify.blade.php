@@ -50,12 +50,6 @@
             animation-duration: 23s;
         }
 
-        @keyframes aurora {
-            0% { transform: translate3d(-20px, 0, 0) rotate(-1deg); }
-            50% { transform: translate3d(18px, 8px, 0) rotate(1deg); }
-            100% { transform: translate3d(-12px, 18px, 0) rotate(0deg); }
-        }
-
         .grid-noise {
             position: absolute;
             inset: 0;
@@ -67,12 +61,6 @@
             opacity: 0.18;
             pointer-events: none;
             animation: slow-pan 34s linear infinite;
-        }
-
-        @keyframes slow-pan {
-            0% { transform: translate3d(0, 0, 0); }
-            50% { transform: translate3d(40px, -16px, 0); }
-            100% { transform: translate3d(0, 0, 0); }
         }
 
         .auth-wrapper {
@@ -143,11 +131,6 @@
             border-radius: 26px;
             background: linear-gradient(160deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.92));
             box-shadow: inset 0 1px 0 rgba(148, 163, 184, 0.08);
-        }
-
-        @keyframes pulse-soft {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.05); opacity: 0.75; }
         }
 
         .auth-content {
@@ -304,11 +287,6 @@
             animation: spin 1s linear infinite;
         }
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .actions {
             display: flex;
             flex-direction: column;
@@ -403,7 +381,6 @@
                                 name="verficationCode"
                                 placeholder="000000"
                                 maxlength="6"
-                                autocomplete="one-time-code"
                                 inputmode="numeric"
                                 required
                             >
