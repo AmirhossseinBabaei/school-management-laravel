@@ -125,7 +125,6 @@ class AppServiceProvider extends ServiceProvider
             $allOwners = new AllOwnersHandler(new UsersRepository());
             $allTeachers = new AllTeachersHandler(new UsersRepository());
             $allAttendanceSchools = new AllAttendanceSchoolHandler(new AttendancesRepository());
-            $allSchool = new AllSchoolHandler(new StudentsRepository());
             $allSchoolStudents = new AllSchoolStudentsHandler(new StudentsRepository());
             $absentStudents = new AbsentStudentsHandler(new AttendancesRepository());
             $debtStudents = new DebtStudentsHandler(new StudentsRepository());
@@ -139,7 +138,6 @@ class AppServiceProvider extends ServiceProvider
             $allUsers->setNext($allOwners)
                 ->setNext($allTeachers)
                 ->setNext($allAttendanceSchools)
-                ->setNext($allSchool)
                 ->setNext($allSchoolStudents)
                 ->setNext($absentStudents)
                 ->setNext($debtStudents)

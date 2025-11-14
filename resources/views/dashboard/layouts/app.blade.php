@@ -900,6 +900,10 @@
                href="{{ route('dashboard.disciplinaryRecords.report') }}">
                 <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری موارد انضباطی
             </a>
+            <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+               href="{{ url('dashboard/notifications') }}">
+                <i class="fa-solid fa-message me-2 text-primary"></i> نوتیفیکیشن ها
+            </a>
             @endowner
 
             @student
@@ -960,6 +964,10 @@
                    href="{{ route('dashboard.disciplinaryRecords.report') }}">
                     <i class="fa-solid fa-message me-2 text-primary"></i>گزارش گیری موارد انضباطی
                 </a>
+                <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+                   href="{{ url('dashboard/notifications') }}">
+                    <i class="fa-solid fa-message me-2 text-primary"></i> نوتیفیکیشن ها
+                </a>
                 @enddeputy
 
                 @teacher
@@ -982,6 +990,10 @@
 
                     <a class="nav-link {{ request()->routeIs('dashboard.attendances.*') ? 'active' : '' }} rounded-3 mb-1" href="{{ route('dashboard.attendances.index')  }}">
                         <i class="fa-solid fa-calendar-check me-2 text-primary"></i> حضور و غیاب
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('dashboard.notifications.*') ? 'active' : '' }} rounded-3 mb-1"
+                       href="{{ url('dashboard/notifications') }}">
+                        <i class="fa-solid fa-message me-2 text-primary"></i> نوتیفیکیشن ها
                     </a>
                     @endteacher
 
