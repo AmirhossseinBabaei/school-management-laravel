@@ -6,6 +6,7 @@ use App\Models\Attendance;
 use App\Services\JalaliDateServiceStatic;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -21,7 +22,7 @@ class AttendancesRepository extends BaseRepository
         return Attendance::class;
     }
 
-    public function getPhoneStudentsAttendance(): array
+    public function getPhoneStudentsAttendance(): Collection
     {
         return $this->connection()
             ->join('students', 'attendances.student_id', '=', 'students.id')

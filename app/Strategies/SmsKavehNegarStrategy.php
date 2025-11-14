@@ -25,7 +25,7 @@ class SmsKavehNegarStrategy implements SendNotificationInterface, ShouldQueue
         $this->notificationsFailedRepository = new NotificationsFailedRepository();
     }
 
-    public function sendMessage(string $message, string $recipient)
+    public function sendMessage(string $message, string $recipient, string $param1 = '')
     {
         try {
             $data = $this->client->request('GET', 'verify/lookup.json', [

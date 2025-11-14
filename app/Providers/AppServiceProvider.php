@@ -12,7 +12,22 @@ use App\Handlers\IndexMethodControllersData\ScheduleTeachersControllerDataHandle
 use App\Handlers\IndexMethodControllersData\StudentsControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\TeacherClassesControllerDataHandler;
 use App\Handlers\IndexMethodControllersData\UsersControllerDataHandler;
-use App\Handlers\Notifications\{AllAttendanceSchoolHandler, AllOwnersHandler, AllUsersHandler, StudentHandler};
+use App\Handlers\Notifications\{
+    AbsentStudentsHandler,
+    AllAttendanceSchoolHandler,
+    AllOwnersHandler,
+    AllSchoolHandler,
+    AllSchoolStudentsHandler,
+    AllTeachersHandler,
+    AllUsersHandler,
+    ClassHandler,
+    DebtStudentsHandler,
+    LowGradeStudentsHandler,
+    MultipleStudentsHandler,
+    ParentHandler,
+    StudentHandler,
+    StudyBaseHandler
+};
 use App\Models\Attendance;
 use App\Models\Student;
 use App\Models\User;
@@ -20,6 +35,7 @@ use App\Policies\AttendancePolicy;
 use App\Policies\StudentPolicy;
 use App\Policies\UserPolicy;
 use App\Repositories\AttendancesRepository;
+use App\Repositories\GradesRepository;
 use App\Repositories\StudentsRepository;
 use App\Repositories\UsersRepository;
 use Illuminate\Auth\Notifications\ResetPassword;
@@ -107,10 +123,32 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('chain.notification', function ($app) {
             $allUsers = new AllUsersHandler(new UsersRepository());
             $allOwners = new AllOwnersHandler(new UsersRepository());
+            $allTeachers = new AllTeachersHandler(new UsersRepository());
             $allAttendanceSchools = new AllAttendanceSchoolHandler(new AttendancesRepository());
+            $allSchool = new AllSchoolHandler(new StudentsRepository());
+            $allSchoolStudents = new AllSchoolStudentsHandler(new StudentsRepository());
+            $absentStudents = new AbsentStudentsHandler(new AttendancesRepository());
+            $debtStudents = new DebtStudentsHandler(new StudentsRepository());
+            $lowGradeStudents = new LowGradeStudentsHandler(new GradesRepository(), new StudentsRepository());
             $student = new StudentHandler(new StudentsRepository());
+            $parent = new ParentHandler(new StudentsRepository());
+            $multipleStudents = new MultipleStudentsHandler(new StudentsRepository());
+            $class = new ClassHandler(new StudentsRepository());
+            $studyBase = new StudyBaseHandler(new StudentsRepository());
 
-            $allUsers->setNext($allOwners)->setNext($allAttendanceSchools)->setNext($student);
+            $allUsers->setNext($allOwners)
+                ->setNext($allTeachers)
+                ->setNext($allAttendanceSchools)
+                ->setNext($allSchool)
+                ->setNext($allSchoolStudents)
+                ->setNext($absentStudents)
+                ->setNext($debtStudents)
+                ->setNext($lowGradeStudents)
+                ->setNext($student)
+                ->setNext($parent)
+                ->setNext($multipleStudents)
+                ->setNext($class)
+                ->setNext($studyBase);
 
             return $allUsers;
         });
