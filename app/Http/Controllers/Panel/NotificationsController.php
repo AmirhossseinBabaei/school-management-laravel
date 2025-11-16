@@ -138,7 +138,15 @@ class NotificationsController extends Controller
             new SmsDotIrStrategy()
         );
 
-        $notificationContext->sendNotification($request['message'], $getPhones, 'notif');
+//        dd($getPhones->toArray());
+
+        $dataR = [];
+
+        foreach ($getPhones as $phone) {
+            $dataR [] = $phone->phone;
+        }
+
+        $notificationContext->sendNotification($request['message'], $dataR, 'notif');
 
         // Get school for smart field replacement
         $school = null;
@@ -147,36 +155,37 @@ class NotificationsController extends Controller
         }
 
         // Send notifications with smart field replacement
-        $results = [];
-        $baseMessage = $requested['message'];
-
-        foreach ($getPhones as $phone) {
-            // Find student by phone for smart field replacement
-            $student = null;
-            if (in_array($audienceData, ['student', 'parent', 'multipleStudents', 'class', 'studyBase', 'allSchoolStudents', 'absentStudents'])) {
-                $user = \App\Models\User::where('phone', $phone)->first();
-                if ($user) {
-                    $student = \App\Models\Student::where('user_id', $user->id)->first();
-                }
-            }
+//        $results = [];
+//        $baseMessage = $requested['message'];
+//
+//
+//        foreach ($getPhones as $phone) {
+//            // Find student by phone for smart field replacement
+//            $student = null;
+//            if (in_array($audienceData, ['student', 'parent', 'multipleStudents', 'class', 'studyBase', 'allSchoolStudents', 'absentStudents'])) {
+//                $user = \App\Models\User::where('phone', $phone)->first();
+//                if ($user) {
+//                    $student = \App\Models\Student::where('user_id', $user->id)->first();
+//                }
+//            }
 
             // Replace smart fields for each recipient
-            $personalizedMessage = $this->messageTemplateService->replaceSmartFields($baseMessage, $student, $school);
-
-            $result = $notificationContext->sendNotification($personalizedMessage, [$phone], $personalizedMessage);
-            $results[] = $result[0] ?? ['status' => 500];
-        }
-
-        // Check if any notification failed
-        $hasError = false;
-        foreach ($results as $result) {
-            if (500 === ($result['status'] ?? 500)) {
-                $hasError = true;
-                break;
-            }
-        }
-
-        $requested['status'] = $hasError ? 'exception' : 'send';
+//            $personalizedMessage = $this->messageTemplateService->replaceSmartFields($baseMessage, $student, $school);
+//
+//            $result = $notificationContext->sendNotification($personalizedMessage, [$phone], $personalizedMessage);
+//            $results[] = $result[0] ?? ['status' => 500];
+//        }
+//
+//        // Check if any notification failed
+//        $hasError = false;
+//        foreach ($results as $result) {
+//            if (500 === ($result['status'] ?? 500)) {
+//                $hasError = true;
+//                break;
+//            }
+//        }
+//
+        $requested['status'] = 'send';
         $requested['channels'] = json_encode($requested['channels']);
 
         $notificationStored = $this->notificationsRepository->store($requested);

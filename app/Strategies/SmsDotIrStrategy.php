@@ -36,7 +36,7 @@ class SmsDotIrStrategy implements SendNotificationInterface, ShouldQueue
                 'templateId' => 490184,
                 'parameters' => [
                     ['name' => 'STUDENT', 'value' => $message],
-                    ['name' => 'DATE', 'value' => JalaliDateServiceStatic::toJalali(Carbon::now('Y-m-d H:i:s'))]
+                    ['name' => 'DATE', 'value' => JalaliDateServiceStatic::toJalali(Carbon::now()->format('Y-m-d'))]
                 ],
             ];
         }

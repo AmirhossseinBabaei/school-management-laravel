@@ -81,7 +81,7 @@
                                 <i class="fa-solid fa-phone me-2 text-success"></i>شماره تلفن
                             </label>
                             <input type="tel" class="form-control" value="{{ $data['user']->phone }}"
-                                   placeholder="09*********" disabled>
+                                   placeholder="09*********">
                             <div class="invalid-feedback">شماره تلفن قابل تغییر نیست.</div>
                         </div>
                         <div class="col-md-6">
