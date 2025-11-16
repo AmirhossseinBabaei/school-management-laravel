@@ -84,17 +84,18 @@ class GradesController extends Controller
         return view('dashboard.grades.all', compact('data'));
     }
 
-    public function store(CreateGradeRequest $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
         $requested = $request->toArray();
 
         $schoolId = Auth::user()->school_id;
-        $classId = (int)$requested['class_id'];
-        $lessonId = (int)$requested['lesson_id'];
-        $termId = (int)$requested['term_id'];
+        $classId = $requested['class_id'];
+        $lessonId = $requested['lesson_id'];
+        $termId = $requested['term_id'];
 
         $now = Carbon::now()->format('Y-m-d H:i:s');
         $bulk = [];
+
         foreach ($requested['students'] as $student) {
             $bulk[] = [
                 'student_id' => (int)$student['student_id'],

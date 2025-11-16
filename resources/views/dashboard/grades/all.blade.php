@@ -132,7 +132,7 @@
                             s.first_name,
                             s.last_name,
                             `<input type="number" min="0" max="20" step="0.25" class="form-control form-control-sm score-input" data-student="${s.student_id}" value="${s.score}" />`,
-                            `<input type="text" class="form-control form-control-sm desc-input" data-student="${s.student_id}" value="${(s.description||'').replaceAll('"','&quot;')}" />`
+                            `<input type="text" class="form-control form-control-sm desc-input" data-student="${s.student_id}" value="${(s.description||'بدون توضیح').replaceAll('"','&quot;')}" />`
                         ];
                         api.row.add(row);
                     });
