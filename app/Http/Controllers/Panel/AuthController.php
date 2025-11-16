@@ -53,7 +53,7 @@ class AuthController extends Controller
 
         $user = $this->usersRepository->setModel()::where('phone', $phone)->get()->first();
 
-        if (1) {
+        if ($verficationCode === $user['otp_code']) {
             Auth::login($user);
 
             return redirect()->route('dashboard');
