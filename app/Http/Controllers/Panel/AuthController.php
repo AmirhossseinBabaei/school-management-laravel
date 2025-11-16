@@ -29,13 +29,13 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'کاربری یافت نشد');
         }
 
-        $notifiationContex1 = new NotificationContextService(
-            new SmsDotIrStrategy()
-        );
+//        $notifiationContex1 = new NotificationContextService(
+//            new SmsDotIrStrategy()
+//        );
 
         $code = mt_rand(1, 1000000);
 
-        $notifiationContex1->sendNotification(null, [$request['phone']], $code);
+//        $notifiationContex1->sendNotification(null, [$request['phone']], $code);
 
         $this->usersRepository->setModel()::where('phone', $phone)->update(['otp_code' => $code]);
 
