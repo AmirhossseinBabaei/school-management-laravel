@@ -125,10 +125,8 @@ class NotificationsController extends Controller
                 break;
         }
 
-//        dd($requested['audience_data']);
 
         $getPhones = $chain->handle($audienceData, $id);
-        dd($getPhones);
 
         if (empty($getPhones)) {
             return redirect()->route('dashboard.notifications.create')
@@ -136,11 +134,11 @@ class NotificationsController extends Controller
                 ->withInput();
         }
 
-        dd($getPhones);
-
         $notificationContext = new NotificationContextService(
             new SmsDotIrStrategy()
         );
+
+        $notificationContext->sendNotification($request['message'], $getPhones, null);
 
         // Get school for smart field replacement
         $school = null;
