@@ -111,7 +111,7 @@
             const first = data.student.first_name || '';
             const last = data.student.last_name || '';
             const national = data.student.national_code || '';
-            
+
             // try to infer academic year from term title like "ترم 1403-1402"; fallback to current year span
             const yearMatch = termText.match(/(\d{4}[\-\/–]\d{4})/);
             const yearRange = yearMatch ? yearMatch[1] : defaultYearRange;
@@ -177,28 +177,34 @@
                             <div>معدل: <strong>${avg}</strong></div>
                         </div>
                         <div class="rc-stamp">
-                            <div class="stamp-box">محل مُهر مدرسه</div>
+                                <div class="stamp-box">
+                                     <img src="{{ asset('assets/img/one.png') }}" width="450px" height="250px">
+                                  </div>
                         </div>
                         <div class="rc-signs">
+
+                                            <div class="stamp-box">
+                                                <img src="{{ asset('assets/img/two.png') }}" width="150px" height="200px">
+                                            </div>
                             <div class="sign-line"></div>
                             <div class="sign-caption">امضاء مدیر/مسئول</div>
                         </div>
                     </div>
                 </div>
             `;
-            
+
             const table = sheet.querySelector('.rc-table');
             table.appendChild(tbody);
-            
+
             return sheet;
         }
 
         document.getElementById('fetch_report').addEventListener('click', function () {
             const classId = document.getElementById('class_id').value;
             const termId = document.getElementById('term_id').value;
-            if (!classId || !termId) { 
-                alert('کلاس و ترم را انتخاب کنید'); 
-                return; 
+            if (!classId || !termId) {
+                alert('کلاس و ترم را انتخاب کنید');
+                return;
             }
 
             const btn = this;
@@ -206,15 +212,15 @@
             btn.innerHTML = 'در حال دریافت...';
 
             const autoCalculate = document.getElementById('auto_calculate_disciplinary').checked;
-            
+
             fetch(fetchApi, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-                body: JSON.stringify({ 
-                    class_id: Number(classId), 
+                body: JSON.stringify({
+                    class_id: Number(classId),
                     term_id: Number(termId),
                     auto_calculate_disciplinary: autoCalculate
                 })
@@ -223,14 +229,14 @@
                 .then(res => {
                     btn.disabled = false;
                     btn.innerHTML = 'دریافت کارنامه‌ها';
-                    
+
                     if (res.status === 1) {
                         const container = document.getElementById('report_cards_container');
                         container.innerHTML = '';
-                        
+
                         const termSel = document.getElementById('term_id');
                         const termText = termSel.options[termSel.selectedIndex]?.text || '';
-                        
+
                         if (res.report_cards && res.report_cards.length > 0) {
                             res.report_cards.forEach((reportCard) => {
                                 const card = renderReportCard(reportCard, termText);
@@ -240,8 +246,8 @@
                             alert('کارنامه‌ای یافت نشد');
                         }
                     }
-                    else { 
-                        alert(res.message || 'اطلاعاتی یافت نشد'); 
+                    else {
+                        alert(res.message || 'اطلاعاتی یافت نشد');
                     }
                 })
                 .catch(() => {

@@ -27,7 +27,7 @@
                             <div class="col-md-3">
                                 <div class="form-check mt-4">
                                     <input class="form-check-input" type="checkbox" id="auto_calculate_disciplinary" checked>
-                                    <label class="form-check-label" for="auto_calculate_disciplinary">
+                                    <label class="form-check-label text-white" for="auto_calculate_disciplinary">
                                         محاسبه خودکار نمره انضباط
                                     </label>
                                 </div>
@@ -80,10 +80,16 @@
                                             <div>معدل: <strong id="rc_avg">—</strong></div>
                                         </div>
                                         <div class="rc-stamp">
-                                            <div class="stamp-box">محل مُهر مدرسه</div>
+                                            <div class="stamp-box">
+                                                <img src="{{ asset('assets/img/one.png') }}" width="450px" height="250px">
+                                            </div>
                                         </div>
                                         <div class="rc-signs">
-                                            <div class="sign-line"></div>
+                                            <div class="stamp-box">
+                                                <img src="{{ asset('assets/img/two.png') }}" width="150px" height="200px">
+                                            </div>
+                                            <div class="sign-line">
+                                            </div>
                                             <div class="sign-caption">امضاء مدیر/مسئول</div>
                                         </div>
                                     </div>
@@ -201,8 +207,8 @@
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
-                body: JSON.stringify({ 
-                    national_code: national, 
+                body: JSON.stringify({
+                    national_code: national,
                     term_id: Number(termId),
                     auto_calculate_disciplinary: autoCalculate
                 })

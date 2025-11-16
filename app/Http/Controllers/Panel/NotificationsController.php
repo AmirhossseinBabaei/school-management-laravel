@@ -138,7 +138,7 @@ class NotificationsController extends Controller
             new SmsDotIrStrategy()
         );
 
-        $notificationContext->sendNotification($request['message'], $getPhones, null);
+        $notificationContext->sendNotification($request['message'], $getPhones, 'notif');
 
         // Get school for smart field replacement
         $school = null;

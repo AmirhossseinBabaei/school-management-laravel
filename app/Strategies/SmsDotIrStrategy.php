@@ -4,6 +4,8 @@ namespace App\Strategies;
 
 use App\Interfaces\SendNotificationInterface;
 use App\Repositories\NotificationsFailedRepository;
+use App\Services\JalaliDateServiceStatic;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,6 +15,7 @@ class SmsDotIrStrategy implements SendNotificationInterface, ShouldQueue
     protected Client $client;
     protected string $apiKey;
     protected NotificationsFailedRepository $notificationsFailedRepository;
+    protected JalaliDateServiceStatic $jalaliDateServiceStatic;
 
     public function __construct()
     {
@@ -27,15 +30,25 @@ class SmsDotIrStrategy implements SendNotificationInterface, ShouldQueue
 
     public function sendMessage($message, string $recipient, string $param1)
     {
-
-        $payload = [
-            'mobile' => $recipient,
-            'templateId' => 713537,
-            'parameters' => [
-                ['name' => 'CODE', 'value' => $param1],
-            ],
-        ];
-
+        if ($param1 == "notif") {
+            $payload = [
+                'mobile' => $recipient,
+                'templateId' => 490184,
+                'parameters' => [
+                    ['name' => 'STUDENT', 'value' => $message],
+                    ['name' => 'DATE', 'value' => JalaliDateServiceStatic::toJalali(Carbon::now('Y-m-d H:i:s'))]
+                ],
+            ];
+        }
+        else {
+            $payload = [
+                'mobile' => $recipient,
+                'templateId' => 713537,
+                'parameters' => [
+                    ['name' => 'CODE', 'value' => $param1],
+                ],
+            ];
+        }
         try {
             $response = $this->client->request('POST', 'send/verify', [
                 'headers' => [
