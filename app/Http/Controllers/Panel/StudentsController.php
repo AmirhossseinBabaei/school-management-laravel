@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Repositories\ClassRoomRepository;
 use App\Repositories\SchoolsRepository;
 use App\Repositories\StudentsRepository;
@@ -219,8 +220,10 @@ class StudentsController extends Controller
                 $dataInsert[] = $data;
             }
 
-            dd($dataInsert);
-            $this->studentsRepository->setModel()::insert($data);
+//            dd($dataInsert);
+//            $this->studentsRepository->setModel()::insert($data);
+
+            Student::insert($dataInsert);
 
             return redirect()->back()->with('success', 'ثبت شد');
 
