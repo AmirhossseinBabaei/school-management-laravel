@@ -219,8 +219,10 @@ class StudentsController extends Controller
                 $dataInsert[] = $data;
             }
 
-            dd($dataInsert);
-            return redirect()->back()->with('success', $this->studentsRepository->setModel()::insert($dataInsert));
+//            dd($dataInsert);
+            $this->studentsRepository->setModel()::insert($data);
+
+            return redirect()->back()->with('success', 'ثبت شد');
 
         } else {
             return response()->json([
