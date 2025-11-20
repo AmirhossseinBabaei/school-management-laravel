@@ -178,13 +178,13 @@
                         </div>
                         <div class="rc-stamp">
                                 <div class="stamp-box">
-                                     <img src="{{ asset('assets/img/one.png') }}" width="450px" height="250px">
+                                     <img src="https://uploadkon.ir/uploads/0dfd20_25one.png" width="450px" height="250px">
                                   </div>
                         </div>
                         <div class="rc-signs">
 
                                             <div class="stamp-box">
-                                                <img src="{{ asset('assets/img/two.png') }}" width="150px" height="200px">
+                                                <img src="https://uploadkon.ir/uploads/83c320_25two.png" width="150px" height="200px">
                                             </div>
                             <div class="sign-line"></div>
                             <div class="sign-caption">امضاء مدیر/مسئول</div>
