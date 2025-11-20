@@ -99,7 +99,7 @@
         function ensureDataTable() {
             if (!dt) {
                 dt = new window.jQuery.fn.dataTable.Api(jQuery('#gradesTable').DataTable({
-                    paging: true,
+                    paging:false,
                     searching: true,
                     info: true,
                     language: { url: '/plugins/datatables/i18n/Persian.lang.json' }
