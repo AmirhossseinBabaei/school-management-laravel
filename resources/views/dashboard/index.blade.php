@@ -391,7 +391,7 @@
     </div>
 
     <footer class="mt-4 py-3 text-center footer">
-        ساخته شده توسط <a href="">تیم آلفا البرز</a>
+        ساخته شده توسط <a href="https://alfaalborz.freehost.io/">تیم آلفا البرز</a>
     </footer>
 @endsection
 

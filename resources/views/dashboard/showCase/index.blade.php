@@ -114,7 +114,7 @@
         <div class="tile"><h3><a href="darolfonoon-site/admissions.html" style="color:inherit;text-decoration:none;">ثبت‌نام</a></h3><p>راهنمای ثبت‌نام و فرم‌ها.</p></div>
     </section>
 
-    <footer>طراحی و توسعه توسط <a href="https://t.me/amirhosseinbabaei">تیم نرم افزاری آلفا البرز</a></footer>
+    <footer>طراحی و توسعه توسط <a href="https://alfaalborz.freehost.io">تیم نرم افزاری آلفا البرز</a></footer>
 </div>
 </body>
 </html>
