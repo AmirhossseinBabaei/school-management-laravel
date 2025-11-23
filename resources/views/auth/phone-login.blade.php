@@ -320,6 +320,11 @@
 
         <div class="auth-card">
             <div class="auth-content">
+                @if (session('error'))
+                    <div style="margin-bottom:18px;border-radius:14px;padding:12px 14px;background:rgba(248, 113, 113, 0.14);color:#fecaca;border:1px solid rgba(248, 113, 113, 0.35);text-align:center;">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="auth-heading">
                     <h1>ورود با شماره موبایل</h1>
                     <p>برای ورود، شماره موبایل خود را با دقت وارد کنید تا کد تأیید برای شما ارسال شود.</p>
