@@ -33,11 +33,11 @@ class AuthController extends Controller
             new SmsDotIrStrategy()
         );
 
-        $code = mt_rand(1, 1000000);
+//        $code = mt_rand(1, 1000000);
 
-        $notifiationContex1->sendNotification(null, [$request['phone']], $code);
+//        $notifiationContex1->sendNotification(null, [$request['phone']], $code);
 
-        $this->usersRepository->setModel()::where('phone', $phone)->update(['otp_code' => $code]);
+//        $this->usersRepository->setModel()::where('phone', $phone)->update(['otp_code' => $code]);
 
         return redirect()->route('auth.phone.verify')->with('phone', $phone);
     }
@@ -53,7 +53,9 @@ class AuthController extends Controller
 
         $user = $this->usersRepository->setModel()::where('phone', $phone)->get()->first();
 
-        if ($verficationCode === $user['otp_code']) {
+        $code = substr($user['phone'], -6);
+
+        if ($verficationCode === $code) {
             Auth::login($user);
 
             return redirect()->route('dashboard');
